@@ -1,0 +1,147 @@
+{
+  "nav": {
+    "services": "Services",
+    "about": "About",
+    "process": "Process",
+    "testimonials": "Testimonials",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "cta": "Free assessment"
+  },
+  "hero": {
+    "badge": "Luxury concierge in Marrakech",
+    "title": "Your property in the",
+    "title_highlight": "best hands",
+    "subtitle": "Premium rental management & luxury concierge in Marrakech. We maximize your revenues, you enjoy peace of mind.",
+    "cta_primary": "Request a free assessment",
+    "cta_secondary": "Discover our services",
+    "trust_1": "5-star service",
+    "trust_2": "Response within 24h",
+    "trust_3": "Transparent contract"
+  },
+  "about": {
+    "badge": "Our story",
+    "title": "Excellence at the service",
+    "title_highlight": "of your heritage",
+    "text": "Guard Conciergerie Luxury Care was born from a passion for exceptional real estate and a total commitment to our owners. Based in Marrakech, our team of experts manages your property with the greatest care, combining cutting-edge technology with quality human service.",
+    "text2": "We believe every property deserves special attention. That's why we offer a tailor-made service, adapted to your specific needs and local market requirements.",
+    "point_1": "Local expertise for over 5 years",
+    "point_2": "Dedicated team available 24/7",
+    "point_3": "Premium partnerships with the best platforms"
+  },
+  "services": {
+    "badge": "Our services",
+    "title": "Management without",
+    "title_highlight": "compromise",
+    "subtitle": "From listing to welcoming your travelers, we manage everything for you with the highest level of excellence."
+  },
+  "whyus": {
+    "badge": "Why choose us",
+    "title": "What makes us",
+    "title_highlight": "different",
+    "reason_1_title": "Marrakech Expertise",
+    "reason_1_text": "5 years of experience on the local market. We know every neighborhood, every season, every opportunity.",
+    "reason_2_title": "Total transparency",
+    "reason_2_text": "Real-time access to your dashboard. Revenue, expenses, bookings: nothing escapes you.",
+    "reason_3_title": "Premium service",
+    "reason_3_text": "5-star hotel standards applied to your property. Your travelers always leave satisfied.",
+    "reason_4_title": "Optimized revenue",
+    "reason_4_text": "Dynamic pricing and multi-platform. On average, our owners earn 40% more.",
+    "reason_5_title": "24/7 availability",
+    "reason_5_text": "Our team is available at all hours for you and your travelers. No emergency goes unanswered.",
+    "reason_6_title": "Craftsmen network",
+    "reason_6_text": "Fast, qualified maintenance thanks to our network of trusted service providers in Marrakech."
+  },
+  "process": {
+    "badge": "How it works",
+    "title": "3 steps to",
+    "title_highlight": "get started",
+    "step_1_num": "01",
+    "step_1_title": "Free assessment",
+    "step_1_text": "We visit your property, evaluate its rental potential and propose a personalized strategy.",
+    "step_2_num": "02",
+    "step_2_title": "Setup",
+    "step_2_text": "Professional photo shoot, creation of optimized listings, pricing configuration. Your property is ready in 7 days.",
+    "step_3_num": "03",
+    "step_3_title": "Ongoing management",
+    "step_3_text": "We manage everything: bookings, check-in, cleaning, maintenance. You receive your income every month.",
+    "cta": "Start now"
+  },
+  "stats": {
+    "title": "Numbers that",
+    "title_highlight": "speak for themselves"
+  },
+  "testimonials": {
+    "badge": "They trust us",
+    "title": "What our",
+    "title_highlight": "owners say"
+  },
+  "faq": {
+    "badge": "Frequently asked questions",
+    "title": "Everything you",
+    "title_highlight": "need to know",
+    "still_questions": "Still have questions?",
+    "contact_us": "Contact us directly"
+  },
+  "contact": {
+    "badge": "Get started",
+    "title": "Ready to maximize",
+    "title_highlight": "your revenues?",
+    "subtitle": "Tell us about your property. Our team contacts you within 24 hours for a free assessment.",
+    "info_title": "Let's talk about your project",
+    "info_text": "Every property has unique potential. Let us show you how we can maximize it together.",
+    "phone": "Phone",
+    "email": "Email",
+    "address": "Address",
+    "whatsapp": "WhatsApp"
+  },
+  "footer": {
+    "description": "The luxury concierge that transforms your property into a profitable asset in Marrakech.",
+    "services": "Services",
+    "company": "Company",
+    "legal": "Legal notice",
+    "privacy": "Privacy policy",
+    "rights": "All rights reserved.",
+    "made_in": "Made with excellence in Marrakech"
+  },
+  "form": {
+    "submit": "Request a free assessment",
+    "submitting": "Sending...",
+    "success_title": "Thank you for your request!",
+    "success_text": "Our team will contact you within 24 hours.",
+    "error": "An error occurred. Please try again.",
+    "upload_text": "Drop your photos here or click to browse",
+    "upload_formats": "JPG, PNG, WEBP up to 10MB each",
+    "upload_max": "Maximum 10 photos",
+    "required": "This field is required",
+    "phone_invalid": "Invalid phone number"
+  },
+  "admin": {
+    "login_title": "Admin Login",
+    "login_subtitle": "Guard Conciergerie — Administration panel",
+    "email": "Email",
+    "password": "Password",
+    "login_btn": "Sign in",
+    "logout": "Logout",
+    "dashboard": "Dashboard",
+    "leads": "Leads",
+    "services": "Services",
+    "testimonials": "Testimonials",
+    "faq": "FAQ",
+    "content": "Content",
+    "form_builder": "Form Builder",
+    "seo": "SEO",
+    "settings": "Settings",
+    "media": "Media",
+    "new": "New",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm_delete": "Are you sure you want to delete?",
+    "no_data": "No data",
+    "loading": "Loading...",
+    "success": "Saved successfully",
+    "error": "An error occurred"
+  }
+}

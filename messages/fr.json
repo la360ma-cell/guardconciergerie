@@ -1,0 +1,147 @@
+{
+  "nav": {
+    "services": "Services",
+    "about": "À propos",
+    "process": "Processus",
+    "testimonials": "Témoignages",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "cta": "Évaluation gratuite"
+  },
+  "hero": {
+    "badge": "Conciergerie de luxe à Marrakech",
+    "title": "Votre bien entre les",
+    "title_highlight": "meilleures mains",
+    "subtitle": "Gestion locative premium & conciergerie de luxe à Marrakech. Nous maximisons vos revenus, vous profitez de la tranquillité d'esprit.",
+    "cta_primary": "Demander une évaluation gratuite",
+    "cta_secondary": "Découvrir nos services",
+    "trust_1": "Service 5 étoiles",
+    "trust_2": "Réponse sous 24h",
+    "trust_3": "Contrat transparent"
+  },
+  "about": {
+    "badge": "Notre histoire",
+    "title": "L'excellence au service",
+    "title_highlight": "de votre patrimoine",
+    "text": "Guard Conciergerie Luxury Care est née d'une passion pour l'immobilier d'exception et d'un engagement total envers nos propriétaires. Basée à Marrakech, notre équipe d'experts gère votre bien avec le plus grand soin, en alliant technologie de pointe et service humain de qualité.",
+    "text2": "Nous croyons que chaque propriété mérite une attention particulière. C'est pourquoi nous offrons un service sur mesure, adapté à vos besoins spécifiques et aux exigences du marché local.",
+    "point_1": "Expertise locale depuis plus de 5 ans",
+    "point_2": "Équipe dédiée et disponible 24h/24",
+    "point_3": "Partenariats premium avec les meilleures plateformes"
+  },
+  "services": {
+    "badge": "Nos services",
+    "title": "Une gestion",
+    "title_highlight": "sans compromis",
+    "subtitle": "De la mise en ligne à l'accueil de vos voyageurs, nous gérons tout pour vous avec le plus haut niveau d'exigence."
+  },
+  "whyus": {
+    "badge": "Pourquoi nous choisir",
+    "title": "Ce qui nous rend",
+    "title_highlight": "différents",
+    "reason_1_title": "Expertise Marrakech",
+    "reason_1_text": "5 ans d'expérience sur le marché local. Nous connaissons chaque quartier, chaque saisonnalité, chaque opportunité.",
+    "reason_2_title": "Transparence totale",
+    "reason_2_text": "Accès en temps réel à votre tableau de bord. Revenus, dépenses, réservations : rien ne vous échappe.",
+    "reason_3_title": "Service premium",
+    "reason_3_text": "Standards hôteliers 5 étoiles appliqués à votre bien. Vos voyageurs partent toujours ravis.",
+    "reason_4_title": "Revenus optimisés",
+    "reason_4_text": "Tarification dynamique et multi-plateformes. En moyenne, nos propriétaires gagnent 40% de plus.",
+    "reason_5_title": "Disponibilité 24/7",
+    "reason_5_text": "Notre équipe est disponible à toute heure pour vous et vos voyageurs. Aucune urgence ne reste sans réponse.",
+    "reason_6_title": "Réseau d'artisans",
+    "reason_6_text": "Maintenance rapide et qualifiée grâce à notre réseau de prestataires de confiance à Marrakech."
+  },
+  "process": {
+    "badge": "Comment ça marche",
+    "title": "3 étapes pour",
+    "title_highlight": "commencer",
+    "step_1_num": "01",
+    "step_1_title": "Évaluation gratuite",
+    "step_1_text": "Nous visitons votre bien, évaluons son potentiel locatif et vous proposons une stratégie personnalisée.",
+    "step_2_num": "02",
+    "step_2_title": "Mise en place",
+    "step_2_text": "Shooting photo professionnel, création des annonces optimisées, paramétrage tarifaire. Votre bien est prêt en 7 jours.",
+    "step_3_num": "03",
+    "step_3_title": "Gestion continue",
+    "step_3_text": "Nous gérons tout : réservations, accueil, ménage, maintenance. Vous recevez vos revenus chaque mois.",
+    "cta": "Démarrer maintenant"
+  },
+  "stats": {
+    "title": "Des chiffres qui",
+    "title_highlight": "parlent d'eux-mêmes"
+  },
+  "testimonials": {
+    "badge": "Ils nous font confiance",
+    "title": "Ce que disent",
+    "title_highlight": "nos propriétaires"
+  },
+  "faq": {
+    "badge": "Questions fréquentes",
+    "title": "Tout ce que vous",
+    "title_highlight": "devez savoir",
+    "still_questions": "Vous avez d'autres questions ?",
+    "contact_us": "Contactez-nous directement"
+  },
+  "contact": {
+    "badge": "Commencer",
+    "title": "Prêt à maximiser",
+    "title_highlight": "vos revenus ?",
+    "subtitle": "Parlez-nous de votre bien. Notre équipe vous contacte sous 24h pour une évaluation gratuite.",
+    "info_title": "Parlons de votre projet",
+    "info_text": "Chaque propriété a un potentiel unique. Laissez-nous vous montrer comment nous pouvons le maximiser ensemble.",
+    "phone": "Téléphone",
+    "email": "Email",
+    "address": "Adresse",
+    "whatsapp": "WhatsApp"
+  },
+  "footer": {
+    "description": "La conciergerie de luxe qui transforme votre bien en actif rentable à Marrakech.",
+    "services": "Services",
+    "company": "Société",
+    "legal": "Mentions légales",
+    "privacy": "Politique de confidentialité",
+    "rights": "Tous droits réservés.",
+    "made_in": "Fait avec excellence à Marrakech"
+  },
+  "form": {
+    "submit": "Demander une évaluation gratuite",
+    "submitting": "Envoi en cours...",
+    "success_title": "Merci pour votre demande !",
+    "success_text": "Notre équipe vous contactera dans les 24 heures.",
+    "error": "Une erreur est survenue. Veuillez réessayer.",
+    "upload_text": "Déposez vos photos ici ou cliquez pour parcourir",
+    "upload_formats": "JPG, PNG, WEBP jusqu'à 10MB chacune",
+    "upload_max": "Maximum 10 photos",
+    "required": "Ce champ est obligatoire",
+    "phone_invalid": "Numéro de téléphone invalide"
+  },
+  "admin": {
+    "login_title": "Connexion Admin",
+    "login_subtitle": "Guard Conciergerie — Panel d'administration",
+    "email": "Email",
+    "password": "Mot de passe",
+    "login_btn": "Se connecter",
+    "logout": "Déconnexion",
+    "dashboard": "Tableau de bord",
+    "leads": "Leads",
+    "services": "Services",
+    "testimonials": "Témoignages",
+    "faq": "FAQ",
+    "content": "Contenu",
+    "form_builder": "Formulaire",
+    "seo": "SEO",
+    "settings": "Paramètres",
+    "media": "Médias",
+    "new": "Nouveau",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "confirm_delete": "Êtes-vous sûr de vouloir supprimer ?",
+    "no_data": "Aucune donnée",
+    "loading": "Chargement...",
+    "success": "Sauvegardé avec succès",
+    "error": "Une erreur est survenue"
+  }
+}
