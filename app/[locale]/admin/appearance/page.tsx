@@ -636,7 +636,7 @@ export default function AppearancePage({ params: { locale } }: { params: { local
             <h3 className="font-medium text-obsidian-950 dark:text-white mb-4">Section Hero</h3>
             <div className="grid sm:grid-cols-2 gap-6">
               <div>
-                <p className="text-xs font-medium text-obsidian-600 dark:text-obsidian-300 mb-3">Hauteur du Hero</p>
+                <div className="mb-3"><p className="text-xs font-medium text-obsidian-600 dark:text-obsidian-300">Hauteur de la section Hero</p><p className="text-[10px] text-obsidian-400">Contrôle la hauteur de toute la section : titre, textes ET formulaire</p></div>
                 <div>
                   {/* Slider de hauteur hero */}
                   {(() => {
