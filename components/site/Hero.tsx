@@ -46,14 +46,14 @@ export default function Hero({ locale, settings, formFields, content = {} }: Her
     ...(content[`${sectionName}_${key}_fontWeight`] && { fontWeight: content[`${sectionName}_${key}_fontWeight`] as any }),
   })
 
-  // ── Mouse tracking ────────────────────────────────────────────────────────
+  // ââ Mouse tracking ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
   const spring  = { stiffness: 45, damping: 18 }
   const smoothX = useSpring(mouseX, spring)
   const smoothY = useSpring(mouseY, spring)
 
-  // Background image parallax (strong — creates real depth)
+  // Background image parallax (strong â creates real depth)
   const bgX = useTransform(smoothX, [-0.5, 0.5], [-30, 30])
   const bgY = useTransform(smoothY, [-0.5, 0.5], [-18, 18])
 
@@ -72,7 +72,7 @@ export default function Hero({ locale, settings, formFields, content = {} }: Her
   }
   const handleMouseLeave = () => { mouseX.set(0); mouseY.set(0) }
 
-  // ── Settings ──────────────────────────────────────────────────────────────
+  // ââ Settings ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
   const heroBg        = settings.appearance_hero_image || ''
   const heroBgPos     = settings.appearance_hero_image_pos || 'center'
   const heroBgOverlay = parseInt(settings.appearance_hero_image_overlay || '0', 10)
@@ -93,7 +93,7 @@ export default function Hero({ locale, settings, formFields, content = {} }: Her
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      {/* ── Background image layer with 3D parallax ──────────────────────── */}
+      {/* ââ Background image layer with 3D parallax ââââââââââââââââââââââââ */}
       {heroBg ? (
         <motion.div
           className="absolute inset-[-6%] pointer-events-none"
@@ -117,7 +117,7 @@ export default function Hero({ locale, settings, formFields, content = {} }: Her
         </motion.div>
       ) : null}
 
-      {/* ── Decorative background (no image) ─────────────────────────────── */}
+      {/* ââ Decorative background (no image) âââââââââââââââââââââââââââââââ */}
       <motion.div
         className="absolute inset-0 overflow-hidden pointer-events-none"
         style={{ x: decX, y: decY }}
@@ -135,9 +135,9 @@ export default function Hero({ locale, settings, formFields, content = {} }: Her
       </motion.div>
 
 
-      {/* ── Main content ──────────────────────────────────────────────────── */}
+      {/* ââ Main content ââââââââââââââââââââââââââââââââââââââââââââââââââââ */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-0 w-full z-10 flex-1 flex flex-col justify-center min-h-0">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full">
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-center w-full">
 
           {/* Left: Text */}
           <div className={isCenter ? 'text-center' : ''}>
@@ -217,7 +217,7 @@ export default function Hero({ locale, settings, formFields, content = {} }: Her
               className="grid grid-cols-3 gap-6 mt-12 pt-10 border-t border-gray-100 dark:border-gray-800"
             >
               {[
-                { value: settings.stat_properties || '120+', label: locale === 'fr' ? settings.stat_properties_label_fr || 'Biens gérés'     : settings.stat_properties_label_en || 'Properties' },
+                { value: settings.stat_properties || '120+', label: locale === 'fr' ? settings.stat_properties_label_fr || 'Biens gÃ©rÃ©s'     : settings.stat_properties_label_en || 'Properties' },
                 { value: settings.stat_clients    || '95%',  label: locale === 'fr' ? settings.stat_clients_label_fr    || 'Satisfaction'    : settings.stat_clients_label_en    || 'Satisfaction' },
                 { value: settings.stat_revenue    || '+40%', label: locale === 'fr' ? settings.stat_revenue_label_fr    || 'Revenus en plus' : settings.stat_revenue_label_en    || 'More revenue' },
               ].map((stat) => (
@@ -234,10 +234,10 @@ export default function Hero({ locale, settings, formFields, content = {} }: Her
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            style={{ rotateX: formRotX, rotateY: formRotY, transformStyle: 'preserve-3d', perspective: 1200, height: `calc(${heroMinHeight} - 80px)`, overflow: 'hidden' }}
+            style={{ rotateX: formRotX, rotateY: formRotY, transformStyle: 'preserve-3d', perspective: 1200, height: `calc(${heroMinHeight} - 120px)`, overflow: 'hidden' }}
             className="relative will-change-transform"
           >
-            {/* Marrakech tag — top right of form */}
+            {/* Marrakech tag â top right of form */}
             <div className="absolute -top-3.5 right-5 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-obsidian-950 dark:bg-gold-500 text-white text-[11px] font-semibold tracking-wide shadow-lg">
               <MapPin size={10} className="flex-shrink-0" />
               <span>Marrakech</span>
