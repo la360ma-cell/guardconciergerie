@@ -14,23 +14,23 @@ interface SectionDef {
 }
 
 const SECTIONS: SectionDef[] = [
-  { key: 'appearance_hero_image',    label: 'Hero Ã¢ÂÂ BanniÃ¨re principale',    description: 'Image de fond plein-Ã©cran du hero',                         type: 'bg' },
-  { key: 'appearance_about_photo',   label: 'ÃÂ propos Ã¢ÂÂ Photo portrait',     description: 'Photo affichÃ©e dans le cadre gauche (section ÃÂ propos)',     type: 'photo' },
-  { key: 'appearance_about_image',   label: 'ÃÂ propos Ã¢ÂÂ Fond de section',    description: 'Image de fond derriÃ¨re toute la section ÃÂ propos',           type: 'bg' },
-  { key: 'appearance_contact_image', label: 'Contact Ã¢ÂÂ Fond de section',     description: 'Image de fond de la section Contact',                        type: 'bg' },
-  { key: 'appearance_stats_image',   label: 'Statistiques Ã¢ÂÂ Fond de section','description': 'Image de fond de la section Statistiques',               type: 'bg' },
+  { key: 'appearance_hero_image',    label: 'Hero âÂÂ Bannière principale',    description: 'Image de fond plein-écran du hero',                         type: 'bg' },
+  { key: 'appearance_about_photo',   label: 'ÃÂ propos âÂÂ Photo portrait',     description: 'Photo affichée dans le cadre gauche (section ÃÂ propos)',     type: 'photo' },
+  { key: 'appearance_about_image',   label: 'ÃÂ propos âÂÂ Fond de section',    description: 'Image de fond derrière toute la section ÃÂ propos',           type: 'bg' },
+  { key: 'appearance_contact_image', label: 'Contact âÂÂ Fond de section',     description: 'Image de fond de la section Contact',                        type: 'bg' },
+  { key: 'appearance_stats_image',   label: 'Statistiques âÂÂ Fond de section','description': 'Image de fond de la section Statistiques',               type: 'bg' },
 ]
 
 const POSITIONS = [
-  { value: 'top left',     label: 'Ã¢ÂÂ' },
-  { value: 'top center',   label: 'Ã¢ÂÂ' },
-  { value: 'top right',    label: 'Ã¢ÂÂ' },
-  { value: 'center left',  label: 'Ã¢ÂÂ' },
+  { value: 'top left',     label: 'âÂÂ' },
+  { value: 'top center',   label: 'âÂÂ' },
+  { value: 'top right',    label: 'âÂÂ' },
+  { value: 'center left',  label: 'âÂÂ' },
   { value: 'center',       label: 'ÃÂ·' },
-  { value: 'center right', label: 'Ã¢ÂÂ' },
-  { value: 'bottom left',  label: 'Ã¢ÂÂ' },
-  { value: 'bottom center',label: 'Ã¢ÂÂ' },
-  { value: 'bottom right', label: 'Ã¢ÂÂ' },
+  { value: 'center right', label: 'âÂÂ' },
+  { value: 'bottom left',  label: 'âÂÂ' },
+  { value: 'bottom center',label: 'âÂÂ' },
+  { value: 'bottom right', label: 'âÂÂ' },
 ]
 
 function posKey(sectionKey: string, type: 'bg' | 'photo') {
@@ -121,7 +121,7 @@ export default function AppearancePage({ params: { locale } }: { params: { local
           className="flex items-center gap-2 px-5 py-2.5 bg-gold-500 hover:bg-gold-600 disabled:opacity-60 text-white rounded-xl text-sm font-medium transition-colors"
         >
           {saving ? <Loader2 size={15} className="animate-spin" /> : saved ? <Check size={15} /> : null}
-          {saved ? 'SauvegardÃ© !' : saving ? 'Sauvegarde...' : 'Sauvegarder'}
+          {saved ? 'Sauvegardé !' : saving ? 'Sauvegarde...' : 'Sauvegarder'}
         </button>
       </div>
 
@@ -148,22 +148,22 @@ export default function AppearancePage({ params: { locale } }: { params: { local
         ))}
       </div>
 
-      {/* Ã¢ÂÂÃ¢ÂÂ IMAGES TAB Ã¢ÂÂÃ¢ÂÂ */}
+      {/* âÂÂâÂÂ IMAGES TAB âÂÂâÂÂ */}
       {tab === 'images' && (
         <div className="space-y-6">
-          {/* Ã¢ÂÂÃ¢ÂÂ Logo section Ã¢ÂÂÃ¢ÂÂ */}
+          {/* âÂÂâÂÂ Logo section âÂÂâÂÂ */}
           <div className="bg-white dark:bg-obsidian-900 border border-obsidian-100 dark:border-white/5 rounded-2xl p-6">
             <h3 className="font-medium text-obsidian-950 dark:text-white mb-1">Logo</h3>
             <p className="text-xs text-obsidian-400 mb-5">
-              <strong>Logo Header (scrollÃ©)</strong> Ã¢ÂÂ affichÃ© quand le menu a un fond blanc (aprÃ¨s scroll).<br />
-              <strong>Logo Header (transparent)</strong> Ã¢ÂÂ affichÃ© quand le menu est transparent (haut de page, sur l'image hero).<br />
-              <strong>Logo Footer</strong> Ã¢ÂÂ affichÃ© dans le pied de page. Si non dÃ©fini, utilise le Logo Header scrollÃ©.
+              <strong>Logo Header (scrollé)</strong> âÂÂ affiché quand le menu a un fond blanc (après scroll).<br />
+              <strong>Logo Header (transparent)</strong> âÂÂ affiché quand le menu est transparent (haut de page, sur l'image hero).<br />
+              <strong>Logo Footer</strong> âÂÂ affiché dans le pied de page. Si non défini, utilise le Logo Header scrollé.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-6 mb-5">
               {(['appearance_logo_header', 'appearance_logo_header_transparent', 'appearance_logo_footer'] as const).map(logoKey => {
                 const logoLabel = logoKey === 'appearance_logo_header'
-                  ? 'Logo Header (scrollÃ©)'
+                  ? 'Logo Header (scrollé)'
                   : logoKey === 'appearance_logo_header_transparent'
                   ? 'Logo Header (transparent)'
                   : 'Logo Footer'
@@ -307,7 +307,7 @@ export default function AppearancePage({ params: { locale } }: { params: { local
                       <>
                         <Upload size={24} />
                         <span className="text-sm">Cliquez pour uploader</span>
-                        <span className="text-xs">JPG, PNG, WebP Ã¢ÂÂ¢ max 10 MB</span>
+                        <span className="text-xs">JPG, PNG, WebP âÂÂ¢ max 10 MB</span>
                       </>
                     )}
                   </button>
@@ -433,7 +433,7 @@ export default function AppearancePage({ params: { locale } }: { params: { local
         </div>
       )}
 
-      {/* Ã¢ÂÂÃ¢ÂÂ COLORS TAB Ã¢ÂÂÃ¢ÂÂ */}
+      {/* âÂÂâÂÂ COLORS TAB âÂÂâÂÂ */}
       {tab === 'colors' && (
         <div className="space-y-6">
           <div className="bg-white dark:bg-obsidian-900 border border-obsidian-100 dark:border-white/5 rounded-2xl p-6">
@@ -456,11 +456,11 @@ export default function AppearancePage({ params: { locale } }: { params: { local
                 onClick={() => update('appearance_primary_color', '#d4922b')}
                 className="ml-auto text-xs text-obsidian-400 hover:text-gold-500 transition-colors flex items-center gap-1"
               >
-                <RefreshCw size={12} /> RÃ©initialiser
+                <RefreshCw size={12} /> Réinitialiser
               </button>
             </div>
             <div>
-              <p className="text-xs text-obsidian-400 mb-2">AperÃ§u de la palette gÃ©nÃ©rÃ©e</p>
+              <p className="text-xs text-obsidian-400 mb-2">Aperçu de la palette générée</p>
               <div className="flex rounded-xl overflow-hidden h-10">
                 {['50','100','200','300','400','500','600','700','800','900'].map(shade => (
                   <div
@@ -476,23 +476,23 @@ export default function AppearancePage({ params: { locale } }: { params: { local
                 ))}
               </div>
               <p className="text-xs text-obsidian-400 mt-2">
-                Ã¢ÂÂ¡ Rechargez la page du site aprÃ¨s sauvegarde pour voir les changements.
+                âÂÂ¡ Rechargez la page du site après sauvegarde pour voir les changements.
               </p>
             </div>
           </div>
 
           <div className="bg-white dark:bg-obsidian-900 border border-obsidian-100 dark:border-white/5 rounded-2xl p-6">
-            <h3 className="font-medium text-obsidian-950 dark:text-white mb-4">Palettes prÃ©dÃ©finies</h3>
+            <h3 className="font-medium text-obsidian-950 dark:text-white mb-4">Palettes prédéfinies</h3>
             <div className="grid grid-cols-4 sm:grid-cols-6 gap-3">
               {[
-                { label: 'Or (dÃ©faut)', color: '#d4922b' },
+                { label: 'Or (défaut)', color: '#d4922b' },
                 { label: 'Cuivre',      color: '#b87333' },
                 { label: 'Bronze',      color: '#cd7f32' },
                 { label: 'Champagne',   color: '#c9a96e' },
                 { label: 'Bordeaux',    color: '#722f37' },
                 { label: 'Marine',      color: '#1b3a5c' },
                 { label: 'ÃÂmeraude',    color: '#046b3b' },
-                { label: 'AmÃ©thyste',   color: '#6b3fa0' },
+                { label: 'Améthyste',   color: '#6b3fa0' },
                 { label: 'Ardoise',     color: '#4a5568' },
                 { label: 'Anthracite',  color: '#374151' },
                 { label: 'Rose gold',   color: '#b76e79' },
@@ -517,12 +517,12 @@ export default function AppearancePage({ params: { locale } }: { params: { local
         </div>
       )}
 
-      {/* Ã¢ÂÂÃ¢ÂÂ FONTS TAB Ã¢ÂÂÃ¢ÂÂ */}
+      {/* âÂÂâÂÂ FONTS TAB âÂÂâÂÂ */}
       {tab === 'fonts' && (
         <div className="space-y-6">
           <div className="bg-white dark:bg-obsidian-900 border border-obsidian-100 dark:border-white/5 rounded-2xl p-6">
             <h3 className="font-medium text-obsidian-950 dark:text-white mb-1">Police de titres</h3>
-            <p className="text-xs text-obsidian-400 mb-4">UtilisÃ©e pour les titres, logos et Ã©lÃ©ments d'affichage</p>
+            <p className="text-xs text-obsidian-400 mb-4">Utilisée pour les titres, logos et éléments d'affichage</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {DISPLAY_FONTS.map(font => (
                 <button
@@ -536,7 +536,7 @@ export default function AppearancePage({ params: { locale } }: { params: { local
                 >
                   <div>
                     <p className="text-xl text-obsidian-950 dark:text-white" style={{ fontFamily: font.value || 'var(--font-cormorant)' }}>
-                      Aa Ã¢ÂÂ Guard
+                      Aa âÂÂ Guard
                     </p>
                     <p className="text-xs text-obsidian-400 mt-1">{font.label}</p>
                   </div>
@@ -548,7 +548,7 @@ export default function AppearancePage({ params: { locale } }: { params: { local
 
           <div className="bg-white dark:bg-obsidian-900 border border-obsidian-100 dark:border-white/5 rounded-2xl p-6">
             <h3 className="font-medium text-obsidian-950 dark:text-white mb-1">Police de corps</h3>
-            <p className="text-xs text-obsidian-400 mb-4">UtilisÃ©e pour les paragraphes, labels et texte courant</p>
+            <p className="text-xs text-obsidian-400 mb-4">Utilisée pour les paragraphes, labels et texte courant</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {BODY_FONTS.map(font => (
                 <button
@@ -573,27 +573,27 @@ export default function AppearancePage({ params: { locale } }: { params: { local
           </div>
 
           <div className="bg-gold-500/10 border border-gold-500/20 rounded-xl p-4 text-sm text-obsidian-700 dark:text-obsidian-300">
-            Ã°ÂÂÂ¡ Les polices Google Fonts sont chargÃ©es automatiquement. Rechargez la page aprÃ¨s sauvegarde.
+            Ã°ÂÂÂ¡ Les polices Google Fonts sont chargées automatiquement. Rechargez la page après sauvegarde.
           </div>
         </div>
       )}
 
-      {/* Ã¢ÂÂÃ¢ÂÂ TEXTS TAB Ã¢ÂÂÃ¢ÂÂ */}
+      {/* âÂÂâÂÂ TEXTS TAB âÂÂâÂÂ */}
       {tab === 'texts' && (
         <div className="space-y-6">
 
           {/* All text colors */}
           <div className="bg-white dark:bg-obsidian-900 border border-obsidian-100 dark:border-white/5 rounded-2xl p-6">
             <h3 className="font-medium text-obsidian-950 dark:text-white mb-1">Couleurs des textes</h3>
-            <p className="text-xs text-obsidian-400 mb-5">Laissez vide pour utiliser la couleur par dÃ©faut du thÃ¨me.</p>
+            <p className="text-xs text-obsidian-400 mb-5">Laissez vide pour utiliser la couleur par défaut du thème.</p>
             <div className="grid sm:grid-cols-2 gap-x-8 gap-y-5">
               {([
-                { key: 'appearance_heading_color',    label: 'Titres (H1Ã¢ÂÂH5)',         hint: 'Tous les titres du site', preview: (c: string) => <p className="text-2xl font-light" style={{ color: c, fontFamily: 'var(--font-cormorant, serif)' }}>Titre exemple</p> },
+                { key: 'appearance_heading_color',    label: 'Titres (H1âÂÂH5)',         hint: 'Tous les titres du site', preview: (c: string) => <p className="text-2xl font-light" style={{ color: c, fontFamily: 'var(--font-cormorant, serif)' }}>Titre exemple</p> },
                 { key: 'appearance_body_color',        label: 'Corps de texte (paragraphes)', hint: 'Descriptions, paragraphes', preview: (c: string) => <p className="text-sm" style={{ color: c }}>Exemple de texte de corps.</p> },
                 { key: 'appearance_nav_text_color',    label: 'Menu de navigation',     hint: 'Liens du menu header', preview: (c: string) => <p className="text-sm font-medium tracking-wide" style={{ color: c }}>Services ÃÂ· ÃÂ propos ÃÂ· Contact</p> },
-                { key: 'appearance_nav_bg_color',      label: 'Fond du menu (dÃ©filÃ©)',  hint: 'Couleur de fond du header aprÃ¨s scroll', preview: (c: string) => <div className="h-8 rounded-lg" style={{ backgroundColor: c }} /> },
-                { key: 'appearance_footer_text_color', label: 'Textes du footer',       hint: 'Tous les textes du pied de page', preview: (c: string) => <p className="text-sm" style={{ color: c }}>Footer Ã¢ÂÂ Adresse, liens, copyright</p> },
-                { key: 'appearance_badge_color',       label: 'Badges / Ã©tiquettes',    hint: 'Labels de section (ex: "Nos Services")', preview: (c: string) => <span className="text-xs tracking-[0.2em] uppercase font-medium" style={{ color: c }}>Ã¢ÂÂ NOS SERVICES Ã¢ÂÂ</span> },
+                { key: 'appearance_nav_bg_color',      label: 'Fond du menu (défilé)',  hint: 'Couleur de fond du header après scroll', preview: (c: string) => <div className="h-8 rounded-lg" style={{ backgroundColor: c }} /> },
+                { key: 'appearance_footer_text_color', label: 'Textes du footer',       hint: 'Tous les textes du pied de page', preview: (c: string) => <p className="text-sm" style={{ color: c }}>Footer âÂÂ Adresse, liens, copyright</p> },
+                { key: 'appearance_badge_color',       label: 'Badges / étiquettes',    hint: 'Labels de section (ex: "Nos Services")', preview: (c: string) => <span className="text-xs tracking-[0.2em] uppercase font-medium" style={{ color: c }}>âÂÂ NOS SERVICES âÂÂ</span> },
               ] as const).map(({ key, label, hint, preview }) => {
                 const val = settings[key] || ''
                 return (
@@ -622,7 +622,7 @@ export default function AppearancePage({ params: { locale } }: { params: { local
                           {preview(val)}
                         </div>
                       ) : (
-                        <span className="text-xs text-obsidian-300">Par dÃ©faut</span>
+                        <span className="text-xs text-obsidian-300">Par défaut</span>
                       )}
                     </div>
                   </div>
@@ -636,13 +636,13 @@ export default function AppearancePage({ params: { locale } }: { params: { local
             <h3 className="font-medium text-obsidian-950 dark:text-white mb-4">Section Hero</h3>
             <div className="grid sm:grid-cols-2 gap-6">
               <div>
-                <div className="mb-3"><p className="text-xs font-medium text-obsidian-600 dark:text-obsidian-300">Hauteur de la section Hero</p><p className="text-[10px] text-obsidian-400">ContrÃ´le la hauteur de toute la section : titre, textes ET formulaire</p></div>
+                <div className="mb-3"><p className="text-xs font-medium text-obsidian-600 dark:text-obsidian-300">Hauteur de la section Hero</p><p className="text-[10px] text-obsidian-400">Contrôle la hauteur de toute la section : titre, textes ET formulaire</p></div>
                 <div>
                   {/* Slider de hauteur hero */}
                   {(() => {
                     const rawVal = settings.appearance_hero_height || 'screen';
                     const vhValue = rawVal === 'screen' ? 100 : parseInt(rawVal) || 100;
-                    const displayLabel = vhValue >= 200 ? `TrÃ¨s grand (${vhValue}vh)` : vhValue === 100 ? 'Plein Ã©cran (100vh)' : vhValue >= 85 ? `Grand (${vhValue}vh)` : vhValue >= 70 ? `Moyen (${vhValue}vh)` : vhValue >= 55 ? `Compact (${vhValue}vh)` : `Minimal (${vhValue}vh)`;
+                    const displayLabel = vhValue >= 200 ? `Très grand (${vhValue}vh)` : vhValue === 100 ? 'Plein écran (100vh)' : vhValue >= 85 ? `Grand (${vhValue}vh)` : vhValue >= 70 ? `Moyen (${vhValue}vh)` : vhValue >= 55 ? `Compact (${vhValue}vh)` : `Minimal (${vhValue}vh)`;
                     return (
                       <div className="space-y-3">
                         <div className="flex items-center justify-between">
@@ -670,7 +670,7 @@ export default function AppearancePage({ params: { locale } }: { params: { local
                           <span>200vh<br/>XXL</span>
                           <span>300vh<br/>Max</span>
                         </div>
-                        {/* AperÃ§u visuel */}
+                        {/* Aperçu visuel */}
                         <div className="relative mt-3 rounded-xl overflow-hidden bg-obsidian-100 dark:bg-obsidian-800 border border-obsidian-200 dark:border-white/10" style={{ height: '80px' }}>
                           <div className="absolute inset-0 flex items-center justify-center">
                             <div className="w-full bg-gold-500/20 transition-all duration-300 flex items-center justify-center rounded" style={{ height: `${vhValue}%`, minHeight: '12px' }}>
@@ -731,7 +731,7 @@ export default function AppearancePage({ params: { locale } }: { params: { local
           </div>
 
           <div className="bg-gold-500/10 border border-gold-500/20 rounded-xl p-4 text-sm text-obsidian-700 dark:text-obsidian-300">
-            Ã°ÂÂÂ¡ Rechargez la page du site aprÃ¨s sauvegarde pour voir les changements de couleur.
+            Ã°ÂÂÂ¡ Rechargez la page du site après sauvegarde pour voir les changements de couleur.
           </div>
         </div>
       )}
