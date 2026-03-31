@@ -85,7 +85,7 @@ export default function Hero({ locale, settings, formFields, content = {} }: Her
   return (
     <section
       id="top"
-      className="relative flex items-start lg:items-center pt-20 overflow-hidden bg-white dark:bg-obsidian-950"
+      className="relative flex items-center pt-20 overflow-hidden bg-white dark:bg-obsidian-950"
       style={{
         height: heroMinHeight,
         ...(sectionBgColor ? { backgroundColor: sectionBgColor } : {}),
@@ -136,8 +136,8 @@ export default function Hero({ locale, settings, formFields, content = {} }: Her
 
 
       {/* ── Main content ──────────────────────────────────────────────────── */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 lg:py-0 w-full z-10">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-0 w-full z-10">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
 
           {/* Left: Text */}
           <div className={isCenter ? 'text-center' : ''}>
@@ -234,7 +234,7 @@ export default function Hero({ locale, settings, formFields, content = {} }: Her
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            style={{ rotateX: formRotX, rotateY: formRotY, transformStyle: 'preserve-3d', perspective: 1200, maxHeight: `calc(${heroMinHeight} - 180px)`, overflowY: 'auto', overflowX: 'hidden', paddingRight: '4px' }}
+            style={{ rotateX: formRotX, rotateY: formRotY, transformStyle: 'preserve-3d', perspective: 1200 }}
             className="relative will-change-transform"
           >
             {/* Marrakech tag — top right of form */}
