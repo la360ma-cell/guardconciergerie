@@ -85,7 +85,7 @@ export default function Hero({ locale, settings, formFields, content = {} }: Her
   return (
     <section
       id="top"
-      className="relative flex items-center pt-20 overflow-hidden bg-white dark:bg-obsidian-950"
+      className="relative flex flex-col pt-20 overflow-hidden bg-white dark:bg-obsidian-950"
       style={{
         height: heroMinHeight,
         ...(sectionBgColor ? { backgroundColor: sectionBgColor } : {}),
@@ -136,8 +136,8 @@ export default function Hero({ locale, settings, formFields, content = {} }: Her
 
 
       {/* ── Main content ──────────────────────────────────────────────────── */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-0 w-full z-10 h-full flex flex-col justify-center">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-stretch w-full">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-0 w-full z-10 flex-1 flex flex-col justify-center min-h-0">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-stretch w-full flex-1 min-h-0">
 
           {/* Left: Text */}
           <div className={isCenter ? 'text-center' : ''}>
