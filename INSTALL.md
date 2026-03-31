@@ -104,3 +104,4 @@ openssl rand -base64 32
 2. Vérifier votre domaine
 3. Générer une clé API
 4. Ajouter dans `.env`
+
