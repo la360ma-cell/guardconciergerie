@@ -157,7 +157,7 @@ export default function DynamicForm({ locale, formFields, settings, variant = 's
     <div className={cn(
       'rounded-2xl',
       variant === 'hero'
-        ? 'bg-white dark:bg-obsidian-900 shadow-luxury dark:shadow-luxury-dark border border-gray-100 dark:border-gray-800 p-6 lg:p-8'
+        ? 'bg-white dark:bg-obsidian-900 shadow-luxury dark:shadow-luxury-dark border border-gray-100 dark:border-gray-800 p-6 lg:p-8 h-full overflow-y-auto flex flex-col'
         : 'p-0'
     )}>
       {variant === 'hero' && (
@@ -171,7 +171,7 @@ export default function DynamicForm({ locale, formFields, settings, variant = 's
         </div>
       )}
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={handleSubmit(onSubmit)} className={cn("space-y-4", variant === 'hero' ? "flex-1 overflow-y-auto pr-1" : "")}>
         {formFields.map(field => {
           if (!isFieldVisible(field)) return null
 
