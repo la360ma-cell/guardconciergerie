@@ -14,9 +14,9 @@ interface SectionDef {
 }
 
 const SECTIONS: SectionDef[] = [
-  { key: 'appearance_hero_image',    label: 'Hero â BanniÃ¨re principale',    description: 'Image de fond plein-Ã©cran du hero',                         type: 'bg' },
-  { key: 'appearance_about_photo',   label: 'Ã propos â Photo portrait',     description: 'Photo affichÃ©e dans le cadre gauche (section Ã propos)',     type: 'photo' },
-  { key: 'appearance_about_image',   label: 'Ã propos â Fond de section',    description: 'Image de fond derriÃ¨re toute la section Ã propos',           type: 'bg' },
+  { key: 'appearance_hero_image',    label: 'Hero â Bannière principale',    description: 'Image de fond plein-écran du hero',                         type: 'bg' },
+  { key: 'appearance_about_photo',   label: 'Ã propos â Photo portrait',     description: 'Photo affichée dans le cadre gauche (section Ã propos)',     type: 'photo' },
+  { key: 'appearance_about_image',   label: 'Ã propos â Fond de section',    description: 'Image de fond derrière toute la section Ã propos',           type: 'bg' },
   { key: 'appearance_contact_image', label: 'Contact â Fond de section',     description: 'Image de fond de la section Contact',                        type: 'bg' },
   { key: 'appearance_stats_image',   label: 'Statistiques â Fond de section','description': 'Image de fond de la section Statistiques',               type: 'bg' },
 ]
@@ -121,7 +121,7 @@ export default function AppearancePage({ params: { locale } }: { params: { local
           className="flex items-center gap-2 px-5 py-2.5 bg-gold-500 hover:bg-gold-600 disabled:opacity-60 text-white rounded-xl text-sm font-medium transition-colors"
         >
           {saving ? <Loader2 size={15} className="animate-spin" /> : saved ? <Check size={15} /> : null}
-          {saved ? 'SauvegardÃ© !' : saving ? 'Sauvegarde...' : 'Sauvegarder'}
+          {saved ? 'Sauvegardé !' : saving ? 'Sauvegarde...' : 'Sauvegarder'}
         </button>
       </div>
 
@@ -155,15 +155,15 @@ export default function AppearancePage({ params: { locale } }: { params: { local
           <div className="bg-white dark:bg-obsidian-900 border border-obsidian-100 dark:border-white/5 rounded-2xl p-6">
             <h3 className="font-medium text-obsidian-950 dark:text-white mb-1">Logo</h3>
             <p className="text-xs text-obsidian-400 mb-5">
-              <strong>Logo Header (scrollÃ©)</strong> â affichÃ© quand le menu a un fond blanc (aprÃ¨s scroll).<br />
-              <strong>Logo Header (transparent)</strong> â affichÃ© quand le menu est transparent (haut de page, sur l'image hero).<br />
-              <strong>Logo Footer</strong> â affichÃ© dans le pied de page. Si non dÃ©fini, utilise le Logo Header scrollÃ©.
+              <strong>Logo Header (scrollé)</strong> â affiché quand le menu a un fond blanc (après scroll).<br />
+              <strong>Logo Header (transparent)</strong> â affiché quand le menu est transparent (haut de page, sur l'image hero).<br />
+              <strong>Logo Footer</strong> â affiché dans le pied de page. Si non défini, utilise le Logo Header scrollé.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-6 mb-5">
               {(['appearance_logo_header', 'appearance_logo_header_transparent', 'appearance_logo_footer'] as const).map(logoKey => {
                 const logoLabel = logoKey === 'appearance_logo_header'
-                  ? 'Logo Header (scrollÃ©)'
+                  ? 'Logo Header (scrollé)'
                   : logoKey === 'appearance_logo_header_transparent'
                   ? 'Logo Header (transparent)'
                   : 'Logo Footer'
@@ -456,11 +456,11 @@ export default function AppearancePage({ params: { locale } }: { params: { local
                 onClick={() => update('appearance_primary_color', '#d4922b')}
                 className="ml-auto text-xs text-obsidian-400 hover:text-gold-500 transition-colors flex items-center gap-1"
               >
-                <RefreshCw size={12} /> RÃ©initialiser
+                <RefreshCw size={12} /> Réinitialiser
               </button>
             </div>
             <div>
-              <p className="text-xs text-obsidian-400 mb-2">AperÃ§u de la palette gÃ©nÃ©rÃ©e</p>
+              <p className="text-xs text-obsidian-400 mb-2">Aperçu de la palette générée</p>
               <div className="flex rounded-xl overflow-hidden h-10">
                 {['50','100','200','300','400','500','600','700','800','900'].map(shade => (
                   <div
@@ -476,23 +476,23 @@ export default function AppearancePage({ params: { locale } }: { params: { local
                 ))}
               </div>
               <p className="text-xs text-obsidian-400 mt-2">
-                â¡ Rechargez la page du site aprÃ¨s sauvegarde pour voir les changements.
+                â¡ Rechargez la page du site après sauvegarde pour voir les changements.
               </p>
             </div>
           </div>
 
           <div className="bg-white dark:bg-obsidian-900 border border-obsidian-100 dark:border-white/5 rounded-2xl p-6">
-            <h3 className="font-medium text-obsidian-950 dark:text-white mb-4">Palettes prÃ©dÃ©finies</h3>
+            <h3 className="font-medium text-obsidian-950 dark:text-white mb-4">Palettes prédéfinies</h3>
             <div className="grid grid-cols-4 sm:grid-cols-6 gap-3">
               {[
-                { label: 'Or (dÃ©faut)', color: '#d4922b' },
+                { label: 'Or (défaut)', color: '#d4922b' },
                 { label: 'Cuivre',      color: '#b87333' },
                 { label: 'Bronze',      color: '#cd7f32' },
                 { label: 'Champagne',   color: '#c9a96e' },
                 { label: 'Bordeaux',    color: '#722f37' },
                 { label: 'Marine',      color: '#1b3a5c' },
                 { label: 'Ãmeraude',    color: '#046b3b' },
-                { label: 'AmÃ©thyste',   color: '#6b3fa0' },
+                { label: 'Améthyste',   color: '#6b3fa0' },
                 { label: 'Ardoise',     color: '#4a5568' },
                 { label: 'Anthracite',  color: '#374151' },
                 { label: 'Rose gold',   color: '#b76e79' },
@@ -522,7 +522,7 @@ export default function AppearancePage({ params: { locale } }: { params: { local
         <div className="space-y-6">
           <div className="bg-white dark:bg-obsidian-900 border border-obsidian-100 dark:border-white/5 rounded-2xl p-6">
             <h3 className="font-medium text-obsidian-950 dark:text-white mb-1">Police de titres</h3>
-            <p className="text-xs text-obsidian-400 mb-4">UtilisÃ©e pour les titres, logos et Ã©lÃ©ments d'affichage</p>
+            <p className="text-xs text-obsidian-400 mb-4">Utilisée pour les titres, logos et éléments d'affichage</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {DISPLAY_FONTS.map(font => (
                 <button
@@ -548,7 +548,7 @@ export default function AppearancePage({ params: { locale } }: { params: { local
 
           <div className="bg-white dark:bg-obsidian-900 border border-obsidian-100 dark:border-white/5 rounded-2xl p-6">
             <h3 className="font-medium text-obsidian-950 dark:text-white mb-1">Police de corps</h3>
-            <p className="text-xs text-obsidian-400 mb-4">UtilisÃ©e pour les paragraphes, labels et texte courant</p>
+            <p className="text-xs text-obsidian-400 mb-4">Utilisée pour les paragraphes, labels et texte courant</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {BODY_FONTS.map(font => (
                 <button
@@ -573,7 +573,7 @@ export default function AppearancePage({ params: { locale } }: { params: { local
           </div>
 
           <div className="bg-gold-500/10 border border-gold-500/20 rounded-xl p-4 text-sm text-obsidian-700 dark:text-obsidian-300">
-            ð¡ Les polices Google Fonts sont chargÃ©es automatiquement. Rechargez la page aprÃ¨s sauvegarde.
+            ð¡ Les polices Google Fonts sont chargées automatiquement. Rechargez la page après sauvegarde.
           </div>
         </div>
       )}
@@ -585,15 +585,15 @@ export default function AppearancePage({ params: { locale } }: { params: { local
           {/* All text colors */}
           <div className="bg-white dark:bg-obsidian-900 border border-obsidian-100 dark:border-white/5 rounded-2xl p-6">
             <h3 className="font-medium text-obsidian-950 dark:text-white mb-1">Couleurs des textes</h3>
-            <p className="text-xs text-obsidian-400 mb-5">Laissez vide pour utiliser la couleur par dÃ©faut du thÃ¨me.</p>
+            <p className="text-xs text-obsidian-400 mb-5">Laissez vide pour utiliser la couleur par défaut du thème.</p>
             <div className="grid sm:grid-cols-2 gap-x-8 gap-y-5">
               {([
                 { key: 'appearance_heading_color',    label: 'Titres (H1âH5)',         hint: 'Tous les titres du site', preview: (c: string) => <p className="text-2xl font-light" style={{ color: c, fontFamily: 'var(--font-cormorant, serif)' }}>Titre exemple</p> },
                 { key: 'appearance_body_color',        label: 'Corps de texte (paragraphes)', hint: 'Descriptions, paragraphes', preview: (c: string) => <p className="text-sm" style={{ color: c }}>Exemple de texte de corps.</p> },
                 { key: 'appearance_nav_text_color',    label: 'Menu de navigation',     hint: 'Liens du menu header', preview: (c: string) => <p className="text-sm font-medium tracking-wide" style={{ color: c }}>Services Â· Ã propos Â· Contact</p> },
-                { key: 'appearance_nav_bg_color',      label: 'Fond du menu (dÃ©filÃ©)',  hint: 'Couleur de fond du header aprÃ¨s scroll', preview: (c: string) => <div className="h-8 rounded-lg" style={{ backgroundColor: c }} /> },
+                { key: 'appearance_nav_bg_color',      label: 'Fond du menu (défilé)',  hint: 'Couleur de fond du header après scroll', preview: (c: string) => <div className="h-8 rounded-lg" style={{ backgroundColor: c }} /> },
                 { key: 'appearance_footer_text_color', label: 'Textes du footer',       hint: 'Tous les textes du pied de page', preview: (c: string) => <p className="text-sm" style={{ color: c }}>Footer â Adresse, liens, copyright</p> },
-                { key: 'appearance_badge_color',       label: 'Badges / Ã©tiquettes',    hint: 'Labels de section (ex: "Nos Services")', preview: (c: string) => <span className="text-xs tracking-[0.2em] uppercase font-medium" style={{ color: c }}>â NOS SERVICES â</span> },
+                { key: 'appearance_badge_color',       label: 'Badges / étiquettes',    hint: 'Labels de section (ex: "Nos Services")', preview: (c: string) => <span className="text-xs tracking-[0.2em] uppercase font-medium" style={{ color: c }}>â NOS SERVICES â</span> },
               ] as const).map(({ key, label, hint, preview }) => {
                 const val = settings[key] || ''
                 return (
@@ -622,7 +622,7 @@ export default function AppearancePage({ params: { locale } }: { params: { local
                           {preview(val)}
                         </div>
                       ) : (
-                        <span className="text-xs text-obsidian-300">Par dÃ©faut</span>
+                        <span className="text-xs text-obsidian-300">Par défaut</span>
                       )}
                     </div>
                   </div>
@@ -730,7 +730,7 @@ export default function AppearancePage({ params: { locale } }: { params: { local
           </div>
 
           <div className="bg-gold-500/10 border border-gold-500/20 rounded-xl p-4 text-sm text-obsidian-700 dark:text-obsidian-300">
-            ð¡ Rechargez la page du site aprÃ¨s sauvegarde pour voir les changements de couleur.
+            ð¡ Rechargez la page du site après sauvegarde pour voir les changements de couleur.
           </div>
         </div>
       )}
