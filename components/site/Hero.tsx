@@ -136,8 +136,8 @@ export default function Hero({ locale, settings, formFields, content = {} }: Her
 
 
       {/* ── Main content ──────────────────────────────────────────────────── */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-0 w-full z-10">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-0 w-full z-10 h-full flex flex-col justify-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-stretch w-full">
 
           {/* Left: Text */}
           <div className={isCenter ? 'text-center' : ''}>
@@ -235,7 +235,7 @@ export default function Hero({ locale, settings, formFields, content = {} }: Her
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
             style={{ rotateX: formRotX, rotateY: formRotY, transformStyle: 'preserve-3d', perspective: 1200 }}
-            className="relative will-change-transform"
+            className="relative will-change-transform h-full"
           >
             {/* Marrakech tag — top right of form */}
             <div className="absolute -top-3.5 right-5 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-obsidian-950 dark:bg-gold-500 text-white text-[11px] font-semibold tracking-wide shadow-lg">
