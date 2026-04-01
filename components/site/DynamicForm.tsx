@@ -157,11 +157,11 @@ export default function DynamicForm({ locale, formFields, settings, variant = 's
     <div className={cn(
       'rounded-2xl',
       variant === 'hero'
-        ? 'bg-white dark:bg-obsidian-900 shadow-luxury dark:shadow-luxury-dark border border-gray-100 dark:border-gray-800 p-4 lg:p-5 h-full overflow-y-auto flex flex-col'
+        ? 'bg-white dark:bg-obsidian-900 shadow-luxury dark:shadow-luxury-dark border border-gray-100 dark:border-gray-800 p-3 h-full overflow-y-auto flex flex-col'
         : 'p-0'
     )}>
       {variant === 'hero' && (
-        <div className="mb-3">
+        <div className="mb-2">
           <h2 className="font-display text-xl font-medium text-obsidian-950 dark:text-white">
             {locale === 'fr' ? 'Évaluation gratuite' : 'Free assessment'}
           </h2>
@@ -171,7 +171,7 @@ export default function DynamicForm({ locale, formFields, settings, variant = 's
         </div>
       )}
 
-      <form onSubmit={handleSubmit(onSubmit)} className={cn("", variant === 'hero' ? "flex-1 min-h-0 overflow-y-auto flex flex-col gap-4 pr-1" : "")}>
+      <form onSubmit={handleSubmit(onSubmit)} className={cn("", variant === 'hero' ? "flex-1 min-h-0 overflow-y-auto flex flex-col gap-3 pr-1" : "")}>
         {formFields.map(field => {
           if (!isFieldVisible(field)) return null
 
@@ -195,7 +195,7 @@ export default function DynamicForm({ locale, formFields, settings, variant = 's
                 <div
                   {...getRootProps()}
                   className={cn(
-                    'border-2 border-dashed rounded-xl p-4 text-center cursor-pointer transition-all duration-200',
+                    'border-2 border-dashed rounded-xl p-2 text-center cursor-pointer transition-all duration-200',
                     isDragActive
                       ? 'border-gold-500 bg-gold-50 dark:bg-gold-900/10'
                       : 'border-gray-200 dark:border-gray-700 hover:border-gold-400 dark:hover:border-gold-600',
