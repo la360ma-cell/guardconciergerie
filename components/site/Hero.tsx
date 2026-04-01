@@ -136,7 +136,7 @@ export default function Hero({ locale, settings, formFields, content = {} }: Her
 
 
       {/* ââ Main content ââââââââââââââââââââââââââââââââââââââââââââââââââââ */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-0 w-full z-10 flex-1 flex flex-col justify-center min-h-0">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-0 w-full z-10 flex-1 flex flex-col justify-center min-h-0 overflow-hidden">
         <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-stretch w-full">
 
           {/* Left: Text */}
