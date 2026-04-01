@@ -85,7 +85,7 @@ export default function Hero({ locale, settings, formFields, content = {} }: Her
   return (
     <section
       id="top"
-      className="relative flex flex-col pt-20 overflow-hidden bg-white dark:bg-obsidian-950"
+      className="relative flex flex-col pt-20 bg-white dark:bg-obsidian-950 lg:overflow-hidden"
       style={{
         minHeight: heroMinHeight,
         ...(sectionBgColor ? { backgroundColor: sectionBgColor } : {}),
