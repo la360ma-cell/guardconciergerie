@@ -136,11 +136,11 @@ export default function Hero({ locale, settings, formFields, content = {} }: Her
 
 
       {/* ââ Main content ââââââââââââââââââââââââââââââââââââââââââââââââââââ */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-0 w-full z-10 flex-1 flex flex-col justify-center min-h-0">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-0 w-full z-10 flex-1 flex flex-col justify-center min-h-0">
         <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-start w-full">
 
           {/* Left: Text */}
-          <div className={isCenter ? 'text-center flex flex-col justify-center' : 'flex flex-col justify-center'}>
+          <div className={isCenter ? 'text-center flex flex-col justify-center items-center' : 'flex flex-col justify-center text-center items-center lg:text-left lg:items-start'}>
             <motion.div
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
@@ -165,7 +165,7 @@ export default function Hero({ locale, settings, formFields, content = {} }: Her
             <motion.p
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg text-obsidian-500 dark:text-obsidian-300 leading-relaxed mb-8 max-w-lg"
+              className="text-lg text-obsidian-500 dark:text-obsidian-300 leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0"
               style={cs('subtitle')}
             >
               {ct('subtitle', t('subtitle'))}
@@ -174,7 +174,7 @@ export default function Hero({ locale, settings, formFields, content = {} }: Her
             <motion.div
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className={`flex flex-wrap gap-4 mb-10${isCenter ? ' justify-center' : ''}`}
+              className={`flex flex-wrap gap-4 mb-10 justify-center${isCenter ? '' : ' lg:justify-start'}`}
             >
               {[
                 { key: 'trust_1', val: ct('trust_1', t('trust_1')) },
@@ -191,7 +191,7 @@ export default function Hero({ locale, settings, formFields, content = {} }: Her
             <motion.div
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className={`flex flex-wrap gap-4${isCenter ? ' justify-center' : ''}`}
+              className={`flex flex-wrap gap-4 justify-center${isCenter ? '' : ' lg:justify-start'}`}
             >
               <a href="#contact" className="btn-primary inline-flex items-center gap-2 px-7 py-3.5 bg-obsidian-950 dark:bg-white text-white dark:text-obsidian-950 rounded-full text-sm font-medium hover:bg-gold-600 dark:hover:bg-gold-500 dark:hover:text-white transition-all duration-200 group">
                 <span style={cs('cta_primary')}>
