@@ -137,10 +137,10 @@ export default function Hero({ locale, settings, formFields, content = {} }: Her
 
       {/* ââ Main content ââââââââââââââââââââââââââââââââââââââââââââââââââââ */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-0 w-full z-10 flex-1 flex flex-col justify-center min-h-0">
-        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-start w-full">
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-stretch w-full">
 
           {/* Left: Text */}
-          <div className={isCenter ? 'text-center' : ''}>
+          <div className={isCenter ? 'text-center flex flex-col justify-center' : 'flex flex-col justify-center'}>
             <motion.div
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
@@ -234,8 +234,8 @@ export default function Hero({ locale, settings, formFields, content = {} }: Her
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            style={{ rotateX: formRotX, rotateY: formRotY, transformStyle: 'preserve-3d', perspective: 1200, height: `calc(100vh - 200px)`, overflow: 'visible' }}
-            className="relative will-change-transform"
+            style={{ rotateX: formRotX, rotateY: formRotY, transformStyle: 'preserve-3d', perspective: 1200 }}
+            className="relative will-change-transform h-full"
           >
             {/* Marrakech tag â top right of form */}
             <div className="absolute -top-3.5 right-5 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-obsidian-950 dark:bg-gold-500 text-white text-[11px] font-semibold tracking-wide shadow-lg">
