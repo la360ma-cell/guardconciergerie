@@ -137,7 +137,7 @@ export default function Hero({ locale, settings, formFields, content = {} }: Her
 
       {/* ââ Main content ââââââââââââââââââââââââââââââââââââââââââââââââââââ */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-0 w-full z-10 flex-1 flex flex-col justify-center min-h-0">
-        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-center w-full">
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-start w-full">
 
           {/* Left: Text */}
           <div className={isCenter ? 'text-center' : ''}>
@@ -234,7 +234,7 @@ export default function Hero({ locale, settings, formFields, content = {} }: Her
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            style={{ rotateX: formRotX, rotateY: formRotY, transformStyle: 'preserve-3d', perspective: 1200, height: `calc(100vh - 160px)`, overflow: 'hidden' }}
+            style={{ rotateX: formRotX, rotateY: formRotY, transformStyle: 'preserve-3d', perspective: 1200, maxHeight: `calc(100vh - 160px)`, overflow: 'hidden' }}
             className="relative will-change-transform"
           >
             {/* Marrakech tag â top right of form */}
