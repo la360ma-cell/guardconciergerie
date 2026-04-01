@@ -171,7 +171,7 @@ export default function DynamicForm({ locale, formFields, settings, variant = 's
         </div>
       )}
 
-      <form onSubmit={handleSubmit(onSubmit)} className={cn("space-y-4", variant === 'hero' ? "flex-1 min-h-0 overflow-y-auto pr-1" : "")}>
+      <form onSubmit={handleSubmit(onSubmit)} className={cn("", variant === 'hero' ? "flex-1 min-h-0 overflow-y-auto flex flex-col gap-4 pr-1" : "")}>
         {formFields.map(field => {
           if (!isFieldVisible(field)) return null
 
