@@ -157,11 +157,11 @@ export default function DynamicForm({ locale, formFields, settings, variant = 's
     <div className={cn(
       'rounded-2xl',
       variant === 'hero'
-        ? 'bg-white dark:bg-obsidian-900 shadow-luxury dark:shadow-luxury-dark border border-gray-100 dark:border-gray-800 p-6 lg:p-8 h-full overflow-y-auto flex flex-col'
+        ? 'bg-white dark:bg-obsidian-900 shadow-luxury dark:shadow-luxury-dark border border-gray-100 dark:border-gray-800 p-4 lg:p-5 h-full overflow-y-auto flex flex-col'
         : 'p-0'
     )}>
       {variant === 'hero' && (
-        <div className="mb-6">
+        <div className="mb-3">
           <h2 className="font-display text-xl font-medium text-obsidian-950 dark:text-white">
             {locale === 'fr' ? 'Évaluation gratuite' : 'Free assessment'}
           </h2>
@@ -313,7 +313,7 @@ export default function DynamicForm({ locale, formFields, settings, variant = 's
           type="submit"
           disabled={isLoading}
           className={cn(
-            'btn-primary w-full py-4 rounded-full text-sm font-semibold tracking-wide transition-all duration-200',
+            'btn-primary w-full py-3 rounded-full text-sm font-semibold tracking-wide transition-all duration-200',
             'bg-obsidian-950 dark:bg-white text-white dark:text-obsidian-950',
             'hover:bg-gold-600 dark:hover:bg-gold-400 dark:hover:text-white',
             'disabled:opacity-60 disabled:cursor-not-allowed',
