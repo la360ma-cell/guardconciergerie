@@ -193,7 +193,7 @@ export default function Hero({ locale, settings, formFields, content = {} }: Her
               transition={{ duration: 0.6, delay: 0.4 }}
               className={`flex flex-wrap gap-4 justify-center${isCenter ? '' : ' lg:justify-start'}`}
             >
-              <a href="#contact" onClick={(e) => { e.preventDefault(); document.getElementById('hero-form')?.scrollIntoView({ behavior: 'smooth', block: 'center' }); }} className="btn-primary inline-flex items-center gap-2 px-7 py-3.5 bg-obsidian-950 dark:bg-white text-white dark:text-obsidian-950 rounded-full text-sm font-medium hover:bg-gold-600 dark:hover:bg-gold-500 dark:hover:text-white transition-all duration-200 group">
+              <a href="#contact" onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'center' }); }} className="btn-primary inline-flex items-center gap-2 px-7 py-3.5 bg-obsidian-950 dark:bg-white text-white dark:text-obsidian-950 rounded-full text-sm font-medium hover:bg-gold-600 dark:hover:bg-gold-500 dark:hover:text-white transition-all duration-200 group">
                 <span style={cs('cta_primary')}>
                   {ct('cta_primary', locale === 'fr'
                     ? settings.btn_text_hero_primary_fr  || t('cta_primary')
