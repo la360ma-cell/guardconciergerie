@@ -152,7 +152,7 @@ export default function Hero({ locale, settings, formFields, content = {} }: Her
             <motion.h1
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="font-display text-5xl sm:text-6xl lg:text-7xl font-light leading-[1.1] mb-6 text-obsidian-950 dark:text-white"
+              className="font-display text-3xl sm:text-5xl lg:text-7xl font-light leading-[1.1] mb-5 sm:mb-6 text-obsidian-950 dark:text-white"
               style={cs('title')}
             >
               {ct('title', t('title'))}
@@ -165,7 +165,7 @@ export default function Hero({ locale, settings, formFields, content = {} }: Her
             <motion.p
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg text-obsidian-500 dark:text-obsidian-300 leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0"
+              className="text-sm sm:text-lg text-obsidian-500 dark:text-obsidian-300 leading-relaxed mb-6 sm:mb-8 max-w-lg mx-auto lg:mx-0"
               style={cs('subtitle')}
             >
               {ct('subtitle', t('subtitle'))}
@@ -214,7 +214,7 @@ export default function Hero({ locale, settings, formFields, content = {} }: Her
             <motion.div
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="grid grid-cols-3 gap-6 mt-12 pt-10 border-t border-gray-100 dark:border-gray-800"
+              className="grid grid-cols-3 gap-3 sm:gap-6 mt-8 sm:mt-12 pt-6 sm:pt-10 border-t border-gray-100 dark:border-gray-800"
             >
               {[
                 { value: settings.stat_properties || '120+', label: locale === 'fr' ? settings.stat_properties_label_fr || 'Biens gérés'     : settings.stat_properties_label_en || 'Properties' },
@@ -222,7 +222,7 @@ export default function Hero({ locale, settings, formFields, content = {} }: Her
                 { value: settings.stat_revenue    || '+40%', label: locale === 'fr' ? settings.stat_revenue_label_fr    || 'Revenus en plus' : settings.stat_revenue_label_en    || 'More revenue' },
               ].map((stat) => (
                 <div key={stat.value} className="text-center lg:text-left">
-                  <div className="font-display text-2xl lg:text-3xl font-medium text-gold-gradient">{stat.value}</div>
+                  <div className="font-display text-xl sm:text-2xl lg:text-3xl font-medium text-gold-gradient">{stat.value}</div>
                   <div className="text-xs text-obsidian-400 dark:text-obsidian-500 mt-1 leading-tight">{stat.label}</div>
                 </div>
               ))}
