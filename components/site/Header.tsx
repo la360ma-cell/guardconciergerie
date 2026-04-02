@@ -210,7 +210,7 @@ export default function Header({ locale, settings }: HeaderProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-x-0 top-[60px] z-40 bg-white dark:bg-obsidian-950 border-b border-gray-100 dark:border-gray-800 shadow-luxury lg:hidden"
+            className="fixed inset-x-0 top-[60px] z-40 bg-white dark:bg-obsidian-950 border-b border-gray-100 dark:border-gray-800 shadow-luxury lg:hidden overflow-y-auto max-h-[calc(100vh-60px)]"
           >
             <nav className="max-w-7xl mx-auto px-4 py-6 flex flex-col gap-4">
               {navLinks.map(link => (
