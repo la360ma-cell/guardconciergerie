@@ -14,23 +14,23 @@ interface SectionDef {
 }
 
 const SECTIONS: SectionDef[] = [
-  { key: 'appearance_hero_image',    label: 'Hero âÂÂ Bannière principale',    description: 'Image de fond plein-écran du hero',                         type: 'bg' },
-  { key: 'appearance_about_photo',   label: 'ÃÂ propos âÂÂ Photo portrait',     description: 'Photo affichée dans le cadre gauche (section ÃÂ propos)',     type: 'photo' },
-  { key: 'appearance_about_image',   label: 'ÃÂ propos âÂÂ Fond de section',    description: 'Image de fond derrière toute la section ÃÂ propos',           type: 'bg' },
-  { key: 'appearance_contact_image', label: 'Contact âÂÂ Fond de section',     description: 'Image de fond de la section Contact',                        type: 'bg' },
-  { key: 'appearance_stats_image',   label: 'Statistiques âÂÂ Fond de section','description': 'Image de fond de la section Statistiques',               type: 'bg' },
+  { key: 'appearance_hero_image',    label: 'Hero — Bannière principale',    description: 'Image de fond plein-écran du hero',                         type: 'bg' },
+  { key: 'appearance_about_photo',   label: 'À propos — Photo portrait',     description: 'Photo affichée dans le cadre gauche (section À propos)',     type: 'photo' },
+  { key: 'appearance_about_image',   label: 'À propos — Fond de section',    description: 'Image de fond derrière toute la section À propos',           type: 'bg' },
+  { key: 'appearance_contact_image', label: 'Contact — Fond de section',     description: 'Image de fond de la section Contact',                        type: 'bg' },
+  { key: 'appearance_stats_image',   label: 'Statistiques — Fond de section','description': 'Image de fond de la section Statistiques',               type: 'bg' },
 ]
 
 const POSITIONS = [
-  { value: 'top left',     label: 'âÂÂ' },
-  { value: 'top center',   label: 'âÂÂ' },
-  { value: 'top right',    label: 'âÂÂ' },
-  { value: 'center left',  label: 'âÂÂ' },
-  { value: 'center',       label: 'ÃÂ·' },
-  { value: 'center right', label: 'âÂÂ' },
-  { value: 'bottom left',  label: 'âÂÂ' },
-  { value: 'bottom center',label: 'âÂÂ' },
-  { value: 'bottom right', label: 'âÂÂ' },
+  { value: 'top left',     label: '↖' },
+  { value: 'top center',   label: '↑' },
+  { value: 'top right',    label: '↗' },
+  { value: 'center left',  label: '←' },
+  { value: 'center',       label: '·' },
+  { value: 'center right', label: '→' },
+  { value: 'bottom left',  label: '↙' },
+  { value: 'bottom center',label: '↓' },
+  { value: 'bottom right', label: '↘' },
 ]
 
 function posKey(sectionKey: string, type: 'bg' | 'photo') {
@@ -155,9 +155,9 @@ export default function AppearancePage({ params: { locale } }: { params: { local
           <div className="bg-white dark:bg-obsidian-900 border border-obsidian-100 dark:border-white/5 rounded-2xl p-6">
             <h3 className="font-medium text-obsidian-950 dark:text-white mb-1">Logo</h3>
             <p className="text-xs text-obsidian-400 mb-5">
-              <strong>Logo Header (scrollé)</strong> âÂÂ affiché quand le menu a un fond blanc (après scroll).<br />
-              <strong>Logo Header (transparent)</strong> âÂÂ affiché quand le menu est transparent (haut de page, sur l'image hero).<br />
-              <strong>Logo Footer</strong> âÂÂ affiché dans le pied de page. Si non défini, utilise le Logo Header scrollé.
+              <strong>Logo Header (scrollé)</strong> — affiché quand le menu a un fond blanc (après scroll).<br />
+              <strong>Logo Header (transparent)</strong> — affiché quand le menu est transparent (haut de page, sur l'image hero).<br />
+              <strong>Logo Footer</strong> — affiché dans le pied de page. Si non défini, utilise le Logo Header scrollé.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-6 mb-5">
@@ -307,7 +307,7 @@ export default function AppearancePage({ params: { locale } }: { params: { local
                       <>
                         <Upload size={24} />
                         <span className="text-sm">Cliquez pour uploader</span>
-                        <span className="text-xs">JPG, PNG, WebP âÂÂ¢ max 10 MB</span>
+                        <span className="text-xs">JPG, PNG, WebP • max 10 MB</span>
                       </>
                     )}
                   </button>
@@ -491,7 +491,7 @@ export default function AppearancePage({ params: { locale } }: { params: { local
                 { label: 'Champagne',   color: '#c9a96e' },
                 { label: 'Bordeaux',    color: '#722f37' },
                 { label: 'Marine',      color: '#1b3a5c' },
-                { label: 'ÃÂmeraude',    color: '#046b3b' },
+                { label: 'Émeraude',    color: '#046b3b' },
                 { label: 'Améthyste',   color: '#6b3fa0' },
                 { label: 'Ardoise',     color: '#4a5568' },
                 { label: 'Anthracite',  color: '#374151' },
@@ -536,7 +536,7 @@ export default function AppearancePage({ params: { locale } }: { params: { local
                 >
                   <div>
                     <p className="text-xl text-obsidian-950 dark:text-white" style={{ fontFamily: font.value || 'var(--font-cormorant)' }}>
-                      Aa âÂÂ Guard
+                      Aa — Guard
                     </p>
                     <p className="text-xs text-obsidian-400 mt-1">{font.label}</p>
                   </div>
@@ -588,12 +588,12 @@ export default function AppearancePage({ params: { locale } }: { params: { local
             <p className="text-xs text-obsidian-400 mb-5">Laissez vide pour utiliser la couleur par défaut du thème.</p>
             <div className="grid sm:grid-cols-2 gap-x-8 gap-y-5">
               {([
-                { key: 'appearance_heading_color',    label: 'Titres (H1âÂÂH5)',         hint: 'Tous les titres du site', preview: (c: string) => <p className="text-2xl font-light" style={{ color: c, fontFamily: 'var(--font-cormorant, serif)' }}>Titre exemple</p> },
+                { key: 'appearance_heading_color',    label: 'Titres (H1–H5)',         hint: 'Tous les titres du site', preview: (c: string) => <p className="text-2xl font-light" style={{ color: c, fontFamily: 'var(--font-cormorant, serif)' }}>Titre exemple</p> },
                 { key: 'appearance_body_color',        label: 'Corps de texte (paragraphes)', hint: 'Descriptions, paragraphes', preview: (c: string) => <p className="text-sm" style={{ color: c }}>Exemple de texte de corps.</p> },
-                { key: 'appearance_nav_text_color',    label: 'Menu de navigation',     hint: 'Liens du menu header', preview: (c: string) => <p className="text-sm font-medium tracking-wide" style={{ color: c }}>Services ÃÂ· ÃÂ propos ÃÂ· Contact</p> },
+                { key: 'appearance_nav_text_color',    label: 'Menu de navigation',     hint: 'Liens du menu header', preview: (c: string) => <p className="text-sm font-medium tracking-wide" style={{ color: c }}>Services · À propos · Contact</p> },
                 { key: 'appearance_nav_bg_color',      label: 'Fond du menu (défilé)',  hint: 'Couleur de fond du header après scroll', preview: (c: string) => <div className="h-8 rounded-lg" style={{ backgroundColor: c }} /> },
-                { key: 'appearance_footer_text_color', label: 'Textes du footer',       hint: 'Tous les textes du pied de page', preview: (c: string) => <p className="text-sm" style={{ color: c }}>Footer âÂÂ Adresse, liens, copyright</p> },
-                { key: 'appearance_badge_color',       label: 'Badges / étiquettes',    hint: 'Labels de section (ex: "Nos Services")', preview: (c: string) => <span className="text-xs tracking-[0.2em] uppercase font-medium" style={{ color: c }}>âÂÂ NOS SERVICES âÂÂ</span> },
+                { key: 'appearance_footer_text_color', label: 'Textes du footer',       hint: 'Tous les textes du pied de page', preview: (c: string) => <p className="text-sm" style={{ color: c }}>Footer — Adresse, liens, copyright</p> },
+                { key: 'appearance_badge_color',       label: 'Badges / étiquettes',    hint: 'Labels de section (ex: "Nos Services")', preview: (c: string) => <span className="text-xs tracking-[0.2em] uppercase font-medium" style={{ color: c }}>— NOS SERVICES —</span> },
               ] as const).map(({ key, label, hint, preview }) => {
                 const val = settings[key] || ''
                 return (
