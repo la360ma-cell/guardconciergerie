@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 import { useTranslations } from 'next-intl'
 import { useDropzone } from 'react-dropzone'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Upload, X, CheckCircle, AlertCircle, Image, Loader2 } from 'lucide-react'
+import { Upload, X, CheckCircle, AlertCircle, Image, Loader2, Phone, User, MapPin, Home, Star } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 interface FormField {
@@ -29,16 +29,29 @@ interface DynamicFormProps {
   variant?: 'hero' | 'section'
 }
 
+// Champs qui doivent être groupés en paires (côte à côte)
+// Format: [fieldName1, fieldName2] → s'affichent sur la même ligne
+const FIELD_PAIRS: string[][] = [
+  ['phone', 'fullName'],      // Téléphone | Nom complet
+  ['city', 'propertyType'],   // Ville | Type de bien
+]
+
+// Icônes par champ
+const FIELD_ICONS: Record<string, any> = {
+  fullName: User,
+  phone: Phone,
+  city: MapPin,
+  propertyType: Home,
+}
+
 export default function DynamicForm({ locale, formFields, settings, variant = 'section' }: DynamicFormProps) {
   const t = useTranslations('form')
   const [files, setFiles] = useState<File[]>([])
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  // Stable object URLs for file previews — revoke on cleanup
   const previewUrlsRef = useRef<string[]>([])
   const previewUrls = useMemo(() => {
-    // Revoke old URLs
     previewUrlsRef.current.forEach(url => URL.revokeObjectURL(url))
     const urls = files.map(f => URL.createObjectURL(f))
     previewUrlsRef.current = urls
@@ -78,28 +91,15 @@ export default function DynamicForm({ locale, formFields, settings, variant = 's
   const onSubmit = async (data: any) => {
     setIsLoading(true)
     setError(null)
-
     try {
       const formData = new FormData()
-
-      // Map field values
       Object.entries(data).forEach(([key, value]) => {
         if (value) formData.append(key, value as string)
       })
-
-      // Handle city: if otherCity is provided, use it
       if (data.otherCity) formData.set('city', data.otherCity)
-
-      // Append photos
       files.forEach(file => formData.append('photos', file))
-
-      const res = await fetch('/api/leads', {
-        method: 'POST',
-        body: formData,
-      })
-
+      const res = await fetch('/api/leads', { method: 'POST', body: formData })
       if (!res.ok) throw new Error('Submit failed')
-
       setSubmitted(true)
       reset()
       setFiles([])
@@ -153,158 +153,212 @@ export default function DynamicForm({ locale, formFields, settings, variant = 's
     )
   }
 
+  // ── Grouper les champs selon FIELD_PAIRS ─────────────────────────────────
+  const visibleFields = formFields.filter(f => isFieldVisible(f))
+  const renderedNames = new Set<string>()
+
+  const renderField = (field: FormField, compact = false) => {
+    const label = locale === 'fr' ? field.labelFr : field.labelEn
+    const placeholder = locale === 'fr' ? field.placeholder_fr : field.placeholder_en
+    const isRequired = field.required
+    const Icon = FIELD_ICONS[field.name]
+
+    let options: Array<{ valueFr: string; valueEn: string }> = []
+    if (field.options) {
+      try { options = JSON.parse(field.options) } catch {}
+    }
+
+    if (field.type === 'file') {
+      return (
+        <div key={field.name} className="col-span-2">
+          <label className="block text-xs font-semibold text-obsidian-500 dark:text-obsidian-400 uppercase tracking-wider mb-1.5">
+            {label}
+          </label>
+          <div
+            {...getRootProps()}
+            className={cn(
+              'border-2 border-dashed rounded-xl p-3 text-center cursor-pointer transition-all duration-200',
+              isDragActive
+                ? 'border-gold-500 bg-gold-50 dark:bg-gold-900/10'
+                : 'border-gray-200 dark:border-gray-700 hover:border-gold-400 dark:hover:border-gold-600',
+              files.length >= 10 && 'opacity-50 cursor-not-allowed'
+            )}
+          >
+            <input {...getInputProps()} />
+            <Upload size={18} className="mx-auto mb-1 text-obsidian-400 dark:text-obsidian-500" />
+            <p className="text-xs text-obsidian-500 dark:text-obsidian-400">{t('upload_text')}</p>
+            <p className="text-[10px] text-obsidian-400 dark:text-obsidian-500 mt-0.5">{t('upload_formats')}</p>
+          </div>
+          {files.length > 0 && (
+            <div className="mt-2 grid grid-cols-4 gap-1.5">
+              {files.map((file, i) => (
+                <div key={i} className="relative group">
+                  <div className="aspect-square rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
+                    <img src={previewUrls[i]} alt={file.name} className="w-full h-full object-cover" />
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => removeFile(i)}
+                    className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                  >
+                    <X size={8} />
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )
+    }
+
+    if (field.type === 'select') {
+      return (
+        <div key={field.name}>
+          <label className="block text-xs font-semibold text-obsidian-500 dark:text-obsidian-400 uppercase tracking-wider mb-1.5">
+            {label} {isRequired && <span className="text-gold-500">*</span>}
+          </label>
+          <div className="relative">
+            {Icon && <Icon size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-obsidian-400 pointer-events-none z-10" />}
+            <select
+              {...register(field.name, { required: isRequired ? t('required') : false })}
+              className={cn("luxury-input text-sm bg-white dark:bg-obsidian-950 text-obsidian-900 dark:text-white", Icon ? "pl-9" : "")}
+            >
+              <option value="">{locale === 'fr' ? 'Sélectionner...' : 'Select...'}</option>
+              {options.map((opt, i) => (
+                <option key={i} value={locale === 'fr' ? opt.valueFr : opt.valueEn}>
+                  {locale === 'fr' ? opt.valueFr : opt.valueEn}
+                </option>
+              ))}
+            </select>
+          </div>
+          {errors[field.name] && (
+            <p className="text-red-500 text-[10px] mt-0.5">{errors[field.name]?.message as string}</p>
+          )}
+        </div>
+      )
+    }
+
+    if (field.type === 'textarea') {
+      return (
+        <div key={field.name} className="col-span-2">
+          <label className="block text-xs font-semibold text-obsidian-500 dark:text-obsidian-400 uppercase tracking-wider mb-1.5">
+            {label} {isRequired && <span className="text-gold-500">*</span>}
+          </label>
+          <textarea
+            {...register(field.name, { required: isRequired ? t('required') : false })}
+            placeholder={placeholder || ''}
+            rows={2}
+            className="luxury-input resize-none text-sm"
+          />
+          {errors[field.name] && (
+            <p className="text-red-500 text-[10px] mt-0.5">{errors[field.name]?.message as string}</p>
+          )}
+        </div>
+      )
+    }
+
+    return (
+      <div key={field.name}>
+        <label className="block text-xs font-semibold text-obsidian-500 dark:text-obsidian-400 uppercase tracking-wider mb-1.5">
+          {label} {isRequired && <span className="text-gold-500">*</span>}
+        </label>
+        <div className="relative">
+          {Icon && <Icon size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-obsidian-400 pointer-events-none" />}
+          <input
+            {...register(field.name, {
+              required: isRequired ? t('required') : false,
+              ...(field.type === 'tel' && {
+                pattern: {
+                  value: /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/,
+                  message: t('phone_invalid'),
+                },
+              }),
+            })}
+            type={field.type}
+            placeholder={placeholder || ''}
+            className={cn("luxury-input text-sm", Icon ? "pl-9" : "")}
+          />
+        </div>
+        {errors[field.name] && (
+          <p className="text-red-500 text-[10px] mt-0.5">{errors[field.name]?.message as string}</p>
+        )}
+      </div>
+    )
+  }
+
+  const renderRows = () => {
+    const rows: JSX.Element[] = []
+
+    for (const field of visibleFields) {
+      if (renderedNames.has(field.name)) continue
+
+      // Chercher si ce champ fait partie d'une paire
+      const pair = FIELD_PAIRS.find(p => p.includes(field.name))
+      if (pair) {
+        const otherName = pair.find(n => n !== field.name)
+        const otherField = visibleFields.find(f => f.name === otherName)
+        if (otherField && !renderedNames.has(otherField.name)) {
+          // Rendre les deux en grille 2 colonnes
+          // Respecter l'ordre de la paire (pair[0] d'abord)
+          const first = visibleFields.find(f => f.name === pair[0])
+          const second = visibleFields.find(f => f.name === pair[1])
+          if (first && second) {
+            renderedNames.add(first.name)
+            renderedNames.add(second.name)
+            rows.push(
+              <div key={`pair-${pair[0]}-${pair[1]}`} className="grid grid-cols-2 gap-2">
+                {renderField(first)}
+                {renderField(second)}
+              </div>
+            )
+            continue
+          }
+        }
+      }
+
+      // Champ seul (pleine largeur)
+      renderedNames.add(field.name)
+      rows.push(
+        <div key={field.name}>
+          {renderField(field)}
+        </div>
+      )
+    }
+
+    return rows
+  }
+
   return (
     <div className={cn(
       'rounded-2xl',
       variant === 'hero'
-        ? 'bg-white dark:bg-obsidian-900 shadow-luxury dark:shadow-luxury-dark border border-gray-100 dark:border-gray-800 p-3 lg:h-full lg:overflow-y-auto flex flex-col'
+        ? 'bg-white dark:bg-obsidian-900 shadow-luxury dark:shadow-luxury-dark border border-gray-100 dark:border-gray-800 p-4 lg:h-full lg:overflow-y-auto flex flex-col'
         : 'p-0'
     )}>
       {variant === 'hero' && (
-        <div className="mb-2">
-          <h2 className="font-display text-xl font-medium text-obsidian-950 dark:text-white">
-            {locale === 'fr' ? 'Évaluation gratuite' : 'Free assessment'}
-          </h2>
-          <p className="text-sm text-obsidian-400 dark:text-obsidian-400 mt-1">
-            {locale === 'fr' ? 'Réponse sous 24h garantie' : 'Response within 24h guaranteed'}
-          </p>
+        <div className="mb-3 pb-3 border-b border-gray-100 dark:border-gray-800">
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="font-display text-lg font-semibold text-obsidian-950 dark:text-white">
+                {locale === 'fr' ? 'Évaluation gratuite' : 'Free assessment'}
+              </h2>
+              <p className="text-xs text-obsidian-400 dark:text-obsidian-400 mt-0.5">
+                {locale === 'fr' ? 'Réponse sous 24h garantie' : 'Response within 24h guaranteed'}
+              </p>
+            </div>
+            <div className="flex items-center gap-0.5">
+              {[1,2,3,4,5].map(i => <Star key={i} size={10} className="text-gold-400 fill-gold-400" />)}
+            </div>
+          </div>
         </div>
       )}
 
-      <form onSubmit={handleSubmit(onSubmit)} className={cn("", variant === 'hero' ? "flex flex-col gap-3" : "")}>
-        {formFields.map(field => {
-          if (!isFieldVisible(field)) return null
-
-          const label = locale === 'fr' ? field.labelFr : field.labelEn
-          const placeholder = locale === 'fr' ? field.placeholder_fr : field.placeholder_en
-          const isRequired = field.required
-
-          let options: Array<{ valueFr: string; valueEn: string }> = []
-          if (field.options) {
-            try {
-              options = JSON.parse(field.options)
-            } catch {}
-          }
-
-          if (field.type === 'file') {
-            return (
-              <div key={field.name}>
-                <label className="block text-sm font-medium text-obsidian-700 dark:text-obsidian-200 mb-2">
-                  {label}
-                </label>
-                <div
-                  {...getRootProps()}
-                  className={cn(
-                    'border-2 border-dashed rounded-xl p-2 text-center cursor-pointer transition-all duration-200',
-                    isDragActive
-                      ? 'border-gold-500 bg-gold-50 dark:bg-gold-900/10'
-                      : 'border-gray-200 dark:border-gray-700 hover:border-gold-400 dark:hover:border-gold-600',
-                    files.length >= 10 && 'opacity-50 cursor-not-allowed'
-                  )}
-                >
-                  <input {...getInputProps()} />
-                  <Upload size={20} className="mx-auto mb-2 text-obsidian-400 dark:text-obsidian-500" />
-                  <p className="text-sm text-obsidian-500 dark:text-obsidian-400">{t('upload_text')}</p>
-                  <p className="text-xs text-obsidian-400 dark:text-obsidian-500 mt-1">{t('upload_formats')}</p>
-                </div>
-                {files.length > 0 && (
-                  <div className="mt-3 grid grid-cols-3 gap-2">
-                    {files.map((file, i) => (
-                      <div key={i} className="relative group">
-                        <div className="aspect-square rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
-                          <img
-                            src={previewUrls[i]}
-                            alt={file.name}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                        <button
-                          type="button"
-                          onClick={() => removeFile(i)}
-                          className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-red-500 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
-                        >
-                          <X size={10} />
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            )
-          }
-
-          if (field.type === 'select') {
-            return (
-              <div key={field.name}>
-                <label className="block text-sm font-medium text-obsidian-700 dark:text-obsidian-200 mb-1.5">
-                  {label} {isRequired && <span className="text-gold-500">*</span>}
-                </label>
-                <select
-                  {...register(field.name, { required: isRequired ? t('required') : false })}
-                  className="luxury-input text-sm bg-white dark:bg-obsidian-950 text-obsidian-900 dark:text-white"
-                >
-                  <option value="">{locale === 'fr' ? 'Sélectionner...' : 'Select...'}</option>
-                  {options.map((opt, i) => (
-                    <option key={i} value={locale === 'fr' ? opt.valueFr : opt.valueEn}>
-                      {locale === 'fr' ? opt.valueFr : opt.valueEn}
-                    </option>
-                  ))}
-                </select>
-                {errors[field.name] && (
-                  <p className="text-red-500 text-xs mt-1">{errors[field.name]?.message as string}</p>
-                )}
-              </div>
-            )
-          }
-
-          if (field.type === 'textarea') {
-            return (
-              <div key={field.name}>
-                <label className="block text-sm font-medium text-obsidian-700 dark:text-obsidian-200 mb-1.5">
-                  {label} {isRequired && <span className="text-gold-500">*</span>}
-                </label>
-                <textarea
-                  {...register(field.name, { required: isRequired ? t('required') : false })}
-                  placeholder={placeholder || ''}
-                  rows={3}
-                  className="luxury-input resize-none text-sm"
-                />
-                {errors[field.name] && (
-                  <p className="text-red-500 text-xs mt-1">{errors[field.name]?.message as string}</p>
-                )}
-              </div>
-            )
-          }
-
-          return (
-            <div key={field.name}>
-              <label className="block text-sm font-medium text-obsidian-700 dark:text-obsidian-200 mb-1.5">
-                {label} {isRequired && <span className="text-gold-500">*</span>}
-              </label>
-              <input
-                {...register(field.name, {
-                  required: isRequired ? t('required') : false,
-                  ...(field.type === 'tel' && {
-                    pattern: {
-                      value: /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/,
-                      message: t('phone_invalid'),
-                    },
-                  }),
-                })}
-                type={field.type}
-                placeholder={placeholder || ''}
-                className="luxury-input text-sm"
-              />
-              {errors[field.name] && (
-                <p className="text-red-500 text-xs mt-1">{errors[field.name]?.message as string}</p>
-              )}
-            </div>
-          )
-        })}
+      <form onSubmit={handleSubmit(onSubmit)} className={cn("", variant === 'hero' ? "flex flex-col gap-2.5" : "")}>
+        {renderRows()}
 
         {error && (
-          <div className="flex items-center gap-2 text-red-500 text-sm">
-            <AlertCircle size={16} />
+          <div className="flex items-center gap-2 text-red-500 text-xs">
+            <AlertCircle size={14} />
             {error}
           </div>
         )}
@@ -317,7 +371,7 @@ export default function DynamicForm({ locale, formFields, settings, variant = 's
             'bg-obsidian-950 dark:bg-white text-white dark:text-obsidian-950',
             'hover:bg-gold-600 dark:hover:bg-gold-400 dark:hover:text-white',
             'disabled:opacity-60 disabled:cursor-not-allowed',
-            'flex items-center justify-center gap-2'
+            'flex items-center justify-center gap-2 mt-1'
           )}
         >
           {isLoading ? (
