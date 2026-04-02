@@ -59,17 +59,6 @@ export default async function LegalPage({
             </div>
           </section>
 
-          {/* Section 2 */}
-          <section>
-            <h2 className="font-display text-2xl font-light text-obsidian-950 dark:text-white mb-4">
-              {isFr ? '2. Hébergement' : '2. Hosting'}
-            </h2>
-            <p className="text-sm leading-relaxed whitespace-pre-line">
-              {isFr
-                ? settings.legal_s2_fr || 'Ce site est hébergé par :\n\nVercel Inc.\n340 Pine Street, Suite 700, San Francisco, CA 94104, USA\nhttps://vercel.com'
-                : settings.legal_s2_en || 'This website is hosted by:\n\nVercel Inc.\n340 Pine Street, Suite 700, San Francisco, CA 94104, USA\nhttps://vercel.com'}
-            </p>
-          </section>
 
           {/* Section 3 */}
           <section>
