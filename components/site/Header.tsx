@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useTheme } from 'next-themes'
 import { useTranslations } from 'next-intl'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -21,6 +22,7 @@ export default function Header({ locale, settings }: HeaderProps) {
   const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const { resolvedTheme } = useTheme()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -122,11 +124,14 @@ export default function Header({ locale, settings }: HeaderProps) {
                 const logoHeight = `${parseInt(settings.appearance_logo_height || '40', 10)}px`
                 // Logo transparent = logo shown when header is not scrolled
                 const logoTransparent = settings.appearance_logo_header_transparent
-                // Logo scrolled = logo shown when header has scrolled background
+                // Logo scrolled = logo shown when header has scrolled background (light mode)
                 const logoScrolled = settings.appearance_logo_header
-                // Pick the right logo for current state
+                // Logo dark = logo shown in dark mode when header is visible (dark background)
+                const logoDark = settings.appearance_logo_header_dark
+                // Pick the right logo: dark mode + scrolled → dark logo, else normal logic
+                const isDark = resolvedTheme === 'dark'
                 const activeLogo = scrolled
-                  ? (logoScrolled || logoTransparent)
+                  ? (isDark && logoDark ? logoDark : logoScrolled || logoTransparent)
                   : (logoTransparent || logoScrolled)
 
                 if (activeLogo) return (
