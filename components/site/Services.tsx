@@ -113,6 +113,7 @@ export default function Services({ locale, services, settings = {}, content = {}
         >
           <a
             href="#contact"
+            onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'center' }); }}
             className="btn-secondary inline-flex items-center gap-2 px-8 py-3.5 border border-obsidian-200 dark:border-obsidian-700 rounded-full text-sm font-medium hover:bg-obsidian-950 hover:text-white dark:hover:bg-white dark:hover:text-obsidian-950 transition-all duration-200"
           >
             {locale === 'fr'
