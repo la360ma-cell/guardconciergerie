@@ -32,13 +32,13 @@ interface DynamicFormProps {
 // Champs qui doivent être groupés en paires (côte à côte)
 // Format: [fieldName1, fieldName2] → s'affichent sur la même ligne
 const FIELD_PAIRS: string[][] = [
-  ['phone', 'fullName'],      // Téléphone | Nom complet
+  ['name', 'phone'],          // Nom complet | Téléphone
   ['city', 'propertyType'],   // Ville | Type de bien
 ]
 
 // Icônes par champ
 const FIELD_ICONS: Record<string, any> = {
-  fullName: User,
+  name: User,
   phone: Phone,
   city: MapPin,
   propertyType: Home,
