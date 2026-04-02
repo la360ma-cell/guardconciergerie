@@ -6,6 +6,7 @@ import { ThemeProvider } from '@/components/ui/ThemeProvider'
 import { Providers } from '@/components/ui/Providers'
 import { notFound } from 'next/navigation'
 import { buildAppearanceStyles, buildGoogleFontsUrl } from '@/lib/appearance'
+import ScrollToTop from '@/components/ui/ScrollToTop'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -114,6 +115,7 @@ export default async function LocaleLayout({
           <NextIntlClientProvider messages={messages}>
             <Providers>
               {children}
+              <ScrollToTop />
             </Providers>
           </NextIntlClientProvider>
         </ThemeProvider>
