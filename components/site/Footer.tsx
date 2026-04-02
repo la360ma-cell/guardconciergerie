@@ -141,9 +141,9 @@ export default function Footer({ locale, settings, content: initialContent = {} 
               {fc('footer_services_label', t('services'))}
             </h4>
             <ul className="space-y-2">
-              {services.map(s => (
+              {services.map((s, idx) => (
                 <li key={s}>
-                  <a href={a('services')} onClick={e => handleAnchorClick(e, 'services')} className="text-sm text-obsidian-400 hover:text-white transition-colors">
+                  <a href={a(`service-card-${idx}`)} onClick={e => handleAnchorClick(e, `service-card-${idx}`)} className="text-sm text-obsidian-400 hover:text-white transition-colors">
                     {s}
                   </a>
                 </li>
