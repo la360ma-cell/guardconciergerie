@@ -97,7 +97,7 @@ export default function Header({ locale, settings }: HeaderProps) {
       : {}
 
   return (
-    <>
+    <div className="fixed top-0 left-0 right-0 z-50 w-full">
       {/* Inject hover color override via a style tag if set */}
       {settings.nav_link_hover_color && /^#[0-9a-fA-F]{3,8}$|^rgb/.test(settings.nav_link_hover_color) && (
         <style dangerouslySetInnerHTML={{
@@ -107,7 +107,7 @@ export default function Header({ locale, settings }: HeaderProps) {
 
       <header
         className={cn(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+          'w-full transition-all duration-300',
           scrolled
             ? 'bg-white/95 dark:bg-obsidian-950/95 backdrop-blur-md shadow-luxury dark:shadow-luxury-dark py-3'
             : 'bg-transparent py-5'
@@ -210,7 +210,7 @@ export default function Header({ locale, settings }: HeaderProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-x-0 top-[60px] z-40 bg-white dark:bg-obsidian-950 border-b border-gray-100 dark:border-gray-800 shadow-luxury lg:hidden overflow-y-auto max-h-[calc(100vh-60px)]"
+            className="absolute left-0 right-0 top-full z-50 bg-white dark:bg-obsidian-950 border-b border-gray-100 dark:border-gray-800 shadow-luxury lg:hidden overflow-y-auto max-h-[calc(100vh-4rem)]"
           >
             <nav className="max-w-7xl mx-auto px-4 py-6 flex flex-col gap-4">
               {navLinks.map(link => (
@@ -245,6 +245,6 @@ export default function Header({ locale, settings }: HeaderProps) {
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </div>
   )
 }
