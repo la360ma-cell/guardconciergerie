@@ -61,7 +61,7 @@ export default function Footer({ locale, settings, content: initialContent = {} 
     if (isHome) {
       e.preventDefault()
       const el = document.getElementById(id)
-      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' })
     }
   }
 
