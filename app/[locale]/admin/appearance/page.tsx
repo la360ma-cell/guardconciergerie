@@ -157,15 +157,18 @@ export default function AppearancePage({ params: { locale } }: { params: { local
             <p className="text-xs text-obsidian-400 mb-5">
               <strong>Logo Header (scrollé)</strong> — affiché quand le menu a un fond blanc (après scroll).<br />
               <strong>Logo Header (transparent)</strong> — affiché quand le menu est transparent (haut de page, sur l'image hero).<br />
+              <strong>Logo Header (mode sombre)</strong> — affiché en mode sombre quand le header est visible (fond noir). Si non défini, utilise le Logo Header scrollé.<br />
               <strong>Logo Footer</strong> — affiché dans le pied de page. Si non défini, utilise le Logo Header scrollé.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-6 mb-5">
-              {(['appearance_logo_header', 'appearance_logo_header_transparent', 'appearance_logo_footer'] as const).map(logoKey => {
+              {(['appearance_logo_header', 'appearance_logo_header_transparent', 'appearance_logo_footer', 'appearance_logo_header_dark'] as const).map(logoKey => {
                 const logoLabel = logoKey === 'appearance_logo_header'
                   ? 'Logo Header (scrollé)'
                   : logoKey === 'appearance_logo_header_transparent'
                   ? 'Logo Header (transparent)'
+                  : logoKey === 'appearance_logo_header_dark'
+                  ? 'Logo Header (mode sombre)'
                   : 'Logo Footer'
                 const logoUrl = settings[logoKey] || ''
                 const isUploadingLogo = uploading === logoKey
