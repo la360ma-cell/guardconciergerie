@@ -112,7 +112,7 @@ export default function About({ locale, settings, content = {} }: AboutProps) {
             </div>
 
             {/* Floating card */}
-            <div className="absolute -bottom-6 -right-6 bg-white dark:bg-obsidian-900 rounded-2xl p-5 shadow-luxury dark:shadow-luxury-dark border border-gray-100 dark:border-gray-800">
+            <div className="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 bg-white dark:bg-obsidian-900 rounded-2xl p-5 shadow-luxury dark:shadow-luxury-dark border border-gray-100 dark:border-gray-800">
               <div className="text-center">
                 <div className="font-display text-3xl font-medium text-gold-gradient">
                   {settings.stat_properties || '120+'}
@@ -126,7 +126,7 @@ export default function About({ locale, settings, content = {} }: AboutProps) {
             </div>
 
             {/* Second floating card */}
-            <div className="absolute -top-6 -left-6 bg-gold-500 rounded-2xl p-4 shadow-gold-glow">
+            <div className="absolute -top-4 -left-4 sm:-top-6 sm:-left-6 bg-gold-500 rounded-2xl p-4 shadow-gold-glow">
               <div className="text-white text-center">
                 <div className="font-display text-2xl font-medium">
                   {settings.stat_years || '5+'}
