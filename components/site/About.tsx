@@ -213,7 +213,7 @@ export default function About({ locale, settings, content = {} }: AboutProps) {
               initial="hidden"
               animate={isInView ? 'visible' : 'hidden'}
               href="#contact"
-              onClick={(e) => { e.preventDefault(); document.getElementById('hero-form')?.scrollIntoView({ behavior: 'smooth', block: 'center' }); }}
+              onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'center' }); }}
               className="inline-flex items-center gap-2 text-sm font-medium text-gold-600 dark:text-gold-400 hover:gap-3 transition-all"
             >
               {locale === 'fr' ? 'Parler à notre équipe' : 'Talk to our team'}
