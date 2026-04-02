@@ -238,8 +238,8 @@ export default function Hero({ locale, settings, formFields, content = {} }: Her
             className="relative will-change-transform lg:max-h-[calc(100vh-160px)] lg:overflow-y-auto"
           >
             {/* Marrakech tag â top right of form */}
-            <div className="absolute -top-3.5 right-5 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-obsidian-950 dark:bg-gold-500 text-white text-[11px] font-semibold tracking-wide shadow-lg">
-              <MapPin size={10} className="flex-shrink-0" />
+            <div className="absolute top-3 right-3 z-20 hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-gold-500 text-white text-[10px] font-semibold tracking-wide shadow-md">
+              <MapPin size={9} className="flex-shrink-0" />
               <span>Marrakech</span>
             </div>
 
