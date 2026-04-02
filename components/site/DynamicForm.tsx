@@ -261,7 +261,7 @@ export default function DynamicForm({ locale, formFields, settings, variant = 's
       if (other && !done.has(other.name)) {
         done.add(field.name); done.add(other.name)
         return (
-          <div key={`pair-${pair[0]}`} className="grid grid-cols-2 gap-3">
+          <div key={`pair-${pair[0]}`} className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {renderField(field)}
             {renderField(other)}
           </div>
