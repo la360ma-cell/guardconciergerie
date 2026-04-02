@@ -119,7 +119,7 @@ export default function Process({ locale, settings, content = {} }: ProcessProps
         >
           <a
             href="#contact"
-            onClick={(e) => { e.preventDefault(); document.getElementById('hero-form')?.scrollIntoView({ behavior: 'smooth', block: 'center' }); }}
+            onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'center' }); }}
             className="btn-primary inline-flex items-center gap-2 px-8 py-4 bg-gold-500 hover:bg-gold-600 text-white rounded-full text-sm font-semibold tracking-wide transition-colors duration-200 shadow-gold-glow"
           >
             {locale === 'fr'
