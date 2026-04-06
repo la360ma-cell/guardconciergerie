@@ -9,7 +9,7 @@ import DynamicForm from './DynamicForm'
 interface ContactSectionProps {
   locale: string
   settings: Record<string, string>
-  formFields: any[]
+  formFields: Array<{ name: string; type: string; label: string; required?: boolean; options?: string[] }>
   content?: Record<string, string>
 }
 
@@ -22,7 +22,7 @@ export default function ContactSection({ locale, settings, formFields, content =
     ...(content[`${sn}_${key}_color`]      && { color: content[`${sn}_${key}_color`] }),
     ...(content[`${sn}_${key}_font`]       && { fontFamily: `"${content[`${sn}_${key}_font`]}", sans-serif` }),
     ...(content[`${sn}_${key}_fontSize`]   && { fontSize: content[`${sn}_${key}_fontSize`] }),
-    ...(content[`${sn}_${key}_fontWeight`] && { fontWeight: content[`${sn}_${key}_fontWeight`] as any }),
+    ...(content[`${sn}_${key}_fontWeight`] && { fontWeight: content[`${sn}_${key}_fontWeight`] as React.CSSProperties['fontWeight'] }),
   })
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
@@ -54,7 +54,7 @@ export default function ContactSection({ locale, settings, formFields, content =
       value: settings.contact_whatsapp || '',
       href: `https://wa.me/${whatsappPhone}`,
     } : null,
-  ].filter(Boolean) as { icon: React.ComponentType<any>; label: string; value: string; href: string | null }[]
+  ].filter(Boolean) as { icon: React.ComponentType<{ className?: string }>; label: string; value: string; href: string | null }[]
 
   const contactBg = settings.appearance_contact_image || ''
   const contactBgPos = settings.appearance_contact_image_pos || 'center'
