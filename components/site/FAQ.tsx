@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import type { FAQ as FAQType } from '@/types'
 import { useTranslations } from 'next-intl'
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
@@ -10,7 +11,7 @@ import { cn } from '@/lib/utils'
 
 interface FAQProps {
   locale: string
-  faqs: any[]
+  faqs: FAQType[]
   settings: Record<string, string>
   content?: Record<string, string>
 }
@@ -24,7 +25,7 @@ export default function FAQ({ locale, faqs, settings, content = {} }: FAQProps) 
     ...(content[`${sn}_${key}_color`]      && { color: content[`${sn}_${key}_color`] }),
     ...(content[`${sn}_${key}_font`]       && { fontFamily: `"${content[`${sn}_${key}_font`]}", sans-serif` }),
     ...(content[`${sn}_${key}_fontSize`]   && { fontSize: content[`${sn}_${key}_fontSize`] }),
-    ...(content[`${sn}_${key}_fontWeight`] && { fontWeight: content[`${sn}_${key}_fontWeight`] as any }),
+    ...(content[`${sn}_${key}_fontWeight`] && { fontWeight: content[`${sn}_${key}_fontWeight`] as React.CSSProperties['fontWeight'] }),
   })
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
