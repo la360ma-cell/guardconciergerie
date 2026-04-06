@@ -3,6 +3,17 @@
 import { useState, useEffect } from 'react'
 import { Plus, Pencil, Trash2, GripVertical, X, Save, Check, Home, Clock, TrendingUp, Wrench, Camera, BarChart3, Star, Shield, Key, HeartHandshake, Loader2, type LucideIcon } from 'lucide-react'
 
+
+interface ServiceItem {
+  id: number
+  icon: string
+  titleFr: string
+  titleEn: string
+  descFr: string
+  descEn: string
+  active: boolean
+}
+
 const ICON_MAP: Record<string, LucideIcon> = {
   Home, Clock, TrendingUp, Wrench, Camera, BarChart3, Star, Shield, Key, HeartHandshake,
 }
@@ -11,9 +22,9 @@ const ICON_OPTIONS = Object.keys(ICON_MAP)
 const emptyService = { titleFr: '', titleEn: '', descFr: '', descEn: '', icon: 'Star', order: 0, active: true }
 
 export default function ServicesPage() {
-  const [services, setServices] = useState<any[]>([])
+  const [services, setServices] = useState<ServiceItem[]>([])
   const [isLoading, setIsLoading] = useState(true)
-  const [editModal, setEditModal] = useState<any>(null)
+  const [editModal, setEditModal] = useState<ServiceItem | null>(null)
   const [isSaving, setIsSaving] = useState(false)
   const [toast, setToast] = useState('')
   const [draggedId, setDraggedId] = useState<number | null>(null)
@@ -64,7 +75,7 @@ export default function ServicesPage() {
     } catch { showToast('Erreur réseau') }
   }
 
-  const toggleActive = async (service: any) => {
+  const toggleActive = async (service: ServiceItem) => {
     try {
       const res = await fetch(`/api/services/${service.id}`, {
         method: 'PATCH', headers: { 'Content-Type': 'application/json' },
