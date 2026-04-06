@@ -24,7 +24,7 @@ export default function WhyUs({ locale, settings = {}, content = {} }: WhyUsProp
     ...(content[`${sn}_${key}_color`]      && { color: content[`${sn}_${key}_color`] }),
     ...(content[`${sn}_${key}_font`]       && { fontFamily: `"${content[`${sn}_${key}_font`]}", sans-serif` }),
     ...(content[`${sn}_${key}_fontSize`]   && { fontSize: content[`${sn}_${key}_fontSize`] }),
-    ...(content[`${sn}_${key}_fontWeight`] && { fontWeight: content[`${sn}_${key}_fontWeight`] as any }),
+    ...(content[`${sn}_${key}_fontWeight`] && { fontWeight: content[`${sn}_${key}_fontWeight`] as React.CSSProperties['fontWeight'] }),
   })
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
@@ -100,10 +100,10 @@ export default function WhyUs({ locale, settings = {}, content = {} }: WhyUsProp
                 </div>
 
                 <h3 className="font-display text-lg font-medium text-white mb-2">
-                  {ct(reason.titleKey, t(reason.titleKey as any))}
+                  {ct(reason.titleKey, (t as (key: string) => string)(reason.titleKey))}
                 </h3>
                 <p className="text-sm text-obsidian-400 leading-relaxed">
-                  {ct(reason.textKey, t(reason.textKey as any))}
+                  {ct(reason.textKey, (t as (key: string) => string)(reason.textKey))}
                 </p>
               </motion.div>
             )
