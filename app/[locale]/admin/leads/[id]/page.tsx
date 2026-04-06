@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { formatDate } from '@/lib/utils'
+import type { Lead } from '@/types'
 import { ArrowLeft, Phone, MapPin, Home, MessageSquare, Camera, Save, Trash2 } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -14,7 +15,7 @@ export default function LeadDetailPage() {
   const id = params.id as string
   const prefix = locale === 'en' ? '/en/admin' : '/admin'
 
-  const [lead, setLead] = useState<any>(null)
+  const [lead, setLead] = useState<Lead | null>(null)
   const [status, setStatus] = useState('')
   const [notes, setNotes] = useState('')
   const [isSaving, setIsSaving] = useState(false)
@@ -185,7 +186,7 @@ export default function LeadDetailPage() {
   )
 }
 
-function InfoRow({ icon: Icon, label, value, href }: any) {
+function InfoRow({ icon: Icon, label, value, href }: { icon: React.ElementType; label: string; value: string; href?: string }) {
   return (
     <div>
       <div className="flex items-center gap-1.5 text-xs text-gray-400 mb-1">
