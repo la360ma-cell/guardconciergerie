@@ -3,6 +3,19 @@
 import { useState, useEffect } from 'react'
 import { Save, RefreshCw, Palette, Type, X, ChevronDown, Bold, Italic, Eye } from 'lucide-react'
 
+interface ContentItem {
+  id?: number
+  key: string
+  section: string
+  valueFr: string
+  valueEn: string
+  color?: string
+  font?: string
+  fontSize?: string
+  fontWeight?: string
+}
+
+
 const SECTIONS = ['hero', 'about', 'services', 'whyus', 'process', 'stats', 'testimonials', 'faq', 'contact', 'footer']
 
 const SECTION_LABELS: Record<string, string> = {
@@ -92,7 +105,7 @@ function StylePanel({
     color:      color      || undefined,
     fontFamily: font       ? `"${font}", sans-serif` : undefined,
     fontSize:   fontSize   || undefined,
-    fontWeight: (fontWeight as any) || undefined,
+    fontWeight: (fontWeight as React.CSSProperties['fontWeight']) || undefined,
   }
 
   return (
@@ -240,7 +253,7 @@ function StylePanel({
 function ContentCard({
   content, changes, onTextChange, onStyleChange,
 }: {
-  content: any
+  content: Record<string, string>
   changes: Record<string, ContentChange>
   onTextChange: (key: string, field: 'valueFr' | 'valueEn', val: string) => void
   onStyleChange: (key: string, field: keyof ContentChange, val: string) => void
@@ -353,7 +366,7 @@ function ContentCard({
 
 // ── Main Page ─────────────────────────────────────────────────────────────────
 export default function ContentPage() {
-  const [contents, setContents] = useState<any[]>([])
+  const [contents, setContents] = useState<ContentItem[]>([])
   const [activeSection, setActiveSection] = useState('hero')
   const [isSaving, setIsSaving] = useState(false)
   const [toast, setToast] = useState('')
@@ -402,16 +415,16 @@ export default function ContentPage() {
     setIsSaving(true)
     try {
       const updates = Object.entries(changes).map(([key, vals]) => {
-        const original = contents.find((c: any) => c.key === key) || {}
+        const original = contents.find((c: ContentItem) => c.key === key) || {}
         return {
           key,
-          section:    (original as any).section || activeSection,
-          valueFr:    vals.valueFr    ?? (original as any).valueFr    ?? '',
-          valueEn:    vals.valueEn    ?? (original as any).valueEn    ?? '',
-          color:      vals.color      !== undefined ? vals.color      : ((original as any).color      ?? ''),
-          font:       vals.font       !== undefined ? vals.font       : ((original as any).font       ?? ''),
-          fontSize:   vals.fontSize   !== undefined ? vals.fontSize   : ((original as any).fontSize   ?? ''),
-          fontWeight: vals.fontWeight !== undefined ? vals.fontWeight : ((original as any).fontWeight ?? ''),
+          section:    (original as Record<string, string | undefined>).section || activeSection,
+          valueFr:    vals.valueFr    ?? (original as Record<string, string | undefined>).valueFr    ?? '',
+          valueEn:    vals.valueEn    ?? (original as Record<string, string | undefined>).valueEn    ?? '',
+          color:      vals.color      !== undefined ? vals.color      : ((original as Record<string, string | undefined>).color      ?? ''),
+          font:       vals.font       !== undefined ? vals.font       : ((original as Record<string, string | undefined>).font       ?? ''),
+          fontSize:   vals.fontSize   !== undefined ? vals.fontSize   : ((original as Record<string, string | undefined>).fontSize   ?? ''),
+          fontWeight: vals.fontWeight !== undefined ? vals.fontWeight : ((original as Record<string, string | undefined>).fontWeight ?? ''),
         }
       })
       const res = await fetch('/api/content', {
