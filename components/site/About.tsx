@@ -37,7 +37,7 @@ export default function About({ locale, settings, content = {} }: AboutProps) {
     ...(content[`${sectionName}_${key}_color`]      && { color: content[`${sectionName}_${key}_color`] }),
     ...(content[`${sectionName}_${key}_font`]       && { fontFamily: `"${content[`${sectionName}_${key}_font`]}", sans-serif` }),
     ...(content[`${sectionName}_${key}_fontSize`]   && { fontSize: content[`${sectionName}_${key}_fontSize`] }),
-    ...(content[`${sectionName}_${key}_fontWeight`] && { fontWeight: content[`${sectionName}_${key}_fontWeight`] as any }),
+    ...(content[`${sectionName}_${key}_fontWeight`] && { fontWeight: content[`${sectionName}_${key}_fontWeight`] as React.CSSProperties['fontWeight'] }),
   })
 
   const pillars = [
