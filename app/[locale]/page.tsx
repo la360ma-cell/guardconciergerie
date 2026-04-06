@@ -15,7 +15,7 @@ import {
   mockServices, mockTestimonials, mockFaqs, mockSettings, mockFormFields
 } from '@/lib/mock-data'
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 60 // ISR: revalidate every 60 seconds
 
 async function getData() {
   // If DATABASE_URL is not set, return mock data immediately
