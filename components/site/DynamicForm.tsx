@@ -79,7 +79,7 @@ export default function DynamicForm({ locale, formFields, settings, variant = 's
     disabled: files.length >= 10,
   })
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: Record<string, string>) => {
     setIsLoading(true); setError(null)
     try {
       const fd = new FormData()
@@ -124,13 +124,14 @@ export default function DynamicForm({ locale, formFields, settings, variant = 's
     const placeholder = (locale === 'fr' ? field.placeholder_fr : field.placeholder_en) || ''
     const required = field.required
     const Icon = FIELD_ICONS[field.name]
+    const fieldId = `field-${field.name}`
 
     let options: { valueFr: string; valueEn: string }[] = []
     if (field.options) { try { options = JSON.parse(field.options) } catch {} }
 
     // Label commun
     const labelEl = (
-      <label className="block text-[10px] font-bold tracking-widest uppercase text-obsidian-400 dark:text-obsidian-500 mb-1">
+      <label htmlFor={fieldId} className="block text-[10px] font-bold tracking-widest uppercase text-obsidian-400 dark:text-obsidian-500 mb-1">
         {label}{required && <span className="text-gold-500 ml-0.5">*</span>}
       </label>
     )
@@ -176,6 +177,8 @@ export default function DynamicForm({ locale, formFields, settings, variant = 's
             </span>
           )}
           <select
+            id={fieldId}
+            aria-required={required}
             {...register(field.name, { required: required ? t('required') : false })}
             className={cn(
               'w-full rounded-xl border border-gray-200 dark:border-gray-700',
@@ -206,6 +209,8 @@ export default function DynamicForm({ locale, formFields, settings, variant = 's
       <div key={field.name} className="col-span-2">
         {labelEl}
         <textarea
+          id={fieldId}
+          aria-required={required}
           {...register(field.name, { required: required ? t('required') : false })}
           placeholder={placeholder}
           rows={2}
@@ -226,6 +231,8 @@ export default function DynamicForm({ locale, formFields, settings, variant = 's
             </span>
           )}
           <input
+            id={fieldId}
+            aria-required={required}
             {...register(field.name, {
               required: required ? t('required') : false,
               ...(field.type === 'tel' && {
