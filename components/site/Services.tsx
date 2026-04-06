@@ -7,13 +7,13 @@ import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { Home, Clock, TrendingUp, Wrench, Camera, BarChart3, Star, Shield, Key, HeartHandshake } from 'lucide-react'
 
-const iconMap: Record<string, any> = {
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Home, Clock, TrendingUp, Wrench, Camera, BarChart3, Star, Shield, Key, HeartHandshake
 }
 
 interface ServicesProps {
   locale: string
-  services: any[]
+  services: Array<{ icon: string; titleKey: string; descKey: string }>
   settings?: Record<string, string>
   content?: Record<string, string>
 }
@@ -27,7 +27,7 @@ export default function Services({ locale, services, settings = {}, content = {}
     ...(content[`${sn}_${key}_color`]      && { color: content[`${sn}_${key}_color`] }),
     ...(content[`${sn}_${key}_font`]       && { fontFamily: `"${content[`${sn}_${key}_font`]}", sans-serif` }),
     ...(content[`${sn}_${key}_fontSize`]   && { fontSize: content[`${sn}_${key}_fontSize`] }),
-    ...(content[`${sn}_${key}_fontWeight`] && { fontWeight: content[`${sn}_${key}_fontWeight`] as any }),
+    ...(content[`${sn}_${key}_fontWeight`] && { fontWeight: content[`${sn}_${key}_fontWeight`] as React.CSSProperties['fontWeight'] }),
   })
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
