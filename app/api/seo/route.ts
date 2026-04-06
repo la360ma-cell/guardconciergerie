@@ -8,7 +8,7 @@ export async function GET(req: NextRequest) {
     const page = searchParams.get('page')
     const locale = searchParams.get('locale')
 
-    const where: any = {}
+    const where: { page?: string; locale?: string } = {}
     if (page) where.page = page
     if (locale) where.locale = locale
 
