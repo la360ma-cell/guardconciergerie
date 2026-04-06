@@ -4,6 +4,29 @@ import { sendLeadNotification } from '@/lib/email'
 import { uploadFile } from '@/lib/upload'
 import { isAuthenticated } from '@/lib/api-auth'
 
+// Simple input sanitization
+function sanitizeInput(str: string | null, maxLength: number = 500): string {
+  if (!str) return ''
+  return str.trim().substring(0, maxLength).replace(/[<>]/g, '')
+}
+
+// Basic rate limiting (in-memory, resets on cold start)
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>()
+const RATE_LIMIT_WINDOW = 60 * 1000 // 1 minute
+const RATE_LIMIT_MAX = 5 // max 5 submissions per minute per IP
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now()
+  const entry = rateLimitMap.get(ip)
+  if (!entry || now > entry.resetAt) {
+    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW })
+    return false
+  }
+  entry.count++
+  return entry.count > RATE_LIMIT_MAX
+}
+
+
 export async function GET(req: NextRequest) {
   if (!await isAuthenticated(req)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
@@ -80,14 +103,20 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
+  // Rate limiting
+  const ip = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'unknown'
+  if (isRateLimited(ip)) {
+    return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
+  }
+
   try {
     const formData = await req.formData()
 
-    const name = formData.get('name') as string
-    const phone = formData.get('phone') as string
-    const city = formData.get('city') as string
-    const propertyType = formData.get('propertyType') as string
-    const message = formData.get('message') as string | null
+    const name = sanitizeInput(formData.get('name') as string, 100)
+    const phone = sanitizeInput(formData.get('phone') as string, 30)
+    const city = sanitizeInput(formData.get('city') as string, 100)
+    const propertyType = sanitizeInput(formData.get('propertyType') as string, 100)
+    const message = sanitizeInput(formData.get('message') as string | null, 2000) || null
     const files = formData.getAll('photos') as File[]
 
     if (!name || !phone || !city || !propertyType) {
