@@ -22,7 +22,6 @@ const cormorant = Cormorant_Garamond({
   display: 'swap',
 })
 
-export const dynamic = 'force-dynamic'
 
 const locales = ['fr', 'en']
 
@@ -97,7 +96,6 @@ export default async function LocaleLayout({
     <html lang={locale} suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.ico" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         {googleFontsUrl && (
           <>
             <link rel="preconnect" href="https://fonts.googleapis.com" />
