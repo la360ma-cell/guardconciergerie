@@ -9,7 +9,7 @@ import DynamicForm from './DynamicForm'
 interface HeroProps {
   locale: string
   settings: Record<string, string>
-  formFields: any[]
+  formFields: Array<{ name: string; type: string; label: string; required?: boolean; options?: string[] }>
   content?: Record<string, string>
 }
 
@@ -43,7 +43,7 @@ export default function Hero({ locale, settings, formFields, content = {} }: Her
     ...(content[`${sectionName}_${key}_color`]      && { color: content[`${sectionName}_${key}_color`] }),
     ...(content[`${sectionName}_${key}_font`]       && { fontFamily: `"${content[`${sectionName}_${key}_font`]}", sans-serif` }),
     ...(content[`${sectionName}_${key}_fontSize`]   && { fontSize: content[`${sectionName}_${key}_fontSize`] }),
-    ...(content[`${sectionName}_${key}_fontWeight`] && { fontWeight: content[`${sectionName}_${key}_fontWeight`] as any }),
+    ...(content[`${sectionName}_${key}_fontWeight`] && { fontWeight: content[`${sectionName}_${key}_fontWeight`] as React.CSSProperties['fontWeight'] }),
   })
 
   // ââ Mouse tracking ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
