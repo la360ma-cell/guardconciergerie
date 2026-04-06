@@ -58,6 +58,7 @@ export default function AdminSidebar({ locale }: AdminSidebarProps) {
               <Link
                 key={item.href}
                 href={item.href}
+                prefetch={false}
                 onClick={() => setMobileOpen(false)}
                 className={cn(
                   'flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all',
@@ -78,6 +79,7 @@ export default function AdminSidebar({ locale }: AdminSidebarProps) {
       <div className="p-4 border-t border-white/5">
         <Link
           href={locale === 'en' ? '/en' : '/'}
+          prefetch={false}
           className="flex items-center gap-2 text-xs text-obsidian-500 hover:text-white transition-colors"
         >
           <Home size={12} />
