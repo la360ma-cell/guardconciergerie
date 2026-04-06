@@ -58,7 +58,7 @@ export default function Stats({ locale, settings, content = {} }: StatsProps) {
     ...(content[`${sn}_${key}_color`] && { color: content[`${sn}_${key}_color`] }),
     ...(content[`${sn}_${key}_font`] && { fontFamily: `"${content[`${sn}_${key}_font`]}", sans-serif` }),
     ...(content[`${sn}_${key}_fontSize`] && { fontSize: content[`${sn}_${key}_fontSize`] }),
-    ...(content[`${sn}_${key}_fontWeight`] && { fontWeight: content[`${sn}_${key}_fontWeight`] as any }),
+    ...(content[`${sn}_${key}_fontWeight`] && { fontWeight: content[`${sn}_${key}_fontWeight`] as React.CSSProperties['fontWeight'] }),
   })
 
   const ref = useRef(null)
