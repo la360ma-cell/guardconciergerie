@@ -53,7 +53,7 @@ export default function AppearancePage({ params: { locale } }: { params: { local
       .then(r => r.json())
       .then(data => {
         const map: Record<string, string> = {}
-        if (Array.isArray(data)) data.forEach((s: any) => { map[s.key] = s.value })
+        if (Array.isArray(data)) data.forEach((s: { key: string; value: string }) => { map[s.key] = s.value })
         setSettings(map)
         changedKeys.current = new Set() // reset on load
       })
@@ -285,7 +285,7 @@ export default function AppearancePage({ params: { locale } }: { params: { local
                       src={imgUrl}
                       alt={section.label}
                       className="w-full h-full"
-                      style={{ objectFit: fit as any, objectPosition: pos }}
+                      style={{ objectFit: fit as React.CSSProperties['objectFit'], objectPosition: pos }}
                     />
                     {overlay > 0 && (
                       <div
