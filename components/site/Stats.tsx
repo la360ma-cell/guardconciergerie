@@ -17,11 +17,12 @@ function CountUp({ value, inView, suffix = '' }: { value: string; inView: boolea
   const num = parseInt(numStr, 10)
   const prefix = value.match(/^[^0-9]*/)?.[0] || ''
   const suf = value.replace(/[0-9]/g, '').replace(prefix, '') || suffix
-
   const [count, setCount] = useState(0)
+  const hasAnimated = useRef(false)
 
   useEffect(() => {
-    if (!inView || isNaN(num)) return
+    if (!inView || isNaN(num) || num === 0 || hasAnimated.current) return
+    hasAnimated.current = true
 
     const duration = 2000
     const steps = 60
@@ -54,13 +55,14 @@ export default function Stats({ locale, settings, content = {} }: StatsProps) {
   const ct = (key: string, fallback: string): string =>
     content[`${sn}_${key}_${locale}`] || content[`${sn}_${key}_fr`] || fallback
   const cs = (key: string): React.CSSProperties => ({
-    ...(content[`${sn}_${key}_color`]      && { color: content[`${sn}_${key}_color`] }),
-    ...(content[`${sn}_${key}_font`]       && { fontFamily: `"${content[`${sn}_${key}_font`]}", sans-serif` }),
-    ...(content[`${sn}_${key}_fontSize`]   && { fontSize: content[`${sn}_${key}_fontSize`] }),
+    ...(content[`${sn}_${key}_color`] && { color: content[`${sn}_${key}_color`] }),
+    ...(content[`${sn}_${key}_font`] && { fontFamily: `"${content[`${sn}_${key}_font`]}", sans-serif` }),
+    ...(content[`${sn}_${key}_fontSize`] && { fontSize: content[`${sn}_${key}_fontSize`] }),
     ...(content[`${sn}_${key}_fontWeight`] && { fontWeight: content[`${sn}_${key}_fontWeight`] as any }),
   })
+
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-80px' })
+  const isInView = useInView(ref, { once: true, amount: 0.3 })
 
   const stats = [
     {
@@ -86,8 +88,12 @@ export default function Stats({ locale, settings, content = {} }: StatsProps) {
   ]
 
   return (
-    <section id="stats" className="section-padding bg-obsidian-50 dark:bg-obsidian-900/50" ref={ref}
-      style={settings.section_stats_bg ? { backgroundColor: settings.section_stats_bg } : {}}>
+    <section
+      id="stats"
+      className="section-padding bg-obsidian-50 dark:bg-obsidian-900/50"
+      ref={ref}
+      style={settings.section_stats_bg ? { backgroundColor: settings.section_stats_bg } : {}}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <motion.h2
