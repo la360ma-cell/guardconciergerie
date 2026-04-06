@@ -3,6 +3,16 @@
 import { useState, useEffect } from 'react'
 import { Plus, Pencil, Trash2, GripVertical, X, Save, Star, Check, Loader2, Quote } from 'lucide-react'
 
+
+interface TestimonialItem {
+  id: number
+  name: string
+  role: string
+  text: string
+  rating: number
+  active: boolean
+}
+
 const emptyItem = { name: '', location: '', textFr: '', textEn: '', rating: 5, order: 0, active: true }
 
 function StarRating({ value, onChange }: { value: number; onChange: (v: number) => void }) {
@@ -19,9 +29,9 @@ function StarRating({ value, onChange }: { value: number; onChange: (v: number) 
 }
 
 export default function TestimonialsPage() {
-  const [items, setItems] = useState<any[]>([])
+  const [items, setItems] = useState<TestimonialItem[]>([])
   const [isLoading, setIsLoading] = useState(true)
-  const [editModal, setEditModal] = useState<any>(null)
+  const [editModal, setEditModal] = useState<TestimonialItem | null>(null)
   const [isSaving, setIsSaving] = useState(false)
   const [toast, setToast] = useState('')
   const [draggedId, setDraggedId] = useState<number | null>(null)
@@ -61,7 +71,7 @@ export default function TestimonialsPage() {
     } catch { showToast('Erreur réseau') }
   }
 
-  const toggleActive = async (item: any) => {
+  const toggleActive = async (item: TestimonialItem) => {
     try {
       const res = await fetch(`/api/testimonials/${item.id}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ active: !item.active }) })
       if (!res.ok) { showToast('Erreur lors de la mise à jour'); return }
