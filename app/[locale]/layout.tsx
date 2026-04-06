@@ -22,8 +22,22 @@ const cormorant = Cormorant_Garamond({
   display: 'swap',
 })
 
-
 const locales = ['fr', 'en']
+
+/**
+ * Sanitize user-provided CSS to prevent XSS via style injection.
+ * Strips javascript: URLs, expression(), behavior, -moz-binding, import, and HTML tags.
+ */
+function sanitizeCSS(css: string): string {
+  return css
+    .replace(/<[^>]*>/g, '')
+    .replace(/javascript\s*:/gi, '')
+    .replace(/expression\s*\(/gi, '')
+    .replace(/@import\b/gi, '')
+    .replace(/behavior\s*:/gi, '')
+    .replace(/-moz-binding\s*:/gi, '')
+    .replace(/url\s*\(\s*['"]?\s*data\s*:/gi, 'url(')
+}
 
 export async function generateMetadata({
   params: { locale },
@@ -36,9 +50,11 @@ export async function generateMetadata({
     const seo = await prisma.sEOConfig.findUnique({
       where: { page_locale: { page: 'home', locale } },
     })
+
     return {
       title: seo?.title || 'Guard Conciergerie Luxury Care',
-      description: seo?.description || 'Conciergerie de luxe à Marrakech',
+      description:
+        seo?.description || 'Conciergerie de luxe à Marrakech',
       keywords: seo?.keywords || '',
       openGraph: {
         title: seo?.title || 'Guard Conciergerie Luxury Care',
@@ -49,17 +65,22 @@ export async function generateMetadata({
       },
       alternates: {
         canonical: seo?.canonical ?? undefined,
-        languages: { 'fr': '/', 'en': '/en' },
+        languages: {
+          'fr': '/',
+          'en': '/en'
+        },
       },
     }
   } catch {
     return {
-      title: locale === 'fr'
-        ? 'Guard Conciergerie Luxury Care | Conciergerie de Luxe à Marrakech'
-        : 'Guard Conciergerie Luxury Care | Luxury Concierge in Marrakech',
-      description: locale === 'fr'
-        ? 'Conciergerie de luxe & gestion locative premium à Marrakech.'
-        : 'Luxury concierge & premium rental management in Marrakech.',
+      title:
+        locale === 'fr'
+          ? 'Guard Conciergerie Luxury Care | Conciergerie de Luxe à Marrakech'
+          : 'Guard Conciergerie Luxury Care | Luxury Concierge in Marrakech',
+      description:
+        locale === 'fr'
+          ? 'Conciergerie de luxe & gestion locative premium à Marrakech.'
+          : 'Luxury concierge & premium rental management in Marrakech.',
     }
   }
 }
@@ -68,7 +89,6 @@ async function getAppearanceSettings(): Promise<Record<string, string>> {
   try {
     if (!process.env.DATABASE_URL) return {}
     const { prisma } = await import('@/lib/prisma')
-    // Fetch appearance + buttons categories so all CSS overrides are generated
     const rows = await prisma.siteSettings.findMany({
       where: { category: { in: ['appearance', 'buttons', 'sections'] } },
     })
@@ -99,13 +119,23 @@ export default async function LocaleLayout({
         {googleFontsUrl && (
           <>
             <link rel="preconnect" href="https://fonts.googleapis.com" />
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+            <link
+              rel="preconnect"
+              href="https://fonts.gstatic.com"
+              crossOrigin="anonymous"
+            />
             <link href={googleFontsUrl} rel="stylesheet" />
           </>
         )}
         <style dangerouslySetInnerHTML={{ __html: cssVars }} />
         {appearanceSettings.appearance_custom_element_css && (
-          <style dangerouslySetInnerHTML={{ __html: appearanceSettings.appearance_custom_element_css }} />
+          <style
+            dangerouslySetInnerHTML={{
+              __html: sanitizeCSS(
+                appearanceSettings.appearance_custom_element_css
+              ),
+            }}
+          />
         )}
       </head>
       <body className={`${inter.variable} ${cormorant.variable} font-sans`}>
