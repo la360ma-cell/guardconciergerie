@@ -148,7 +148,7 @@ function ClickEditPanel({
   const n = el.sectionId
   const g = (k:string) => styles[`section_${n}_${k}`] || ''
   const s = (k:string, v:string) => onChange(`section_${n}_${k}`, v)
-  const sectionLabel = (SECTION_LABELS as any)[n] || n
+  const sectionLabel = (SECTION_LABELS as Record<string, string>)[n] || n
   const [showSection, setShowSection] = useState(false)
 
   const isText = el.elType === 'heading' || el.elType === 'body' || el.elType === 'other'
@@ -388,7 +388,7 @@ function SectionStylePanel({ name, styles, onChange }: {
 
 // ── Content panel ─────────────────────────────────────────────────────────────
 function ContentPanel({ section }: { section:string }) {
-  const [items, setItems] = useState<any[]>([])
+  const [items, setItems] = useState<Array<{ id: number; key: string; section: string; valueFr: string; valueEn: string }>>([])
   const [changes, setChanges] = useState<Record<string,{fr:string,en:string}>>({})
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
@@ -400,7 +400,7 @@ function ContentPanel({ section }: { section:string }) {
       .catch(()=>{ setItems([]) })
   },[section])
 
-  const get=(item:any,lang:'fr'|'en')=>{
+  const get=(item:{ key: string; section: string; valueFr: string; valueEn: string },lang:'fr'|'en')=>{
     const f=lang==='fr'?'valueFr':'valueEn'
     return changes[item.key]?.[lang]??item[f]??''
   }
@@ -791,7 +791,7 @@ function SectionsPanel({
           {visible.map((name, i)=>(
             <div key={name} className="flex items-center gap-1.5 px-2.5 py-2 bg-obsidian-800 rounded-xl border border-white/10 group">
               <GripVertical size={11} className="text-obsidian-600 flex-shrink-0"/>
-              <span className="text-[11px] text-white flex-1 truncate font-medium">{(SECTION_LABELS as any)[name]}</span>
+              <span className="text-[11px] text-white flex-1 truncate font-medium">{(SECTION_LABELS as Record<string, string>)[name]}</span>
               <button onClick={()=>onMove(name,-1)} disabled={i===0}
                 className="p-1 rounded text-obsidian-500 hover:text-white disabled:opacity-20 transition-colors">
                 <ArrowUp size={10}/>
@@ -818,7 +818,7 @@ function SectionsPanel({
           <div className="space-y-1.5">
             {hidden.map(name=>(
               <div key={name} className="flex items-center gap-1.5 px-2.5 py-2 rounded-xl border border-dashed border-white/10 bg-obsidian-900/50">
-                <span className="text-[11px] text-obsidian-500 flex-1 line-through truncate">{(SECTION_LABELS as any)[name]}</span>
+                <span className="text-[11px] text-obsidian-500 flex-1 line-through truncate">{(SECTION_LABELS as Record<string, string>)[name]}</span>
                 <button onClick={()=>onToggle(name)}
                   className="flex items-center gap-1 text-[10px] text-emerald-400 hover:text-emerald-300 border border-emerald-500/30 hover:border-emerald-400 rounded-lg px-2 py-0.5 transition-all">
                   <Plus size={9}/> Afficher
@@ -883,7 +883,7 @@ export default function VisualEditorPage() {
         const r = await fetch('/api/settings?category=sections')
         const data = await r.json()
         const map: Record<string,string> = {}
-        if (Array.isArray(data)) data.forEach((s: any) => { map[s.key] = s.value })
+        if (Array.isArray(data)) data.forEach((s: { key: string; value: string }) => { map[s.key] = s.value })
         setStyles(map)
         stylesRef.current = map
         // Restore sections order
@@ -1169,7 +1169,7 @@ export default function VisualEditorPage() {
                   return(
                     <button key={name} onClick={()=>setSection(name)}
                       className={`w-full text-left px-2 py-2.5 text-[10px] transition-colors relative ${section===name?'bg-obsidian-800 text-gold-400 border-r-2 border-r-gold-500 font-semibold':isHidden?'text-obsidian-600 hover:bg-white/5':'text-obsidian-500 hover:text-white hover:bg-white/5'}`}>
-                      <span className={`leading-tight block ${isHidden?'line-through':''}`}>{(SECTION_LABELS as any)[name]||name}</span>
+                      <span className={`leading-tight block ${isHidden?'line-through':''}`}>{(SECTION_LABELS as Record<string, string>)[name]||name}</span>
                       {hasStyles&&<span className="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-gold-500"/>}
                       {isHidden&&<span className="absolute top-1.5 right-1.5 text-[7px] text-red-400">off</span>}
                     </button>
@@ -1211,7 +1211,7 @@ export default function VisualEditorPage() {
           {clickedEl && (
             <div className="flex items-center gap-1 px-2 py-1 bg-gold-500/10 border border-gold-500/30 rounded-lg">
               <span className="w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse"/>
-              <span className="text-[10px] text-gold-400">{`<${clickedEl.tagName}>`} · {(SECTION_LABELS as any)[clickedEl.sectionId]||clickedEl.sectionId}</span>
+              <span className="text-[10px] text-gold-400">{`<${clickedEl.tagName}>`} · {(SECTION_LABELS as Record<string, string>)[clickedEl.sectionId]||clickedEl.sectionId}</span>
               <button onClick={()=>setClickedEl(null)} className="ml-1 text-obsidian-400 hover:text-white"><X size={10}/></button>
             </div>
           )}
