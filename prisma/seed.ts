@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient, Prisma } from '@prisma/client'
 import bcrypt from 'bcryptjs'
 
 const prisma = new PrismaClient()
@@ -194,7 +194,7 @@ async function main() {
     await prisma.formField.upsert({
       where: { name: field.name },
       update: {},
-      create: field as any,
+      create: field as Prisma.FormFieldCreateInput,
     })
   }
 
@@ -319,7 +319,7 @@ async function main() {
     await prisma.content.upsert({
       where: { key: content.key },
       update: {},
-      create: content as any,
+      create: content as Prisma.ContentCreateInput,
     })
   }
 
