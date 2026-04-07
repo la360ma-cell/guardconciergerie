@@ -3,6 +3,11 @@
 import React, { useState, useEffect } from 'react'
 import { Save, Instagram, Facebook, Linkedin, Youtube, Twitter, ExternalLink } from 'lucide-react'
 
+interface SettingItem {
+  key: string
+  value: string
+}
+
 function TikTokIcon({ size = 14 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -63,7 +68,7 @@ const CATEGORIES = [
 const COLOR_KEYS = ['appearance_primary_color']
 
 export default function SettingsPage() {
-  const [settings, setSettings] = useState<any[]>([])
+  const [settings, setSettings] = useState<SettingItem[]>([])
   const [activeCategory, setActiveCategory] = useState('general')
   const [changes, setChanges] = useState<Record<string, string>>({})
   const [isSaving, setIsSaving] = useState(false)
@@ -82,7 +87,7 @@ export default function SettingsPage() {
   const primaryColorSetting = settings.find(s => s.key === 'appearance_primary_color')
   const primaryColorValue = changes['appearance_primary_color'] ?? primaryColorSetting?.value ?? '#d4922b'
 
-  const getValue = (setting: any) => changes[setting.key] ?? setting.value ?? ''
+  const getValue = (setting: SettingItem) => changes[setting.key] ?? setting.value ?? ''
 
   const handleChange = (key: string, value: string) => {
     setChanges(prev => ({ ...prev, [key]: value }))
