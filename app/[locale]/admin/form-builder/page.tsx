@@ -3,6 +3,17 @@
 import { useState, useEffect } from 'react'
 import { Plus, Pencil, Trash2, X, Save, GripVertical, Eye, EyeOff } from 'lucide-react'
 
+interface FormFieldItem {
+  id: number
+  name: string
+  label: string
+  type: string
+  required: boolean
+  options: string | null
+  order: number
+  active: boolean
+}
+
 const fieldTypes = ['text', 'tel', 'email', 'select', 'textarea', 'file', 'number']
 
 const emptyField = {
@@ -13,8 +24,8 @@ const emptyField = {
 }
 
 export default function FormBuilderPage() {
-  const [fields, setFields] = useState<any[]>([])
-  const [editModal, setEditModal] = useState<any>(null)
+  const [fields, setFields] = useState<FormFieldItem[]>([])
+  const [editModal, setEditModal] = useState<FormFieldItem | null>(null)
   const [isSaving, setIsSaving] = useState(false)
   const [toast, setToast] = useState('')
   const [optionInput, setOptionInput] = useState({ fr: '', en: '' })
@@ -55,7 +66,7 @@ export default function FormBuilderPage() {
     showToast('Champ supprimé')
   }
 
-  const toggleActive = async (field: any) => {
+  const toggleActive = async (field: FormFieldItem) => {
     await fetch(`/api/form-config/${field.id}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
@@ -212,7 +223,7 @@ export default function FormBuilderPage() {
                 <div>
                   <label className="block text-xs text-gray-500 mb-2">Options</label>
                   <div className="space-y-1.5 mb-3">
-                    {getOptions().map((opt: any, i: number) => (
+                    {getOptions().map((opt: string, i: number) => (
                       <div key={i} className="flex items-center gap-2 text-sm">
                         <span className="flex-1 px-2 py-1 bg-gray-50 dark:bg-obsidian-950 rounded text-gray-700 dark:text-gray-300">{opt.valueFr} / {opt.valueEn}</span>
                         <button onClick={() => removeOption(i)} className="text-red-400 hover:text-red-600"><X size={12} /></button>
