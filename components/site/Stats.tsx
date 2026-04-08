@@ -96,6 +96,14 @@ export default function Stats({ locale, settings, content = {} }: StatsProps) {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            className="luxury-badge mb-6"
+            style={cs('badge')}
+          >
+            {ct('badge', '')}
+          </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
