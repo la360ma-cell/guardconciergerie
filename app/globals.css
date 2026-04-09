@@ -278,13 +278,7 @@ form .text-gold-500 {
   -webkit-text-fill-color: #d4922b !important;
 }
 
-/* 6. H2 ACCENTS: black instead of gold gradient */
-h2 em,
-h2 .text-gold-gradient,
-h2 [class*="gold"] {
-  
-
-/* 7. H2 ACCENTS: override inline admin styles with matching specificity */
+/* 6. H2 ACCENTS: override admin inline styles with ID specificity */
 #about h2 em,
 #services h2 em,
 #process h2 em,
@@ -297,4 +291,4 @@ h2 [class*="gold"] {
   background-image: none !important;
   -webkit-background-clip: unset !important;
   background-clip: unset !important;
-}
+  }
