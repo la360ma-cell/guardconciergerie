@@ -12,6 +12,134 @@
   --transition: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
+* { box-sizing: border-box; padding: 0; margin: 0; }
+
+html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
+
+body {
+  font-family: var(--font-inter);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s var(--transition), color 0.3s var(--transition);
+  overflow-x: hidden;
+}
+
+body { background-color: #ffffff; color: #0a0a0a; }
+.dark body { background-color: #0a0a0a; color: #f5f5f5; }
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #d4922b; border-radius: 3px; }
+
+::selection { background: rgba(212, 146, 43, 0.2); color: #0a0a0a; }
+.dark ::selection { color: #ffffff; }
+
+.font-display { font-family: var(--font-cormorant); }
+
+.text-gold-gradient {
+  background: linear-gradient(135deg, #d4922b 0%, #e9a83b 50%, #d4922b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-padding { padding-top: 100px; padding-bottom: 100px; }
+@media (max-width: 768px) {
+  .section-padding { padding-top: 64px; padding-bottom: 64px; }
+}
+
+.luxury-divider {
+  width: 60px; height: 1px;
+  background: linear-gradient(90deg, transparent, #d4922b, transparent);
+  margin: 0 auto;
+}
+
+.grain-overlay::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 1; opacity: 0.4;
+}
+
+.aos-hidden { opacity: 0; transform: translateY(20px); }
+.aos-visible { opacity: 1; transform: translateY(0); transition: opacity 0.6s ease, transform 0.6s ease; }
+
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.dark .glass { background: rgba(10, 10, 10, 0.6); border: 1px solid rgba(255, 255, 255, 0.05); }
+
+.luxury-input {
+  @apply w-full bg-transparent border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all duration-200 placeholder:text-gray-400;
+}
+
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+
+.luxury-badge {
+  @apply inline-flex items-center gap-2 text-xs font-medium tracking-[0.2em] uppercase text-gold-600 dark:text-gold-400;
+}
+.luxury-badge::before { content: ''; display: inline-block; width: 20px; height: 1px; background: currentColor; }
+.luxury-badge::after { content: ''; display: inline-block; width: 20px; height: 1px; background: currentColor; }
+
+.admin-sidebar { width: 260px; min-height: 100vh; }
+
+.toast-enter { opacity: 0; transform: translateX(100%); }
+.toast-enter-active { opacity: 1; transform: translateX(0); transition: all 0.3s ease; }
+
+/* DESIGN FIXES */
+
+header.bg-transparent a, header.bg-transparent button { color: #fff !important; -webkit-text-fill-color: #fff !important; }
+header.bg-transparent a:hover, header.bg-transparent button:hover { color: #d4d4d4 !important; -webkit-text-fill-color: #d4d4d4 !important; }
+header[class*="bg-white"] a, header[class*="bg-white"] button { color: #0a0a0a !important; -webkit-text-fill-color: #0a0a0a !important; }
+header[class*="bg-white"] a:hover, header[class*="bg-white"] button:hover { color: #555 !important; -webkit-text-fill-color: #555 !important; }
+
+form .text-gold-500 { color: rgb(136,136,136) !important; -webkit-text-fill-color: rgb(136,136,136) !important; }
+
+#contact form, #contact form * { -webkit-text-fill-color: inherit !important; }
+#contact form { color: rgb(109,109,109) !important; -webkit-text-fill-color: rgb(109,109,109) !important; }
+#contact form button[type="submit"] { color: #fff !important; -webkit-text-fill-color: #fff !important; }
+#contact form label { color: rgb(136,136,136) !important; -webkit-text-fill-color: rgb(136,136,136) !important; }
+#contact form input, #contact form select { color: #0a0a0a !important; -webkit-text-fill-color: #0a0a0a !important; }
+
+#faq .overflow-hidden p { color: rgb(109,109,109) !important; -webkit-text-fill-color: rgb(109,109,109) !important; }
+
+/* BADGES - doubled ID */
+#top#top .luxury-badge, #about#about .luxury-badge, #services#services .luxury-badge,
+#whyus#whyus .luxury-badge, #process#process .luxury-badge, #stats#stats .luxury-badge,
+#testimonials#testimonials .luxury-badge, #faq#faq .luxury-badge, #contact#contact .luxury-badge {
+  color: #d4922b !important; -webkit-text-fill-color: #d4922b !important;
+}
+
+/* H2 ACCENTS - doubled ID */
+#about#about h2 em, #services#services h2 em, #process#process h2 em,
+#stats#stats h2 em, #testimonials#testimonials h2 em,
+#faq#faq h2 em, #contact#contact h2 em {
+  color: #0a0a0a !important;
+  -webkit-text-fill-color: #0a0a0a !important;
+  background-image: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  }@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-inter: 'Inter', sans-serif;
+  --font-cormorant: 'Cormorant Garamond', serif;
+  --gold: #d4922b;
+  --gold-light: #e9a83b;
+  --transition: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
