@@ -420,3 +420,47 @@ form .text-gold-500 {
   -webkit-background-clip: unset !important;
   background-clip: unset !important;
   }
+
+/* ============================================= */
+/* DARK MODE FIXES                               */
+/* ============================================= */
+
+/* Nav: white text in dark mode header */
+.dark header a, .dark header button {
+  color: #f5f5f5 !important;
+  -webkit-text-fill-color: #f5f5f5 !important;
+}
+.dark header a:hover, .dark header button:hover {
+  color: #d4d4d4 !important;
+  -webkit-text-fill-color: #d4d4d4 !important;
+}
+
+/* H2 em accents: white in dark mode */
+.dark #about#about h2 em, .dark #services#services h2 em,
+.dark #process#process h2 em, .dark #stats#stats h2 em,
+.dark #testimonials#testimonials h2 em, .dark #faq#faq h2 em,
+.dark #contact#contact h2 em {
+  color: #f5f5f5 !important;
+  -webkit-text-fill-color: #f5f5f5 !important;
+}
+
+/* FAQ answers: lighter gray in dark mode */
+.dark #faq .overflow-hidden p {
+  color: rgb(176, 176, 176) !important;
+  -webkit-text-fill-color: rgb(176, 176, 176) !important;
+}
+
+/* Contact form: adjust for dark mode */
+.dark #contact form {
+  color: rgb(176, 176, 176) !important;
+  -webkit-text-fill-color: rgb(176, 176, 176) !important;
+}
+.dark #contact form label {
+  color: rgb(176, 176, 176) !important;
+  -webkit-text-fill-color: rgb(176, 176, 176) !important;
+}
+.dark #contact form input,
+.dark #contact form select {
+  color: #f5f5f5 !important;
+  -webkit-text-fill-color: #f5f5f5 !important;
+  }
