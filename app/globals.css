@@ -282,9 +282,19 @@ form .text-gold-500 {
 h2 em,
 h2 .text-gold-gradient,
 h2 [class*="gold"] {
+  
+
+/* 7. H2 ACCENTS: override inline admin styles with matching specificity */
+#about h2 em,
+#services h2 em,
+#process h2 em,
+#stats h2 em,
+#testimonials h2 em,
+#faq h2 em,
+#contact h2 em {
   color: #0a0a0a !important;
   -webkit-text-fill-color: #0a0a0a !important;
   background-image: none !important;
   -webkit-background-clip: unset !important;
   background-clip: unset !important;
-                   }
+}
