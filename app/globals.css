@@ -130,7 +130,7 @@ header.bg-transparent button:hover {
   -webkit-text-fill-color: #d4d4d4 !important;
 }
 
-/* NAV: black text on solid header - exclude CTA button and dark-bg elements */
+/* NAV: black text on solid header - exclude CTA and dark-bg elements */
 header[class*="bg-white"] a:not(.btn-primary):not(.bg-obsidian-950),
 header[class*="bg-white"] button:not(.bg-obsidian-950) {
   color: #0a0a0a !important;
@@ -142,7 +142,7 @@ header[class*="bg-white"] button:not(.bg-obsidian-950):hover {
   -webkit-text-fill-color: #555555 !important;
 }
 
-/* NAV: CTA button and active lang button keep white text on dark bg */
+/* NAV: CTA button and active lang keep white text on dark bg (light mode) */
 header .btn-primary,
 header a.bg-obsidian-950,
 header button.bg-obsidian-950 {
@@ -222,20 +222,27 @@ form .text-gold-500 {
 /* DARK MODE FIXES                               */
 /* ============================================= */
 
-/* Nav: white text in dark mode */
-.dark header a,
-.dark header button {
+/* Nav: white text in dark mode - exclude CTA and active lang buttons */
+.dark header a:not(.btn-primary):not(.bg-obsidian-950),
+.dark header button:not(.bg-obsidian-950) {
   color: #f5f5f5 !important;
   -webkit-text-fill-color: #f5f5f5 !important;
 }
-.dark header a:hover,
-.dark header button:hover {
+.dark header a:not(.btn-primary):not(.bg-obsidian-950):hover,
+.dark header button:not(.bg-obsidian-950):hover {
   color: #d4d4d4 !important;
   -webkit-text-fill-color: #d4d4d4 !important;
 }
 
-/* Dark mode CTA button: dark text on white bg */
+/* Dark mode: CTA button has white bg + dark text */
 .dark header .btn-primary {
+  color: #0a0a0a !important;
+  -webkit-text-fill-color: #0a0a0a !important;
+}
+
+/* Dark mode: active lang button (bg-obsidian-950 -> dark:bg-white) needs dark text */
+.dark header a.bg-obsidian-950,
+.dark header button.bg-obsidian-950 {
   color: #0a0a0a !important;
   -webkit-text-fill-color: #0a0a0a !important;
 }
