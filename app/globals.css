@@ -279,3 +279,33 @@ form .text-gold-500 {
   color: #f5f5f5 !important;
   -webkit-text-fill-color: #f5f5f5 !important;
 }
+
+
+/* Dark mode: override appearance system inline color rules for contact section */
+.dark #contact a,
+.dark #contact span,
+.dark #contact p,
+.dark #contact button {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Dark mode: footer text visibility */
+.dark footer a,
+.dark footer span,
+.dark footer p {
+  color: inherit !important;
+  -webkit-text-fill-color: inherit !important;
+}
+
+/* Dark mode: testimonials author name */
+.dark #testimonials [class*="font-medium"] {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Dark mode: about section stat text */
+.dark #about [class*="font-display"] {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
