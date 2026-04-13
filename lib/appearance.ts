@@ -241,7 +241,17 @@ export function buildSectionOnlyCSS(settings: Record<string, string>): string {
     // ── Padding ───────────────────────────────────────────────────────────────
     if (g('py')) rules.push(`${sel}{padding-top:${g('py')} !important;padding-bottom:${g('py')} !important;}`)
   }
-  return rules.join('\n')
+    // Wrap text color rules with html:not(.dark) so they only apply in light mode
+  const darkSafeRules = rules.map(r => {
+    if ((r.includes('color:') || r.includes('text-fill-color:')) && !r.includes('background-color:') && !r.includes('border-color:')) {
+      return r.replace(/^([^{]+)\{/, (m, selectors) => {
+        const wrapped = selectors.split(',').map(s => 'html:not(.dark) ' + s.trim()).join(',')
+        return wrapped + '{'
+      })
+    }
+    return r
+  })
+  return darkSafeRules.join('\n')
 }
 
 export function buildGoogleFontsUrl(settings: Record<string, string>): string {
