@@ -3,13 +3,14 @@
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
-import { Users, Home, Menu, X, MessageCircle } from 'lucide-react'
+import { Users, Home, Menu, X, MessageCircle, FileText } from 'lucide-react'
 import { useState } from 'react'
 
 const getNavItems = (locale: string) => {
   const prefix = locale === 'en' ? '/en/admin' : '/admin'
   return [
-    { href: `${prefix}/leads`,    label: 'Leads',    icon: Users },
+    { href: `${prefix}/leads`, label: 'Leads', icon: Users },
+    { href: `${prefix}/form-builder`, label: 'Formulaire', icon: FileText },
     { href: `${prefix}/whatsapp`, label: 'WhatsApp', icon: MessageCircle },
   ]
 }
