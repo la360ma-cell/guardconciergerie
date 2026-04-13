@@ -241,9 +241,21 @@ export function buildSectionOnlyCSS(settings: Record<string, string>): string {
     // ── Padding ───────────────────────────────────────────────────────────────
     if (g('py')) rules.push(`${sel}{padding-top:${g('py')} !important;padding-bottom:${g('py')} !important;}`)
   }
-    // Wrap text color rules with html:not(.dark) so they only apply in light mode
+  // Only wrap rules with dark text colors (near-black) with html:not(.dark) so they don't apply in dark mode
+  const isDarkColor = (css) => {
+    const m = css.match(/color:\s*([^;!]+)/);
+    if (!m) return false;
+    const val = m[1].trim().toLowerCase();
+    if (val === '#000' || val === '#000000' || val === 'black' || val === 'rgb(0, 0, 0)' || val === 'rgb(0,0,0)') return true;
+    const hex = val.match(/^#([0-9a-f]{6})$/);
+    if (hex) {
+      const r = parseInt(hex[1].substring(0,2),16), g = parseInt(hex[1].substring(2,4),16), b = parseInt(hex[1].substring(4,6),16);
+      return (0.299*r + 0.587*g + 0.114*b) < 80;
+    }
+    return false;
+  }
   const darkSafeRules = rules.map(r => {
-    if ((r.includes('color:') || r.includes('text-fill-color:')) && !r.includes('background-color:') && !r.includes('border-color:')) {
+    if ((r.includes('color:') || r.includes('text-fill-color:')) && !r.includes('background-color:') && !r.includes('border-color:') && isDarkColor(r)) {
       return r.replace(/^([^{]+)\{/, (m, selectors) => {
         const wrapped = selectors.split(',').map(s => 'html:not(.dark) ' + s.trim()).join(',')
         return wrapped + '{'
