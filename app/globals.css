@@ -318,3 +318,10 @@ form .text-gold-500 {
   color: #ffffff !important;
   -webkit-text-fill-color: #ffffff !important;
 }
+
+
+/* Why us section: card numbers match icon gold color */
+#whyus .absolute.font-display[class*="text-5xl"] {
+  color: #d4922b !important;
+  -webkit-text-fill-color: #d4922b !important;
+}
