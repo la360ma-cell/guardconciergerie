@@ -286,7 +286,7 @@ form .text-gold-500 {
 .dark #contact#contact a,
 .dark #contact#contact span,
 .dark #contact#contact p,
-.dark #contact#contact div:not([class*="bg-"]),
+.dark #contact#contact div:not([class*="bg-"]):not(.luxury-badge),
 .dark #contact#contact h2,
 .dark #contact#contact h3,
 .dark #contact#contact li,
