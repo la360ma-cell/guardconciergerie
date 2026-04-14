@@ -282,22 +282,18 @@ form .text-gold-500 {
 
 
 /* Dark mode: override appearance system inline color rules for contact section */
-.dark #contact a,
-.dark #contact span,
-.dark #contact p,
-.dark #contact div,
-.dark #contact h3,
-.dark #contact li,
-.dark #contact button:not([type="submit"]) {
-  color: #ffffff !important;
-  -webkit-text-fill-color: #ffffff !important;
-}
-.dark #contact form label {
-  color: #ffffff !important;
-  -webkit-text-fill-color: #ffffff !important;
-}
-.dark #contact form input,
-.dark #contact form select {
+/* Doubled ID #contact#contact for max specificity to beat admin inline nth-of-type selectors */
+.dark #contact#contact a,
+.dark #contact#contact span,
+.dark #contact#contact p,
+.dark #contact#contact div:not([class*="bg-"]),
+.dark #contact#contact h2,
+.dark #contact#contact h3,
+.dark #contact#contact li,
+.dark #contact#contact button:not([type="submit"]),
+.dark #contact#contact form label,
+.dark #contact#contact form input,
+.dark #contact#contact form select {
   color: #ffffff !important;
   -webkit-text-fill-color: #ffffff !important;
 }
