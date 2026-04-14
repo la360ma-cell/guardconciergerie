@@ -290,12 +290,13 @@ form .text-gold-500 {
   -webkit-text-fill-color: #ffffff !important;
 }
 
-/* Dark mode: footer text visibility */
+/* Dark mode: footer text visibility - force white text on dark bg */
 .dark footer a,
 .dark footer span,
-.dark footer p {
-  color: inherit !important;
-  -webkit-text-fill-color: inherit !important;
+.dark footer p,
+.dark footer li {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
 }
 
 /* Dark mode: testimonials author name */
