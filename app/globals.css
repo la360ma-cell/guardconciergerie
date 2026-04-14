@@ -285,7 +285,19 @@ form .text-gold-500 {
 .dark #contact a,
 .dark #contact span,
 .dark #contact p,
-.dark #contact button {
+.dark #contact div,
+.dark #contact h3,
+.dark #contact li,
+.dark #contact button:not([type="submit"]) {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+.dark #contact form label {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+.dark #contact form input,
+.dark #contact form select {
   color: #ffffff !important;
   -webkit-text-fill-color: #ffffff !important;
 }
