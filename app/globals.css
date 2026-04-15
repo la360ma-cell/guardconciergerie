@@ -37,7 +37,7 @@ body { background-color: #ffffff; color: #0a0a0a; }
 .font-display { font-family: var(--font-cormorant); }
 
 .text-gold-gradient {
-  background: linear-gradient(135deg, #d4922b 0%, #e9a83b 50%, #d4922b 100%);
+  background: linear-gradient(135deg, #ffaa00 0%, #ffcc33 50%, #ffaa00 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -199,8 +199,8 @@ form .text-gold-500 {
 #testimonials#testimonials .luxury-badge,
 #faq#faq .luxury-badge,
 #contact#contact .luxury-badge {
-  color: #d4922b !important;
-  -webkit-text-fill-color: #d4922b !important;
+  color: #ffaa00 !important;
+  -webkit-text-fill-color: #ffaa00 !important;
 }
 
 /* 6. H2 ACCENTS: override admin inline styles - doubled ID */
@@ -322,8 +322,8 @@ form .text-gold-500 {
 
 /* Why us section: card numbers match icon gold color */
 #whyus .absolute.font-display[class*="text-5xl"] {
-  color: #d4922b !important;
-  -webkit-text-fill-color: #d4922b !important;
+  color: #ffaa00 !important;
+  -webkit-text-fill-color: #ffaa00 !important;
 }
 
 /* Override appearance system for hero upload area - gold text */
