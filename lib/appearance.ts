@@ -1,5 +1,5 @@
 // Default gold palette (hex #d4922b)
-export const DEFAULT_PRIMARY = '#d4922b'
+export const DEFAULT_PRIMARY = '#ffaa00'
 
 // ── Section system ────────────────────────────────────────────────────────────
 export const SECTION_NAMES = ['hero','about','services','whyus','process','stats','testimonials','faq','contact','footer'] as const
