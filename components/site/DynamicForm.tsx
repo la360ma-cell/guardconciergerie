@@ -146,9 +146,9 @@ export default function DynamicForm({ locale, formFields, settings, variant = 's
           files.length >= 10 && 'opacity-50 cursor-not-allowed'
         )}>
           <input {...getInputProps()} />
-          <Upload size={16} className={cn("mx-auto mb-1", variant === 'hero' ? "text-gold-400" : "text-obsidian-300")} />
-          <p className={cn("text-xs", variant === 'hero' ? "text-gold-400" : "text-obsidian-400")}>{t('upload_text')}</p>
-          <p className={cn("text-[10px] mt-0.5", variant === 'hero' ? "text-gold-300" : "text-obsidian-300")}>{t('upload_formats')}</p>
+          <Upload size={16} className={cn("mx-auto mb-1", variant === 'hero' ? "!text-gold-400" : "text-obsidian-300")} />
+          <p className={cn("text-xs", variant === 'hero' ? "!text-gold-400" : "text-obsidian-400")}>{t('upload_text')}</p>
+          <p className={cn("text-[10px] mt-0.5", variant === 'hero' ? "!text-gold-300" : "text-obsidian-300")}>{t('upload_formats')}</p>
         </div>
         {files.length > 0 && (
           <div className="mt-2 grid grid-cols-4 gap-1.5">
