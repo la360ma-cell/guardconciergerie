@@ -328,14 +328,14 @@ form .text-gold-500 {
 
 /* Override appearance system for hero upload area - gold text */
 #top#top .border-dashed p:first-of-type {
-  color: rgba(var(--gold-400), 1) !important;
-  -webkit-text-fill-color: rgba(var(--gold-400), 1) !important;
+  color: #ffaa5a !important;
+  -webkit-text-fill-color: #ffaa5a !important;
 }
 #top#top .border-dashed p:last-of-type {
-  color: rgba(var(--gold-300), 1) !important;
-  -webkit-text-fill-color: rgba(var(--gold-300), 1) !important;
+  color: #ffaa5a !important;
+  -webkit-text-fill-color: #ffaa5a !important;
 }
 #top#top .border-dashed svg {
-  color: rgba(var(--gold-400), 1) !important;
-  -webkit-text-fill-color: rgba(var(--gold-400), 1) !important;
+  color: #ffaa5a !important;
+  -webkit-text-fill-color: #ffaa5a !important;
 }
