@@ -147,8 +147,8 @@ export default function DynamicForm({ locale, formFields, settings, variant = 's
         )}>
           <input {...getInputProps()} />
           <Upload size={16} className={cn("mx-auto mb-1", variant === 'hero' ? "!text-gold-400" : "text-obsidian-300")} />
-          <p className={cn("text-xs", variant === 'hero' ? "!text-gold-400" : "text-obsidian-400")} style={variant === 'hero' ? { color: 'rgb(223,173,96)', WebkitTextFillColor: 'rgb(223,173,96)' } : undefined}>{t('upload_text')}</p>
-          <p className={cn("text-[10px] mt-0.5", variant === 'hero' ? "!text-gold-300" : "text-obsidian-300")} style={variant === 'hero' ? { color: 'rgb(234,201,149)', WebkitTextFillColor: 'rgb(234,201,149)' } : undefined}>{t('upload_formats')}</p>
+          <p className={cn("text-xs", variant === 'hero' ? "!text-gold-400" : "text-obsidian-400")} style={variant === 'hero' ? { color: '#ffaa5a', WebkitTextFillColor: '#ffaa5a' } : undefined}>{t('upload_text')}</p>
+          <p className={cn("text-[10px] mt-0.5", variant === 'hero' ? "!text-gold-300" : "text-obsidian-300")} style={variant === 'hero' ? { color: '#ffaa5a', WebkitTextFillColor: '#ffaa5a' } : undefined}>{t('upload_formats')}</p>
         </div>
         {files.length > 0 && (
           <div className="mt-2 grid grid-cols-4 gap-1.5">
