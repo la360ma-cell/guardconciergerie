@@ -444,19 +444,19 @@ export default function AppearancePage({ params: { locale } }: { params: { local
             <div className="flex items-center gap-4 mb-6">
               <input
                 type="color"
-                value={settings.appearance_primary_color || '#d4922b'}
+                value={settings.appearance_primary_color || '#ffaa00'}
                 onChange={e => update('appearance_primary_color', e.target.value)}
                 className="w-16 h-16 rounded-xl border-0 cursor-pointer bg-transparent"
                 style={{ padding: 2 }}
               />
               <div>
                 <p className="text-sm font-medium text-obsidian-800 dark:text-obsidian-200">
-                  {settings.appearance_primary_color || '#d4922b'}
+                  {settings.appearance_primary_color || '#ffaa00'}
                 </p>
                 <p className="text-xs text-obsidian-400 mt-1">Cliquez pour choisir une couleur</p>
               </div>
               <button
-                onClick={() => update('appearance_primary_color', '#d4922b')}
+                onClick={() => update('appearance_primary_color', '#ffaa00')}
                 className="ml-auto text-xs text-obsidian-400 hover:text-gold-500 transition-colors flex items-center gap-1"
               >
                 <RefreshCw size={12} /> Réinitialiser
@@ -488,7 +488,7 @@ export default function AppearancePage({ params: { locale } }: { params: { local
             <h3 className="font-medium text-obsidian-950 dark:text-white mb-4">Palettes prédéfinies</h3>
             <div className="grid grid-cols-4 sm:grid-cols-6 gap-3">
               {[
-                { label: 'Or (défaut)', color: '#d4922b' },
+                { label: 'Or (défaut)', color: '#ffaa00' },
                 { label: 'Cuivre',      color: '#b87333' },
                 { label: 'Bronze',      color: '#cd7f32' },
                 { label: 'Champagne',   color: '#c9a96e' },

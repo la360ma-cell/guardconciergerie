@@ -1,4 +1,4 @@
-// Default gold palette (hex #d4922b)
+// Default gold palette (hex #ffaa00)
 export const DEFAULT_PRIMARY = '#ffaa00'
 
 // ── Section system ────────────────────────────────────────────────────────────

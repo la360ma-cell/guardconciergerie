@@ -463,7 +463,7 @@ if (!window.__editorReady) {
   st.textContent = [
     '.__eh{outline:2px solid rgba(212,146,43,0.55)!important;outline-offset:3px!important;cursor:pointer!important;}',
     '.__es{outline:3px solid rgb(212,146,43)!important;outline-offset:3px!important;box-shadow:0 0 0 6px rgba(212,146,43,0.12)!important;}',
-    '.__et{position:fixed!important;top:10px!important;left:50%!important;transform:translateX(-50%)!important;background:rgba(12,12,12,0.92)!important;color:#d4922b!important;padding:5px 12px!important;border-radius:20px!important;font-size:11px!important;font-family:monospace!important;z-index:99999!important;pointer-events:none!important;border:1px solid rgba(212,146,43,0.4)!important;white-space:nowrap!important;}'
+    '.__et{position:fixed!important;top:10px!important;left:50%!important;transform:translateX(-50%)!important;background:rgba(12,12,12,0.92)!important;color:#ffaa00!important;padding:5px 12px!important;border-radius:20px!important;font-size:11px!important;font-family:monospace!important;z-index:99999!important;pointer-events:none!important;border:1px solid rgba(212,146,43,0.4)!important;white-space:nowrap!important;}'
   ].join('');
   document.head.appendChild(st);
 

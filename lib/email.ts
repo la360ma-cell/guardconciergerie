@@ -77,10 +77,10 @@ export async function sendLeadNotification(lead: LeadEmailData) {
             .container{max-width:600px;margin:0 auto;background:white;border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.1)}
             .header{background:#0a0a0a;color:white;padding:30px;text-align:center}
             .header h1{margin:0;font-size:22px;font-weight:300;letter-spacing:2px}
-            .header p{margin:5px 0 0;color:#d4922b;font-size:12px;letter-spacing:3px;text-transform:uppercase}
+            .header p{margin:5px 0 0;color:#ffaa00;font-size:12px;letter-spacing:3px;text-transform:uppercase}
             .body{padding:30px}
-            .badge{display:inline-block;background:#d4922b;color:white;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;margin-bottom:20px}
-            .field{margin-bottom:16px;padding:14px 16px;background:#f9f9f9;border-radius:8px;border-left:3px solid #d4922b}
+            .badge{display:inline-block;background:#ffaa00;color:white;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;margin-bottom:20px}
+            .field{margin-bottom:16px;padding:14px 16px;background:#f9f9f9;border-radius:8px;border-left:3px solid #ffaa00}
             .field-label{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
             .field-value{font-size:15px;color:#0a0a0a;font-weight:500}
             .footer{background:#f9f9f9;padding:20px 30px;text-align:center;font-size:12px;color:#888}

@@ -8,7 +8,7 @@ function BtnPreview({ s }: { s: Record<string, string> }) {
   const shape      = s.btn_shape       || 'pill'
   const primaryBg  = s.btn_primary_bg  || '#0f0f0f'
   const primaryTxt = s.btn_primary_text || '#ffffff'
-  const primaryHov = s.btn_primary_hover_bg || '#d4922b'
+  const primaryHov = s.btn_primary_hover_bg || '#ffaa00'
   const secBg      = s.btn_secondary_bg || 'transparent'
   const secTxt     = s.btn_secondary_text || '#0f0f0f'
   const secBdr     = s.btn_secondary_border || '#d1d5db'
@@ -240,10 +240,10 @@ export default function ButtonsAdminPage() {
               <p className="text-[10px] text-obsidian-400 uppercase tracking-wide mb-2">Presets rapides</p>
               <div className="flex flex-wrap gap-2">
                 {[
-                  { name:'Noir',     bg:'#0f0f0f', text:'#ffffff', hover:'#d4922b' },
-                  { name:'Or',       bg:'#d4922b', text:'#ffffff', hover:'#b87333' },
+                  { name:'Noir',     bg:'#0f0f0f', text:'#ffffff', hover:'#ffaa00' },
+                  { name:'Or',       bg:'#ffaa00', text:'#ffffff', hover:'#b87333' },
                   { name:'Blanc',    bg:'#ffffff', text:'#0f0f0f', hover:'#f5f5f5' },
-                  { name:'Marine',   bg:'#1b3a5c', text:'#ffffff', hover:'#d4922b' },
+                  { name:'Marine',   bg:'#1b3a5c', text:'#ffffff', hover:'#ffaa00' },
                   { name:'Émeraude', bg:'#046b3b', text:'#ffffff', hover:'#035430' },
                   { name:'Bordeaux', bg:'#722f37', text:'#ffffff', hover:'#5a2229' },
                 ].map(p => (

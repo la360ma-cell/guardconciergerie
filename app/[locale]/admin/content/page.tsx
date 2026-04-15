@@ -150,11 +150,11 @@ function StylePanel({
           </div>
           {/* Quick color presets */}
           <div className="flex gap-1.5 mt-2 flex-wrap">
-            {['#FFFFFF','#000000','#d4922b','#1b3a5c','#6b7280','#ef4444','#3b82f6','#10b981'].map(c => (
+            {['#FFFFFF','#000000','#ffaa00','#1b3a5c','#6b7280','#ef4444','#3b82f6','#10b981'].map(c => (
               <button key={c} onClick={() => onChange(contentKey, 'color', c)}
                 title={c}
                 className="w-5 h-5 rounded-full border-2 transition-transform hover:scale-110"
-                style={{ backgroundColor: c, borderColor: color === c ? '#d4922b' : 'transparent' }} />
+                style={{ backgroundColor: c, borderColor: color === c ? '#ffaa00' : 'transparent' }} />
             ))}
           </div>
         </div>

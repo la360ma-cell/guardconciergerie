@@ -85,7 +85,7 @@ export default function SettingsPage() {
 
   const filtered = settings.filter(s => s.category === activeCategory)
   const primaryColorSetting = settings.find(s => s.key === 'appearance_primary_color')
-  const primaryColorValue = changes['appearance_primary_color'] ?? primaryColorSetting?.value ?? '#d4922b'
+  const primaryColorValue = changes['appearance_primary_color'] ?? primaryColorSetting?.value ?? '#ffaa00'
 
   const getValue = (setting: SettingItem) => changes[setting.key] ?? setting.value ?? ''
 
@@ -200,7 +200,7 @@ export default function SettingsPage() {
                 className="w-28 bg-gray-50 dark:bg-obsidian-950 border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-1.5 text-sm font-mono focus:outline-none focus:border-gold-400"
               />
               <div className="flex gap-1.5">
-                {['#d4922b','#c9880f','#b5750d','#e8a53c','#f0c060'].map(c => (
+                {['#ffaa00','#c9880f','#b5750d','#e8a53c','#f0c060'].map(c => (
                   <button
                     key={c}
                     onClick={() => handleChange('appearance_primary_color', c)}

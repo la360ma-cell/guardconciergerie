@@ -61,7 +61,7 @@ export default function WhyUs({ locale, settings = {}, content = {} }: WhyUsProp
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             className="luxury-badge justify-center mb-4 text-gold-400"
-            style={{ color: '#d4922b', ...cs('badge') }}
+            style={{ color: '#ffaa00', ...cs('badge') }}
           >
             {ct('badge', t('badge'))}
           </motion.div>

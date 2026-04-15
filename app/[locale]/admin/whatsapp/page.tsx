@@ -278,7 +278,7 @@ export default function WhatsAppAdminPage() {
                 {[
                   { bg: '#25D366', icon: '#FFFFFF', name: 'WhatsApp' },
                   { bg: '#000000', icon: '#FFFFFF', name: 'Noir' },
-                  { bg: '#d4922b', icon: '#FFFFFF', name: 'Or' },
+                  { bg: '#ffaa00', icon: '#FFFFFF', name: 'Or' },
                   { bg: '#1b3a5c', icon: '#FFFFFF', name: 'Marine' },
                   { bg: '#FFFFFF', icon: '#25D366', name: 'Blanc' },
                 ].map(p => (
