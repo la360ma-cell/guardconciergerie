@@ -73,7 +73,7 @@ export default function WhyUs({ locale, settings = {}, content = {} }: WhyUsProp
             style={cs('title')}
           >
             {ct('title', t('title'))}{' '}
-            <em className="text-gold-gradient not-italic" style={cs('title_highlight')}>{ct('title_highlight', t('title_highlight'))}</em>
+            <em className="text-white not-italic" style={cs('title_highlight')}>{ct('title_highlight', t('title_highlight'))}</em>
           </motion.h2>
         </div>
 
