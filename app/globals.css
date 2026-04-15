@@ -7,6 +7,347 @@
 :root {
   --font-inter: 'Inter', sans-serif;
   --font-cormorant: 'Cormorant Garamond', serif;
+  --gold: #ffaa00;
+  --gold-light: #ffcc44;
+  --transition: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+* { box-sizing: border-box; padding: 0; margin: 0; }
+
+html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
+
+body {
+  font-family: var(--font-inter);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s var(--transition), color 0.3s var(--transition);
+  overflow-x: hidden;
+}
+
+body { background-color: #ffffff; color: #0a0a0a; }
+.dark body { background-color: #0a0a0a; color: #f5f5f5; }
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #ffaa00; border-radius: 3px; }
+
+::selection { background: rgba(255, 170, 0, 0.2); color: #0a0a0a; }
+.dark ::selection { color: #ffffff; }
+
+.font-display { font-family: var(--font-cormorant); }
+
+.text-gold-gradient {
+  background: linear-gradient(135deg, #ffaa00 0%, #ffcc33 50%, #ffaa00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-padding { padding-top: 100px; padding-bottom: 100px; }
+@media (max-width: 768px) {
+  .section-padding { padding-top: 64px; padding-bottom: 64px; }
+}
+
+.luxury-divider {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #ffaa00, transparent);
+  margin: 0 auto;
+}
+
+.grain-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.4;
+}
+
+.aos-hidden { opacity: 0; transform: translateY(20px); }
+.aos-visible { opacity: 1; transform: translateY(0); transition: opacity 0.6s ease, transform 0.6s ease; }
+
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.dark .glass {
+  background: rgba(10, 10, 10, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.luxury-input {
+  @apply w-full bg-transparent border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all duration-200 placeholder:text-gray-400;
+}
+
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+
+.luxury-badge {
+  @apply inline-flex items-center gap-2 text-xs font-medium tracking-[0.2em] uppercase text-gold-600 dark:text-gold-400;
+}
+.luxury-badge::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 1px;
+  background: currentColor;
+}
+.luxury-badge::after {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 1px;
+  background: currentColor;
+}
+
+.admin-sidebar { width: 260px; min-height: 100vh; }
+
+.toast-enter { opacity: 0; transform: translateX(100%); }
+.toast-enter-active { opacity: 1; transform: translateX(0); transition: all 0.3s ease; }
+
+/* ============================================= */
+/* GUARD CONCIERGERIE - DESIGN FIXES             */
+/* ============================================= */
+
+/* 1. NAV: white text on transparent header */
+header.bg-transparent a,
+header.bg-transparent button {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+header.bg-transparent a:hover,
+header.bg-transparent button:hover {
+  color: #d4d4d4 !important;
+  -webkit-text-fill-color: #d4d4d4 !important;
+}
+
+/* NAV: black text on solid header - exclude CTA and dark-bg elements */
+header[class*="bg-white"] a:not(.btn-primary):not(.bg-obsidian-950),
+header[class*="bg-white"] button:not(.bg-obsidian-950) {
+  color: #0a0a0a !important;
+  -webkit-text-fill-color: #0a0a0a !important;
+}
+header[class*="bg-white"] a:not(.btn-primary):not(.bg-obsidian-950):hover,
+header[class*="bg-white"] button:not(.bg-obsidian-950):hover {
+  color: #555555 !important;
+  -webkit-text-fill-color: #555555 !important;
+}
+
+/* NAV: CTA button and active lang keep white text on dark bg (light mode) */
+header .btn-primary,
+header a.bg-obsidian-950,
+header button.bg-obsidian-950 {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+header .btn-primary:hover {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* 2. FORMS: remove gold asterisks */
+form .text-gold-500 {
+  color: rgb(136, 136, 136) !important;
+  -webkit-text-fill-color: rgb(136, 136, 136) !important;
+}
+
+/* 3. CONTACT FORM: fix inherited gold from admin styles */
+#contact form,
+#contact form * {
+  -webkit-text-fill-color: inherit !important;
+}
+#contact form {
+  color: rgb(109, 109, 109) !important;
+  -webkit-text-fill-color: rgb(109, 109, 109) !important;
+}
+#contact form button[type="submit"] {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+#contact form label {
+  color: rgb(136, 136, 136) !important;
+  -webkit-text-fill-color: rgb(136, 136, 136) !important;
+}
+#contact form input,
+#contact form select {
+  color: #0a0a0a !important;
+  -webkit-text-fill-color: #0a0a0a !important;
+}
+
+/* 4. FAQ: uniform answer color */
+#faq .overflow-hidden p {
+  color: rgb(109, 109, 109) !important;
+  -webkit-text-fill-color: rgb(109, 109, 109) !important;
+}
+
+/* 5. BADGES: uniform gold - doubled ID for specificity */
+#top#top .luxury-badge,
+#about#about .luxury-badge,
+#services#services .luxury-badge,
+#whyus#whyus .luxury-badge,
+#process#process .luxury-badge,
+#stats#stats .luxury-badge,
+#testimonials#testimonials .luxury-badge,
+#faq#faq .luxury-badge,
+#contact#contact .luxury-badge {
+  color: #ffaa00 !important;
+  -webkit-text-fill-color: #ffaa00 !important;
+}
+
+/* 6. H2 ACCENTS: override admin inline styles - doubled ID */
+#about#about h2 em,
+#services#services h2 em,
+#process#process h2 em,
+#stats#stats h2 em,
+#testimonials#testimonials h2 em,
+#faq#faq h2 em,
+#contact#contact h2 em {
+  color: #0a0a0a !important;
+  -webkit-text-fill-color: #0a0a0a !important;
+  background-image: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+}
+
+/* ============================================= */
+/* DARK MODE FIXES                               */
+/* ============================================= */
+
+/* Nav: white text in dark mode - exclude CTA and active lang buttons */
+.dark header a:not(.btn-primary):not(.bg-obsidian-950),
+.dark header button:not(.bg-obsidian-950) {
+  color: #f5f5f5 !important;
+  -webkit-text-fill-color: #f5f5f5 !important;
+}
+.dark header a:not(.btn-primary):not(.bg-obsidian-950):hover,
+.dark header button:not(.bg-obsidian-950):hover {
+  color: #d4d4d4 !important;
+  -webkit-text-fill-color: #d4d4d4 !important;
+}
+
+/* Dark mode: CTA button has white bg + dark text */
+.dark header .btn-primary {
+  color: #0a0a0a !important;
+  -webkit-text-fill-color: #0a0a0a !important;
+}
+
+/* Dark mode: active lang button (bg-obsidian-950 -> dark:bg-white) needs dark text */
+.dark header a.bg-obsidian-950,
+.dark header button.bg-obsidian-950 {
+  color: #0a0a0a !important;
+  -webkit-text-fill-color: #0a0a0a !important;
+}
+
+/* H2 em accents: white in dark mode */
+.dark #about#about h2 em,
+.dark #services#services h2 em,
+.dark #process#process h2 em,
+.dark #stats#stats h2 em,
+.dark #testimonials#testimonials h2 em,
+.dark #faq#faq h2 em,
+.dark #contact#contact h2 em {
+  color: #f5f5f5 !important;
+  -webkit-text-fill-color: #f5f5f5 !important;
+}
+
+/* FAQ answers: lighter gray in dark mode */
+.dark #faq .overflow-hidden p {
+  color: rgb(176, 176, 176) !important;
+  -webkit-text-fill-color: rgb(176, 176, 176) !important;
+}
+
+/* Contact form: adjust for dark mode */
+.dark #contact form {
+  color: rgb(176, 176, 176) !important;
+  -webkit-text-fill-color: rgb(176, 176, 176) !important;
+}
+.dark #contact form label {
+  color: rgb(176, 176, 176) !important;
+  -webkit-text-fill-color: rgb(176, 176, 176) !important;
+}
+.dark #contact form input,
+.dark #contact form select {
+  color: #f5f5f5 !important;
+  -webkit-text-fill-color: #f5f5f5 !important;
+}
+
+
+/* Dark mode: override appearance system inline color rules for contact section */
+/* Doubled ID #contact#contact for max specificity to beat admin inline nth-of-type selectors */
+.dark #contact#contact a,
+.dark #contact#contact span,
+.dark #contact#contact p,
+.dark #contact#contact div:not([class*="bg-"]):not(.luxury-badge),
+.dark #contact#contact h2,
+.dark #contact#contact h3,
+.dark #contact#contact li,
+.dark #contact#contact button:not([type="submit"]),
+.dark #contact#contact form label,
+.dark #contact#contact form input,
+.dark #contact#contact form select {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Dark mode: footer text visibility - force white text on dark bg */
+.dark footer a,
+.dark footer span,
+.dark footer p,
+.dark footer li {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Dark mode: testimonials author name */
+.dark #testimonials [class*="font-medium"] {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Dark mode: about section stat text */
+.dark #about [class*="font-display"] {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+
+/* Why us section: card numbers match icon gold color */
+#whyus .absolute.font-display[class*="text-5xl"] {
+  color: #ffaa00 !important;
+  -webkit-text-fill-color: #ffaa00 !important;
+}
+
+/* Override appearance system for hero upload area - gold text */
+#top#top .border-dashed p:first-of-type {
+  color: #ffaa5a !important;
+  -webkit-text-fill-color: #ffaa5a !important;
+}
+#top#top .border-dashed p:last-of-type {
+  color: #ffaa5a !important;
+  -webkit-text-fill-color: #ffaa5a !important;
+}
+#top#top .border-dashed svg {
+  color: #ffaa5a !important;
+  -webkit-text-fill-color: #ffaa5a !important;
+}
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-inter: 'Inter', sans-serif;
+  --font-cormorant: 'Cormorant Garamond', serif;
   --gold: #d4922b;
   --gold-light: #e9a83b;
   --transition: cubic-bezier(0.25, 0.46, 0.45, 0.94);
