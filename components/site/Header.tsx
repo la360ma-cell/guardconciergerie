@@ -112,7 +112,7 @@ export default function Header({ locale, settings }: HeaderProps) {
           'w-full transition-all duration-300',
           scrolled
             ? 'bg-white/95 dark:bg-obsidian-950/95 backdrop-blur-md shadow-luxury dark:shadow-luxury-dark py-3'
-            : 'bg-white/90 dark:bg-obsidian-950/90 backdrop-blur-sm py-5'
+            : 'bg-transparent py-5'
         )}
         style={headerScrolledStyle}
       >
