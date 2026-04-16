@@ -9,7 +9,7 @@ import { Upload, X, CheckCircle, AlertCircle, Loader2, Phone, User, MapPin, Home
 import { cn } from '@/lib/utils'
 
 interface FormField {
-  id: number
+  id: numberh
   name: string
   labelFr: string
   labelEn: string
@@ -146,9 +146,9 @@ export default function DynamicForm({ locale, formFields, settings, variant = 's
           files.length >= 10 && 'opacity-50 cursor-not-allowed'
         )}>
           <input {...getInputProps()} />
-          <Upload size={16} className={cn("mx-auto mb-1", variant === 'hero' ? "!text-gold-400" : "text-obsidian-300 dark:!text-[#ffaa00]")} />
-          <p className={cn("text-xs", variant === 'hero' ? "!text-gold-400" : "text-obsidian-400 dark:!text-[#ffaa00]")} style={variant === 'hero' ? { color: '#ffaa5a', WebkitTextFillColor: '#ffaa5a' } : undefined}>{t('upload_text')}</p>
-          <p className={cn("text-[10px] mt-0.5", variant === 'hero' ? "!text-gold-300" : "text-obsidian-300 dark:!text-[#ffaa00]")} style={variant === 'hero' ? { color: '#ffaa5a', WebkitTextFillColor: '#ffaa5a' } : undefined}>{t('upload_formats')}</p>
+          <Upload size={16} className="mx-auto mb-1 !text-[#ffaa00]" />
+          <p className="text-xs !text-[#ffaa00]" style={{ color: '#ffaa00' }}>{t('upload_text')}</p>
+          <p className="text-[10px] mt-0.5 !text-[#ffaa00]" style={{ color: '#ffaa00' }}>{t('upload_formats')}</p>
         </div>
         {files.length > 0 && (
           <div className="mt-2 grid grid-cols-4 gap-1.5">
