@@ -680,3 +680,29 @@ form .text-gold-500 {
   color: #ffaa5a !important;
   -webkit-text-fill-color: #ffaa5a !important;
 }
+
+
+
+/* Override contact form upload area text - gold in both light and dark mode */
+#contact#contact .border-dashed p:first-of-type {
+  color: #ffaa5a !important;
+  -webkit-text-fill-color: #ffaa5a !important;
+}
+#contact#contact .border-dashed p:last-of-type {
+  color: #ffaa5a !important;
+  -webkit-text-fill-color: #ffaa5a !important;
+}
+#contact#contact .border-dashed svg {
+  color: #ffaa5a !important;
+}
+.dark #contact#contact .border-dashed p:first-of-type {
+  color: #ffaa5a !important;
+  -webkit-text-fill-color: #ffaa5a !important;
+}
+.dark #contact#contact .border-dashed p:last-of-type {
+  color: #ffaa5a !important;
+  -webkit-text-fill-color: #ffaa5a !important;
+}
+.dark #contact#contact .border-dashed svg {
+  color: #ffaa5a !important;
+}
