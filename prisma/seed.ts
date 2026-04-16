@@ -1,4 +1,4 @@
-import { PrismaClient, Prisma } from '@prisma/client'
+import { Prisma, PrismaClient } from '@prisma/client'
 import bcrypt from 'bcryptjs'
 
 const prisma = new PrismaClient()
@@ -129,9 +129,9 @@ async function main() {
       order: 2,
     },
     {
-      questionFr: "Comment fonctionne le suivi en temps réel ?",
+      questionFr: "Comment fonctionne le suivi ?",
       questionEn: "How does real-time tracking work?",
-      answerFr: "Chaque propriétaire accède à un tableau de bord privé avec toutes les informations : réservations en cours, revenus, dépenses, planning d'occupation.",
+      answerFr: "A chaque fin de mois, vous recevrez un relevé détaillé: Revenus, dépenses, réservations rien ne vous échappe.",
       answerEn: "Each owner has access to a private dashboard with all information: current bookings, revenues, expenses, occupancy schedule.",
       order: 3,
     },
