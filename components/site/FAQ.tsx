@@ -83,7 +83,7 @@ export default function FAQ({ locale, faqs, settings, content = {} }: FAQProps) 
                   onClick={() => setOpenIndex(isOpen ? null : i)}
                   className="w-full flex items-center justify-between p-5 text-left"
                 >
-                  <span className="font-medium text-obsidian-900 dark:text-white pr-4">{question}</span>
+                  <span className="font-medium text-obsidian-950 dark:text-white pr-4">{question}</span>
                   <div className={cn(
                     'w-7 h-7 rounded-full border flex items-center justify-center flex-shrink-0 transition-all',
                     isOpen
