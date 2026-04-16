@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { formatDate } from '@/lib/utils'
-import { Search, Download, Trash2, ChevronDown, Phone, MessageCircle, Mail, MapPin, Home, FileText, Calendar, Check, Loader2 } from 'lucide-react'
+import { Search, Download, Trash2, ChevronDown, Phone, MessageCircle, Mail, MapPin, Home, FileText, Calendar, Check, Loader2, ImageIcon, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const STATUS_OPTIONS = [
@@ -61,6 +61,102 @@ function StatusDropdown({ lead, onUpdate }: { lead: any; onUpdate: (id: number, 
         </div>
       )}
     </div>
+  )
+}
+
+
+function PhotoLightbox({ photos, initialIndex, onClose }: { photos: string[]; initialIndex: number; onClose: () => void }) {
+  const [currentIndex, setCurrentIndex] = useState(initialIndex)
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose()
+      if (e.key === 'ArrowRight') setCurrentIndex(i => (i + 1) % photos.length)
+      if (e.key === 'ArrowLeft') setCurrentIndex(i => (i - 1 + photos.length) % photos.length)
+    }
+    document.addEventListener('keydown', handler)
+    return () => document.removeEventListener('keydown', handler)
+  }, [photos.length, onClose])
+
+  return (
+    <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4" onClick={onClose}>
+      <button onClick={onClose} className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors">
+        <X size={24} />
+      </button>
+      <div className="relative max-w-4xl max-h-[85vh] w-full" onClick={e => e.stopPropagation()}>
+        <img
+          src={photos[currentIndex]}
+          alt={`Photo ${currentIndex + 1}`}
+          className="w-full h-full object-contain rounded-lg"
+        />
+        {photos.length > 1 && (
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-3 bg-black/50 rounded-full px-4 py-2">
+            <button onClick={() => setCurrentIndex(i => (i - 1 + photos.length) % photos.length)} className="text-white hover:text-gold-400 text-sm font-medium">
+              ←
+            </button>
+            <span className="text-white text-xs">{currentIndex + 1} / {photos.length}</span>
+            <button onClick={() => setCurrentIndex(i => (i + 1) % photos.length)} className="text-white hover:text-gold-400 text-sm font-medium">
+              →
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
+function LeadPhotos({ photos: photosString }: { photos: string }) {
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
+
+  let photos: string[] = []
+  try {
+    const parsed = JSON.parse(photosString || '[]')
+    if (Array.isArray(parsed)) photos = parsed
+  } catch {
+    photos = []
+  }
+
+  if (photos.length === 0) return null
+
+  return (
+    <>
+      <div className="flex items-start gap-2 sm:col-span-2 lg:col-span-4">
+        <ImageIcon size={14} className="text-gold-500 mt-0.5 flex-shrink-0" />
+        <div className="flex-1">
+          <p className="text-[10px] text-gray-400 uppercase tracking-wide font-semibold mb-2">
+            Photos de la propriété ({photos.length})
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
+            {photos.map((url, i) => (
+              <button
+                key={i}
+                onClick={() => setLightboxIndex(i)}
+                className="group relative aspect-square rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 hover:border-gold-400 transition-all hover:shadow-md"
+              >
+                <img
+                  src={url}
+                  alt={`Photo ${i + 1}`}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                  <span className="opacity-0 group-hover:opacity-100 text-white text-xs font-medium transition-opacity">
+                    Agrandir
+                  </span>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+      {lightboxIndex !== null && (
+        <PhotoLightbox
+          photos={photos}
+          initialIndex={lightboxIndex}
+          onClose={() => setLightboxIndex(null)}
+        />
+      )}
+    </>
   )
 }
 
@@ -167,6 +263,7 @@ function LeadRow({ lead, onDelete, onStatusUpdate }: { lead: any; onDelete: (id:
                   </div>
                 </div>
               )}
+              {lead.photos && <LeadPhotos photos={lead.photos} />}
             </div>
           </td>
         </tr>
