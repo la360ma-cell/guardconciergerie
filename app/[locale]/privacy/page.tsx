@@ -131,8 +131,8 @@ export default async function PrivacyPage({
               {isFr
                 ? `Pour exercer ces droits, contactez-nous à : `
                 : `To exercise these rights, contact us at: `}
-              <a href={`mailto:${settings.contact_email || 'contact@guardconciergerie.com'}`} className="text-gold-500 hover:text-gold-600 underline">
-                {settings.contact_email || 'contact@guardconciergerie.com'}
+              <a href={`mailto:${settings.contact_email || 'guard.conciergerie@hotmail.com'}`} className="text-gold-500 hover:text-gold-600 underline">
+                {settings.contact_email || 'guard.conciergerie@hotmail.com'}
               </a>
             </p>
           </section>
@@ -187,8 +187,8 @@ export default async function PrivacyPage({
               <p className="font-medium text-obsidian-900 dark:text-white">{settings.site_name || 'Guard Conciergerie Luxury Care'}</p>
               <p>{isFr ? settings.contact_address_fr || 'Guéliz, Marrakech, Maroc' : settings.contact_address_en || 'Gueliz, Marrakech, Morocco'}</p>
               <p>
-                <a href={`mailto:${settings.contact_email || 'contact@guardconciergerie.com'}`} className="text-gold-500 hover:text-gold-600 underline">
-                  {settings.contact_email || 'contact@guardconciergerie.com'}
+                <a href={`mailto:${settings.contact_email || 'guard.conciergerie@hotmail.com'}`} className="text-gold-500 hover:text-gold-600 underline">
+                  {settings.contact_email || 'guard.conciergerie@hotmail.com'}
                 </a>
               </p>
               <p>
