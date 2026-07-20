@@ -55,7 +55,7 @@ export default async function LegalPage({
               <p>{isFr ? 'Société à responsabilité limitée (SARL)' : 'Limited Liability Company (LLC)'}</p>
               <p>{isFr ? `Siège social : ${settings.contact_address_fr || 'Guéliz, Marrakech, Maroc'}` : `Registered office: ${settings.contact_address_en || 'Gueliz, Marrakech, Morocco'}`}</p>
               <p>{isFr ? `Téléphone : ${settings.contact_phone || '+212 6XX XXX XXX'}` : `Phone: ${settings.contact_phone || '+212 6XX XXX XXX'}`}</p>
-              <p>{isFr ? `Email : ${settings.contact_email || 'contact@guardconciergerie.com'}` : `Email: ${settings.contact_email || 'contact@guardconciergerie.com'}`}</p>
+              <p>{isFr ? `Email : ${settings.contact_email || 'guard.conciergerie@hotmail.com'}` : `Email: ${settings.contact_email || 'guard.conciergerie@hotmail.com'}`}</p>
             </div>
           </section>
 
@@ -117,8 +117,8 @@ export default async function LegalPage({
               {isFr
                 ? `Pour toute question relative aux présentes mentions légales, vous pouvez nous contacter à l'adresse suivante : `
                 : `For any questions regarding these legal notices, you can contact us at: `}
-              <a href={`mailto:${settings.contact_email || 'contact@guardconciergerie.com'}`} className="text-gold-500 hover:text-gold-600 underline">
-                {settings.contact_email || 'contact@guardconciergerie.com'}
+              <a href={`mailto:${settings.contact_email || 'guard.conciergerie@hotmail.com'}`} className="text-gold-500 hover:text-gold-600 underline">
+                {settings.contact_email || 'guard.conciergerie@hotmail.com'}
               </a>
             </p>
           </section>
