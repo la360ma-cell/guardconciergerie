@@ -22,7 +22,20 @@ cp .env.example .env.local   # renseigner les variables (voir .env.example)
 npm run dev
 ```
 
-Scripts : `dev`, `build`, `start`, `lint`, `typecheck`.
+Scripts : `dev`, `build`, `start`, `lint`, `typecheck`, `db:generate`, `db:migrate`, `db:seed`.
+
+## Base de données (Supabase + Drizzle)
+
+1. Créer un projet sur [supabase.com](https://supabase.com), récupérer :
+   - `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY` (Settings → API) ;
+   - `DATABASE_URL` (Settings → Database → Connection string, **Session pooler** pour les migrations).
+2. Appliquer les migrations : `npm run db:migrate`
+   — crée le schéma complet, la RLS, les triggers (profil auto à l'inscription, `updated_at`), la séquence de référence `TMI-0042` et le bucket Storage `properties` (lecture publique, écriture admin).
+3. Créer le compte admin : Dashboard → Authentication → *Add user* avec l'email de `ADMIN_EMAIL`.
+4. Seeder les données de démo : `npm run db:seed`
+   — 10 quartiers réels, 8 biens `[DÉMO]`, 2 guides `[DÉMO]` ; idempotent (ré-exécutable). Le seed promeut automatiquement `ADMIN_EMAIL` en `role=admin` si le compte auth existe.
+
+**Marketplace-ready** : les rôles `proprietaire`/`agent` et leurs policies RLS sont écrits dans `db/migrations/0001_rls_storage.sql` (section 11, commentée). Activation en Phase 2 en les décommentant — aucun changement de schéma requis.
 
 ## Internationalisation
 
@@ -39,7 +52,7 @@ Tokens dans `tailwind.config.ts` : `chaux` (fond), `blanc` (surfaces), `encre` (
 | Module | Contenu | Statut |
 |---|---|---|
 | M0 | Fondations : Next 14, Tailwind + tokens, fonts, next-intl, layout, accueil squelette | ✅ |
-| M1 | Schéma Drizzle, migrations, RLS, Storage, seed | ⏳ |
+| M1 | Schéma Drizzle, migrations, RLS, Storage, seed | ✅ |
 | M2 | Pages publiques biens (hubs, programmatique, fiche, filtres, maillage) | ⏳ |
 | M3 | Couche SEO (metadata, JSON-LD, sitemaps, OG, redirections) | ⏳ |
 | M4 | Quartiers & guides | ⏳ |
