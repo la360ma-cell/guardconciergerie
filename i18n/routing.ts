@@ -9,6 +9,10 @@ export const routing = defineRouting({
   locales: ['fr', 'en'],
   defaultLocale: 'fr',
   localePrefix: 'as-needed',
+  // Pas de détection Accept-Language/cookie : `/` sert TOUJOURS le français.
+  // Une redirection automatique vers /en fausserait l'indexation (Googlebot
+  // se présente en anglais) ; le visiteur change de langue manuellement.
+  localeDetection: false,
   pathnames: {
     '/': '/',
     '/acheter': { fr: '/acheter', en: '/buy' },
