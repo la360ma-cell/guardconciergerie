@@ -93,7 +93,11 @@ export default function AppearancePage({ params: { locale } }: { params: { local
       fd.append('file', file)
       const res = await fetch('/api/upload', { method: 'POST', body: fd })
       const data = await res.json()
-      if (data.url) update(sectionKey, data.url)
+      if (!res.ok) throw new Error(data.details || data.error || `Upload failed (${res.status})`)
+      if (!data.url) throw new Error('Upload completed without an image URL')
+      update(sectionKey, data.url)
+    } catch (error) {
+      console.error('[appearance] image upload failed', error)
     } finally {
       setUploading(null)
     }
