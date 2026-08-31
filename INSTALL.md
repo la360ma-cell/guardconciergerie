@@ -23,6 +23,7 @@ NEXTAUTH_URL="http://localhost:3000"
 NEXTAUTH_SECRET="générez-une-clé-secrète"
 RESEND_API_KEY="votre-clé-resend"
 NOTIFICATION_EMAIL="votre-email@domaine.com"
+BLOB_READ_WRITE_TOKEN="votre-token-vercel-blob"
 NEXT_PUBLIC_SITE_URL="http://localhost:3000"
 ```
 
@@ -95,9 +96,20 @@ openssl rand -base64 32
 
 ## Déploiement (recommandé : Vercel + Supabase)
 1. Push sur GitHub
-2. Connecter à Vercel
-3. Configurer les variables d'env
-4. Déployer
+2. Connecter le dépôt à Vercel
+3. Dans **Storage → Blob**, créer un Blob Store et le connecter au projet
+4. Vérifier que `BLOB_READ_WRITE_TOKEN` est injecté dans les variables d'environnement
+5. Configurer les autres variables d'environnement
+6. Déployer
+
+## Migration depuis Cloudinary
+1. Supprimer `CLOUDINARY_CLOUD_NAME` et `CLOUDINARY_UPLOAD_PRESET` des variables de production
+2. Déployer cette version
+3. Dans `/fr/admin/appearance`, téléverser à nouveau les logos et les images de chaque section
+4. Sauvegarder l'apparence puis vérifier les pages FR et EN
+5. Les nouvelles photos envoyées avec les formulaires seront stockées dans Vercel Blob
+
+Les anciennes URL Cloudinary déjà enregistrées en base ne peuvent pas être converties automatiquement : les fichiers originaux doivent être téléversés à nouveau.
 
 ## Support email (Resend)
 1. Créer un compte sur resend.com
