@@ -4,7 +4,7 @@ import { LangToggle } from '@/components/ui/LangToggle'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
 import { cn } from '@/lib/utils'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Menu, Phone, X } from 'lucide-react'
+import { Gamepad2, Menu, Phone, X } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useTheme } from 'next-themes'
 import { usePathname } from 'next/navigation'
@@ -177,6 +177,14 @@ export default function Header({ locale, settings }: HeaderProps) {
 
             {/* Right controls */}
             <div className="hidden lg:flex items-center gap-3">
+              <a
+                href={`${home}/game`}
+                aria-label="Marrakech Maze"
+                title="Marrakech Maze"
+                className="text-obsidian-500 dark:text-obsidian-300 hover:text-gold-600 dark:hover:text-gold-400 transition-colors"
+              >
+                <Gamepad2 size={18} />
+              </a>
               <LangToggle locale={locale} />
               <ThemeToggle />
               <a
@@ -229,6 +237,14 @@ export default function Header({ locale, settings }: HeaderProps) {
                   {link.label}
                 </a>
               ))}
+              <a
+                href={`${home}/game`}
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center gap-2 text-base text-obsidian-700 dark:text-obsidian-200 hover:text-gold-600 dark:hover:text-gold-400 py-2 border-b border-gray-100 dark:border-gray-800 transition-colors"
+              >
+                <Gamepad2 size={16} />
+                Marrakech Maze
+              </a>
               <a
                 href={`tel:${settings.contact_phone}`}
                 className="flex items-center gap-2 text-sm text-gold-600 dark:text-gold-400 py-2"
