@@ -3,30 +3,21 @@ import { put } from '@vercel/blob'
 const MAX_FILE_SIZE = Number(process.env.MAX_FILE_SIZE) || 10 * 1024 * 1024 // 10MB
 const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/jpg', 'image/svg+xml']
 
-// ── Cloudinary upload ────────────────────────────────────────────────────────
-async function uploadToCloudinary(file: File): Promise<string> {
-  const cloudName = process.env.CLOUDINARY_CLOUD_NAME!
-  const uploadPreset = process.env.CLOUDINARY_UPLOAD_PRESET!
-  const fd = new FormData()
-  fd.append('file', file)
-  fd.append('upload_preset', uploadPreset)
-  fd.append('folder', 'guard-conciergerie')
-  const res = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
-    method: 'POST',
-    body: fd,
-  })
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({}))
-    throw new Error(`Cloudinary upload failed: ${JSON.stringify(err)}`)
-  }
-  const data = await res.json()
-  return data.secure_url as string
-}
-
-// ── Vercel Blob upload (production fallback) ─────────────────────────────────
+// ── Vercel Blob upload ───────────────────────────────────────────────────────
 async function uploadToVercelBlob(file: File): Promise<string> {
-  const ext = file.name.split('.').pop() || 'jpg'
-  const filename = `guard-${Date.now()}.${ext}`
+  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+    throw new Error('BLOB_READ_WRITE_TOKEN is not configured')
+  }
+
+  const ext = (file.name.split('.').pop() || 'jpg').toLowerCase()
+  const basename = file.name
+    .replace(/\.[^.]+$/, '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-zA-Z0-9_-]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 60) || 'image'
+  const filename = `guard-conciergerie/${Date.now()}-${basename}.${ext}`
   const blob = await put(filename, file, {
     access: 'public',
     contentType: file.type,
@@ -34,7 +25,6 @@ async function uploadToVercelBlob(file: File): Promise<string> {
   return blob.url
 }
 
-// ── Main export ──────────────────────────────────────────────────────────────
 export async function uploadFile(file: File): Promise<{
   url: string
   filename: string
@@ -49,13 +39,7 @@ export async function uploadFile(file: File): Promise<{
     throw new Error(`Fichier trop volumineux (max ${MAX_FILE_SIZE / 1024 / 1024}MB)`)
   }
 
-  let url: string
-  if (process.env.CLOUDINARY_CLOUD_NAME && process.env.CLOUDINARY_UPLOAD_PRESET) {
-    url = await uploadToCloudinary(file)
-  } else {
-    // Use Vercel Blob (BLOB_READ_WRITE_TOKEN is auto-injected by Vercel)
-    url = await uploadToVercelBlob(file)
-  }
+  const url = await uploadToVercelBlob(file)
 
   return {
     url,
@@ -67,8 +51,8 @@ export async function uploadFile(file: File): Promise<{
 }
 
 export async function deleteFile(filename: string): Promise<void> {
-  // Vercel Blob and Cloudinary files are managed via their dashboards
-  // Local delete only for legacy paths
+  // Vercel Blob files are managed via the Vercel dashboard.
+  // Keep local deletion only for legacy paths.
   if (filename.startsWith('/uploads/')) {
     try {
       const { unlink } = await import('fs/promises')
