@@ -123,12 +123,18 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
     }
 
-    // Upload photos
+    // Upload photos — une photo qui échoue ne doit JAMAIS faire perdre le lead
     const photoPaths: string[] = []
+    let failedPhotos = 0
     for (const file of files.slice(0, 10)) {
       if (file instanceof File && file.size > 0) {
-        const uploaded = await uploadFile(file)
-        photoPaths.push(uploaded.url)
+        try {
+          const uploaded = await uploadFile(file, { folder: 'leads' })
+          photoPaths.push(uploaded.url)
+        } catch (uploadError) {
+          failedPhotos++
+          console.error('Lead photo upload failed:', uploadError instanceof Error ? uploadError.message : uploadError)
+        }
       }
     }
 
@@ -163,7 +169,7 @@ export async function POST(req: NextRequest) {
       photosCount: photoPaths.length,
     }).catch(console.error)
 
-    return NextResponse.json({ success: true, id: lead.id }, { status: 201 })
+    return NextResponse.json({ success: true, id: lead.id, failedPhotos }, { status: 201 })
   } catch (error) {
     console.error('Lead creation error:', error)
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
