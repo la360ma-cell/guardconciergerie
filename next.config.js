@@ -14,6 +14,12 @@ const nextConfig = {
       { protocol: 'https', hostname: 'images.unsplash.com' },
     ],
   },
+  async rewrites() {
+    // Fichiers envoyés (stockés sur le serveur) : /api/files/<dossier>/<nom>
+    return [
+      { source: '/api/files/:folder/:name', destination: '/api/files?folder=:folder&name=:name' },
+    ]
+  },
   async headers() {
     return [
       {
