@@ -22,8 +22,17 @@ const notFound = () => new NextResponse('Not found', { status: 404 })
 // - media : images du site, publiques
 // - leads : photos des clients, visibles uniquement par un admin connecté
 export async function GET(req: NextRequest) {
-  const folder = req.nextUrl.searchParams.get('folder') || ''
-  const rawName = req.nextUrl.searchParams.get('name') || ''
+  let folder = req.nextUrl.searchParams.get('folder') || ''
+  let rawName = req.nextUrl.searchParams.get('name') || ''
+
+  // Secours : adresse au format /api/files/<dossier>/<nom>
+  if (!folder || !rawName) {
+    const match = req.nextUrl.pathname.match(/^\/api\/files\/([^/]+)\/([^/]+)$/)
+    if (match) {
+      folder = match[1]
+      try { rawName = decodeURIComponent(match[2]) } catch { return notFound() }
+    }
+  }
 
   if (!UPLOAD_FOLDERS.includes(folder as UploadFolder)) return notFound()
 
