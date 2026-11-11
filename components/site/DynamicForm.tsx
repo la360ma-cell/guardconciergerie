@@ -7,9 +7,10 @@ import { useDropzone } from 'react-dropzone'
 import { motion } from 'framer-motion'
 import { Upload, X, CheckCircle, AlertCircle, Loader2, Phone, User, MapPin, Home, Star } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { compressImage } from '@/lib/compress-image'
 
 interface FormField {
-  id: numberh
+  id: number
   name: string
   labelFr: string
   labelEn: string
@@ -85,7 +86,8 @@ export default function DynamicForm({ locale, formFields, settings, variant = 's
       const fd = new FormData()
       Object.entries(data).forEach(([k, v]) => { if (v) fd.append(k, v as string) })
       if (data.otherCity) fd.set('city', data.otherCity)
-      files.forEach(f => fd.append('photos', f))
+      const compressed = await Promise.all(files.map(f => compressImage(f)))
+      compressed.forEach(f => fd.append('photos', f))
       const res = await fetch('/api/leads', { method: 'POST', body: fd })
       if (!res.ok) throw new Error()
       setSubmitted(true); reset(); setFiles([])
