@@ -65,7 +65,8 @@ export async function uploadFile(
   await mkdir(dir, { recursive: true })
   await writeFile(path.join(dir, name), Buffer.from(await file.arrayBuffer()))
 
-  const url = `/api/files/${folder}/${name}`
+  // Format avec paramètres : fonctionne directement sur Hostinger (sans réécriture d'URL)
+  const url = `/api/files?folder=${folder}&name=${encodeURIComponent(name)}`
 
   return {
     url,
@@ -77,11 +78,22 @@ export async function uploadFile(
 }
 
 export async function deleteFile(fileUrl: string): Promise<void> {
-  // Fichiers stockés sur le serveur : /api/files/<dossier>/<nom>
-  const match = fileUrl.match(/^\/api\/files\/(media|leads)\/([^/]+)$/)
-  if (match) {
+  // Fichiers stockés sur le serveur :
+  // /api/files?folder=<dossier>&name=<nom>  ou  /api/files/<dossier>/<nom>
+  let folder = ''
+  let name = ''
+  const pathMatch = fileUrl.match(/^\/api\/files\/(media|leads)\/([^/?]+)$/)
+  if (pathMatch) {
+    folder = pathMatch[1]
+    name = pathMatch[2]
+  } else if (fileUrl.startsWith('/api/files?')) {
+    const params = new URLSearchParams(fileUrl.slice('/api/files?'.length))
+    folder = params.get('folder') || ''
+    name = params.get('name') || ''
+  }
+  if (UPLOAD_FOLDERS.includes(folder as UploadFolder) && name) {
     try {
-      await unlink(path.join(UPLOAD_DIR, match[1], path.basename(match[2])))
+      await unlink(path.join(UPLOAD_DIR, folder, path.basename(name)))
     } catch { /* ignore */ }
     return
   }
