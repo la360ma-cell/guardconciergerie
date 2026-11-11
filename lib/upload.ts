@@ -1,14 +1,15 @@
 import { mkdir, writeFile, unlink } from 'fs/promises'
 import path from 'path'
 import { randomBytes } from 'crypto'
+import os from 'os'
 
 // ── Stockage local (serveur Hostinger) ──────────────────────────────────────
-// Les fichiers sont écrits HORS du dossier de l'application, pour survivre aux
-// redéploiements depuis GitHub. Par défaut : <dossier parent de l'app>/uploads
-// (sur Hostinger : ~/domains/guard-conciergerie.com/uploads).
+// Les fichiers sont écrits dans le dossier personnel du compte, HORS du dossier
+// du site : les redéploiements depuis GitHub ne les effacent pas.
+// Par défaut : ~/guard-conciergerie-uploads (sur Hostinger : /home/<compte>/…).
 // Surchargeable avec la variable d'environnement UPLOAD_DIR.
 export const UPLOAD_DIR = path.resolve(
-  process.env.UPLOAD_DIR || path.join(process.cwd(), '..', 'uploads'),
+  process.env.UPLOAD_DIR || path.join(os.homedir(), 'guard-conciergerie-uploads'),
 )
 
 // Dossiers autorisés : "media" = images du site (publiques),
@@ -64,6 +65,7 @@ export async function uploadFile(
 
   await mkdir(dir, { recursive: true })
   await writeFile(path.join(dir, name), Buffer.from(await file.arrayBuffer()))
+  console.log(`[upload] fichier enregistré : ${path.join(dir, name)}`)
 
   // Format avec paramètres : fonctionne directement sur Hostinger (sans réécriture d'URL)
   const url = `/api/files?folder=${folder}&name=${encodeURIComponent(name)}`
