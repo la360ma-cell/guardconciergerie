@@ -29,11 +29,11 @@ export async function POST(req: NextRequest) {
       size: file.size,
     }))
 
-    const uploaded = await uploadFile(file)
+    const uploaded = await uploadFile(file, { folder: 'media', allowSvg: true })
 
     console.log(JSON.stringify({
       level: 'info',
-      message: 'Blob upload completed',
+      message: 'File saved on server',
       route: '/api/upload',
       requestId,
       durationMs: Date.now() - startedAt,
